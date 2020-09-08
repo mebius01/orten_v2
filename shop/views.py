@@ -2,6 +2,10 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 from shop.serializers import *
 
+from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
+
+
 class LargeResultsSetPagination(PageNumberPagination):
     page_size = 50
     page_size_query_param = 'page_size'
@@ -15,6 +19,20 @@ class ProductList(ListAPIView):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
 	pagination_class = LargeResultsSetPagination
+	filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+	search_fields = ['name', 'description', 'vendor_code', 'specifications']
+	# filter_backends = [DjangoFilterBackend]
+	ordering_fields = ['vendor', 'name', 'price', 'available']
+	# filterset_fields = [
+	# 		'price',
+	# 		'available',
+	# 		'category',
+	# 		'vendor',
+	# 		'type_product',
+	# 		'format_fild',
+	# 		'color_fild']
+
+
 
 class ProductDetail(RetrieveAPIView):
 	queryset = Product.objects.all()
@@ -83,6 +101,33 @@ class ProductDetail(RetrieveAPIView):
 #         context['filterset'] = self.filterset
 #         return context
 
+
+# class ProductList(FormView, FilteredListView, SearchView):
+# 	model = Product
+# 	template_name = 'shop/list_product.html'
+# 	form_class = CartAddProductForm
+# 	filterset_class = ProductFilter
+# 	paginate_by = 24
+
+# 	def get_queryset(self):
+# 		queryset = super().get_queryset()
+# 		category = self.request.GET.get('category')
+# 		if category:
+# 			queryset = queryset.filter(category=category)
+# 		else:
+# 			queryset =  queryset
+# 		return queryset
+
+# 	def get_context_data(self, **kwargs):
+# 		context = super().get_context_data(**kwargs)
+# 		category = self.request.GET.get('category')
+# 		search = self.request.GET.get('search')
+# 		if category:
+# 			context['instance'] = Category.objects.get(id=category)
+# 		elif search:
+# 			context['search'] = search
+# 		context["date_now"] = datetime.now()
+# 		return context
 
 # class ServicesListView(FilteredListView):
 # 	model = Services
