@@ -2,35 +2,52 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 from shop.serializers import *
 
-from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter, SearchFilter
+from django_filters.rest_framework import DjangoFilterBackend, RangeFilter, FilterSet, NumberFilter
 
+from rest_framework import status, viewsets
 
 class LargeResultsSetPagination(PageNumberPagination):
-    page_size = 50
+    page_size = 24
     page_size_query_param = 'page_size'
-    max_page_size = 100
+    max_page_size = 10
 
 class Home(ListAPIView):
-  queryset = Product.objects.all().order_by('-action', '-image',)[:12]
-  serializer_class = ProductSerializer
+	qset = Product.objects.all();
+	qset_action = qset.order_by('-action', '-image',)[:12];
+	qset_all = qset.order_by('-action', '-image',)
+	if len(qset_all) >= len(qset_action):
+		queryset = qset_all
+	else:
+		queryset = Product.objects.all().order_by('-action', '-image',)[:12]
+	serializer_class = ProductSerializer
+
+class ProductFilter(FilterSet):
+	min_price = NumberFilter(field_name="price", lookup_expr='gte')
+	max_price = NumberFilter(field_name="price", lookup_expr='lte')
+	
+	class Meta:
+		model = Product
+		fields = [
+		'available',
+		'category',
+		'vendor',
+		'type_product',
+		'format_fild',
+		'color_fild',
+		'min_price',
+		'max_price'
+		]
 
 class ProductList(ListAPIView):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
 	pagination_class = LargeResultsSetPagination
-	filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+	filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
 	search_fields = ['name', 'description', 'vendor_code', 'specifications']
-	# filter_backends = [DjangoFilterBackend]
 	ordering_fields = ['vendor', 'name', 'price', 'available']
-	# filterset_fields = [
-	# 		'price',
-	# 		'available',
-	# 		'category',
-	# 		'vendor',
-	# 		'type_product',
-	# 		'format_fild',
-	# 		'color_fild']
+	filterset_class = ProductFilter
+
 
 
 
