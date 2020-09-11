@@ -22,5 +22,8 @@ app_name = 'shop'
 urlpatterns = [
   path('api/home/', Home.as_view(), name='home'),
   path('api/product/', ProductList.as_view(), name ='product_list'),
-  path('api/<slug:slug>/', ProductDetail.as_view(), name='product_detail'),
+  path('api/product/<slug:slug>/', ProductDetail.as_view(), name='product_detail'),
+  path('api/services/', ServicesList.as_view(), name ='services_list'),
+  path('api/services/<slug:slug>/', ServicesDetail.as_view(), name = 'services_detail'),
+  path('api/category/', CategoryList.as_view(), name ='category_list'),
 ]

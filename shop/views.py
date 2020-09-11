@@ -2,7 +2,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 from shop.serializers import *
 
-from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend, RangeFilter, FilterSet, NumberFilter
 
 from rest_framework import status, viewsets
@@ -43,18 +43,48 @@ class ProductList(ListAPIView):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
 	pagination_class = LargeResultsSetPagination
-	filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
+	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
+	filterset_class = ProductFilter
 	search_fields = ['name', 'description', 'vendor_code', 'specifications']
 	ordering_fields = ['vendor', 'name', 'price', 'available']
-	filterset_class = ProductFilter
-
-
-
 
 class ProductDetail(RetrieveAPIView):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
 	lookup_field = 'slug'
+
+class ServicesFilter(FilterSet):
+	min_price = NumberFilter(field_name="price", lookup_expr='gte')
+	max_price = NumberFilter(field_name="price", lookup_expr='lte')
+
+	class Meta:
+		model = Services
+		fields = [
+			'category',
+			'vendor',
+			'type_service',
+			'min_price',
+			'max_price'
+		]
+
+class ServicesList(ListAPIView):
+	queryset = Services.objects.all()
+	serializer_class = ServicesSerializer
+	pagination_class = LargeResultsSetPagination
+	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
+	filterset_class = ServicesFilter
+	search_fields = ['name', 'description', 'vendor',]
+	ordering_fields = ['vendor', 'name', 'price',]
+
+class ServicesDetail(RetrieveAPIView):
+	queryset = Services.objects.all()
+	serializer_class = ServicesSerializer
+	lookup_field = 'slug'
+
+class CategoryList(ListAPIView):
+	queryset = Category.objects.all()
+	serializer_class = CategorySerializer
+
 
 
 # def handler404(request, exception):
@@ -64,16 +94,6 @@ class ProductDetail(RetrieveAPIView):
 # def robots(request):
 # 	return render('robots.txt', mimetype="text/plain")
 
-# class Home(ListView, FormView):
-# 	model = Product
-# 	template_name = 'shop/home.html'
-# 	form_class = CartAddProductForm
-# 	queryset = Product.objects.all().order_by('-action', '-image',)[:12]
-# 	def get_context_data(self, **kwargs):
-# 		context = super().get_context_data(**kwargs)
-# 		context["date_now"] = datetime.now()
-# 		return context
-	
 
 
 # class ListCategory(ListView):
@@ -85,77 +105,4 @@ class ProductDetail(RetrieveAPIView):
 # 		 и создаем массив ['',url_1,url_2,url_3,'']"""
 # 		leaf = self.request.get_full_path().split('/')[-2]
 # 		context['instance'] = Category.objects.get(slug=leaf)
-# 		return context
-
-# class SearchView(ListView):
-# 	def get_queryset(self):
-# 		queryset = super().get_queryset()
-# 		qs = self.model.objects.all()
-# 		try:
-# 			search_string = self.request.GET['search']
-# 			qs = qs.annotate(
-# 				search = (
-# 					SearchVector('name')+
-# 					SearchVector('description')+
-# 					SearchVector('vendor_code')+
-# 					SearchVector('specifications')
-# 				),
-# 			).filter(search=search_string)
-# 			queryset = qs.order_by('-action', '-image',)
-# 		except KeyError:
-# 			queryset =  qs.order_by('-action', '-image',)
-# 		return queryset
-
-# class FilteredListView(ListView):
-#     filterset_class = None
-#     def get_queryset(self):
-#         queryset = super().get_queryset()
-#         self.filterset = self.filterset_class(self.request.GET, queryset=queryset)
-#         return self.filterset.qs
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['filterset'] = self.filterset
-#         return context
-
-
-# class ProductList(FormView, FilteredListView, SearchView):
-# 	model = Product
-# 	template_name = 'shop/list_product.html'
-# 	form_class = CartAddProductForm
-# 	filterset_class = ProductFilter
-# 	paginate_by = 24
-
-# 	def get_queryset(self):
-# 		queryset = super().get_queryset()
-# 		category = self.request.GET.get('category')
-# 		if category:
-# 			queryset = queryset.filter(category=category)
-# 		else:
-# 			queryset =  queryset
-# 		return queryset
-
-# 	def get_context_data(self, **kwargs):
-# 		context = super().get_context_data(**kwargs)
-# 		category = self.request.GET.get('category')
-# 		search = self.request.GET.get('search')
-# 		if category:
-# 			context['instance'] = Category.objects.get(id=category)
-# 		elif search:
-# 			context['search'] = search
-# 		context["date_now"] = datetime.now()
-# 		return context
-
-# class ServicesListView(FilteredListView):
-# 	model = Services
-# 	template_name = "shop/list_service.html"
-# 	form_class = CartAddProductForm
-# 	filterset_class = ServiceFilter
-# 	paginate_by = 24
-
-# 	def get_context_data(self, **kwargs):
-# 		context = super().get_context_data(**kwargs)
-# 		category = self.request.GET.get('category')
-# 		if category:
-# 			context['instance'] = Category.objects.get(id=category)
 # 		return context
