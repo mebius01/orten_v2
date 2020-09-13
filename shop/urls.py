@@ -26,4 +26,6 @@ urlpatterns = [
   path('api/services/', ServicesList.as_view(), name ='services_list'),
   path('api/services/<slug:slug>/', ServicesDetail.as_view(), name = 'services_detail'),
   path('api/category/', CategoryList.as_view(), name ='category_list'),
+  path('api/sarchall/', SearchAll.as_view(), name ='serchall_list'),
+
 ]

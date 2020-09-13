@@ -150,7 +150,7 @@ class Services(models.Model):
 	description		= models.TextField(blank=True)
 	keywords		= models.TextField(blank=True, help_text='Ключивые слова')
 	price			= models.DecimalField(max_digits=10, decimal_places=2)
-
+	
 	created			= models.DateTimeField(auto_now_add=True) # дата создания
 	updated			= models.DateTimeField(auto_now=True) #дата обновления
 

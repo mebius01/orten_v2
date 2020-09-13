@@ -7,6 +7,12 @@ from django_filters.rest_framework import DjangoFilterBackend, RangeFilter, Filt
 
 from rest_framework import status, viewsets
 
+from drf_multiple_model.views import ObjectMultipleModelAPIView
+from drf_multiple_model.pagination import MultipleModelLimitOffsetPagination
+
+class LimitPagination(MultipleModelLimitOffsetPagination):
+  default_limit = 24
+
 class LargeResultsSetPagination(PageNumberPagination):
     page_size = 24
     page_size_query_param = 'page_size'
@@ -53,7 +59,7 @@ class ProductDetail(RetrieveAPIView):
 	serializer_class = ProductSerializer
 	lookup_field = 'slug'
 
-class ServicesFilter(FilterSet):
+class ServicesFilter(ProductFilter):
 	min_price = NumberFilter(field_name="price", lookup_expr='gte')
 	max_price = NumberFilter(field_name="price", lookup_expr='lte')
 
@@ -85,7 +91,15 @@ class CategoryList(ListAPIView):
 	queryset = Category.objects.all()
 	serializer_class = CategorySerializer
 
-
+class SearchAll(ObjectMultipleModelAPIView):
+	pagination_class = LimitPagination
+	filter_backends = [filters.SearchFilter, filters.OrderingFilter,]
+	search_fields = ['name', 'description',]
+	ordering_fields = ['vendor', 'name', 'price',]
+	querylist = [
+			{'queryset': Product.objects.all(),'serializer_class': ProductSerializer,'label':'product'},
+			{'queryset': Services.objects.all(),'serializer_class': ServicesSerializer,'label':'service'}
+	]
 
 # def handler404(request, exception):
 # 	return render(request, '404.html', status=404)
@@ -94,15 +108,3 @@ class CategoryList(ListAPIView):
 # def robots(request):
 # 	return render('robots.txt', mimetype="text/plain")
 
-
-
-# class ListCategory(ListView):
-# 	model = Product
-# 	template_name = 'shop/child_category.html'
-# 	def get_context_data(self, **kwargs):
-# 		context = super().get_context_data(**kwargs)
-# 		"""с помощью get_full_path() получаем строку урла
-# 		 и создаем массив ['',url_1,url_2,url_3,'']"""
-# 		leaf = self.request.get_full_path().split('/')[-2]
-# 		context['instance'] = Category.objects.get(slug=leaf)
-# 		return context

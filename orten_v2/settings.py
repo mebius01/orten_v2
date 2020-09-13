@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'shop',
     'rest_framework',
+    'drf_multiple_model',
 ]
 
 MIDDLEWARE = [
