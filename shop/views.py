@@ -96,6 +96,11 @@ class CategoryList(ListAPIView):
 	queryset = Category.objects.all()
 	serializer_class = CategorySerializer
 
+class CategoryDetail(RetrieveAPIView):
+	queryset = Category.objects.all()
+	serializer_class = CategorySerializer
+	lookup_field = 'id'
+
 class SearchList(ObjectMultipleModelAPIView):
 	pagination_class = LimitPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter,]

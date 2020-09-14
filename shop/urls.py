@@ -25,7 +25,8 @@ urlpatterns = [
   path('product/<int:id>/', ProductDetail.as_view(), name='product_detail'),
   path('service/', ServicesList.as_view(), name ='services_list'),
   path('service/<int:id>/', ServicesDetail.as_view(), name = 'services_detail'),
-  path('category/', CategoryList.as_view(), name ='category_list'),
+  path('category/', CategoryList.as_view(), name = 'category_list'),
+  path('category/<int:id>', CategoryDetail.as_view(), name ='category_detail'),
   path('search/', SearchList.as_view(), name ='serch_list'),
 
 ]
