@@ -9,6 +9,7 @@ from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.forms import FlatpageForm
 from django.contrib.flatpages.models import FlatPage
 
+
 class RatesAdmin(admin.ModelAdmin):
 	list_display = ['created', 'usd', 'eur']
 

@@ -70,11 +70,10 @@ INSTALLED_APPS = [
     'mptt',
     'import_export',
     'debug_toolbar',
-    'django_redis',
     'ckeditor',
-    'shop',
     'rest_framework',
     'drf_multiple_model',
+    'shop',
 ]
 
 MIDDLEWARE = [
@@ -88,8 +87,6 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     # django-debug-toolbar
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    # The Django Redirects App
-    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'orten_v2.urls'
@@ -172,13 +169,13 @@ LOCALE_PATHS = (
 
 # Extra places for collectstatic to find static files.
 STATIC_ROOT = config('STATIC_ROOT')
-# STATIC_ROOT = '/home/orten/orten_v2.in.ua/static/static'
+STATIC_ROOT = '/home/orten/orten_v2.in.ua/static/static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 MEDIA_ROOT = config('MEDIA_ROOT')
-# MEDIA_ROOT = '/home/orten/orten_v2.in.ua/static/media'
+MEDIA_ROOT = '/home/orten/orten_v2.in.ua/static/media'
 MEDIA_URL = '/media/'
 
 # Email
@@ -190,36 +187,6 @@ EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_USE_TLS = config("EMAIL_USE_TLS")
 ADMINS = [('Ivan', 'orten.in.ua@gmail.com'), ]
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
-# Асинхронность
-DRAMATIQ_RESULT_BACKEND = {
-    "BACKEND": "dramatiq.results.backends.redis.RedisBackend",
-    "BACKEND_OPTIONS": {
-        "url": "redis://127.0.0.1:6379",
-    },
-    "MIDDLEWARE_OPTIONS": {
-        "result_ttl": 60000
-    }
-}
-
-# Кєш и сессии
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            # Время ожидания сокета
-            "SOCKET_CONNECT_TIMEOUT": 5,  # in seconds
-            "SOCKET_TIMEOUT": 5,  # in seconds
-            # исключения поведения
-            "IGNORE_EXCEPTIONS": True,
-            # пул соединений
-            "CONNECTION_POOL_KWARGS": {"max_connections": 128}
-        }
-    }
-}
-CART_SESSION_ID = 'cart'
-SESSION_COOKIE_AGE = 7200  # Время жизни сессии секундах
 
 # django-debug-toolbar
 INTERNAL_IPS = ('127.0.0.1',)
@@ -254,8 +221,6 @@ REST_FRAMEWORK = {
     # ],
     # Filters
     'DEFAULT_FILTER_BACKENDS': [
-        'rest_framework.filters.SearchFilter',
-        'rest_framework.filters.OrderingFilter',
         'django_filters.rest_framework.DjangoFilterBackend',
         ]
 }

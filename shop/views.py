@@ -1,14 +1,19 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
-from rest_framework.pagination import PageNumberPagination
+# basic import
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from shop.serializers import *
 
+# pagination
+from rest_framework.pagination import PageNumberPagination
+
+# serch and filtering in one model
 from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend, RangeFilter, FilterSet, NumberFilter
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet, NumberFilter
 
-from rest_framework import status, viewsets
-
+# for search and ordering in multiple model
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 from drf_multiple_model.pagination import MultipleModelLimitOffsetPagination
+
+
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
   default_limit = 24
@@ -46,7 +51,7 @@ class ProductFilter(FilterSet):
 		]
 
 class ProductList(ListAPIView):
-	queryset = Product.objects.all()
+	queryset = Product.objects.all().order_by('-action', '-image',)
 	serializer_class = ProductSerializer
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
@@ -57,7 +62,7 @@ class ProductList(ListAPIView):
 class ProductDetail(RetrieveAPIView):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
-	lookup_field = 'slug'
+	lookup_field = 'id'
 
 class ServicesFilter(ProductFilter):
 	min_price = NumberFilter(field_name="price", lookup_expr='gte')
@@ -74,7 +79,7 @@ class ServicesFilter(ProductFilter):
 		]
 
 class ServicesList(ListAPIView):
-	queryset = Services.objects.all()
+	queryset = Services.objects.all().order_by('-price', '-image',)
 	serializer_class = ServicesSerializer
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
@@ -85,13 +90,13 @@ class ServicesList(ListAPIView):
 class ServicesDetail(RetrieveAPIView):
 	queryset = Services.objects.all()
 	serializer_class = ServicesSerializer
-	lookup_field = 'slug'
+	lookup_field = 'id'
 
 class CategoryList(ListAPIView):
 	queryset = Category.objects.all()
 	serializer_class = CategorySerializer
 
-class SearchAll(ObjectMultipleModelAPIView):
+class SearchList(ObjectMultipleModelAPIView):
 	pagination_class = LimitPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter,]
 	search_fields = ['name', 'description',]
@@ -101,10 +106,4 @@ class SearchAll(ObjectMultipleModelAPIView):
 			{'queryset': Services.objects.all(),'serializer_class': ServicesSerializer,'label':'service'}
 	]
 
-# def handler404(request, exception):
-# 	return render(request, '404.html', status=404)
-# def handler500(request, exception):
-# 	return render(request, '500.html', status=500)
-# def robots(request):
-# 	return render('robots.txt', mimetype="text/plain")
 

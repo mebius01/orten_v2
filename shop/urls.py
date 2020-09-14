@@ -20,12 +20,12 @@ from shop.views import *
 app_name = 'shop'
 
 urlpatterns = [
-  path('api/home/', Home.as_view(), name='home'),
-  path('api/product/', ProductList.as_view(), name ='product_list'),
-  path('api/product/<slug:slug>/', ProductDetail.as_view(), name='product_detail'),
-  path('api/services/', ServicesList.as_view(), name ='services_list'),
-  path('api/services/<slug:slug>/', ServicesDetail.as_view(), name = 'services_detail'),
-  path('api/category/', CategoryList.as_view(), name ='category_list'),
-  path('api/sarchall/', SearchAll.as_view(), name ='serchall_list'),
+  path('home/', Home.as_view(), name='home'),
+  path('product/', ProductList.as_view(), name ='product_list'),
+  path('product/<int:id>/', ProductDetail.as_view(), name='product_detail'),
+  path('service/', ServicesList.as_view(), name ='services_list'),
+  path('service/<int:id>/', ServicesDetail.as_view(), name = 'services_detail'),
+  path('category/', CategoryList.as_view(), name ='category_list'),
+  path('search/', SearchList.as_view(), name ='serch_list'),
 
 ]

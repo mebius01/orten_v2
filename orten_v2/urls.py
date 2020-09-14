@@ -16,12 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.urls import include, path
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
-    path('', include('shop.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('admin_tools/', include('admin_tools.urls')),
     path('admin/', admin.site.urls),
 ]
+
+urlpatterns += i18n_patterns(
+    path('api/', include('shop.urls')),
+    prefix_default_language = False,)
+
 
 if settings.DEBUG:
     import debug_toolbar
