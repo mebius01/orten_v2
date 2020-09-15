@@ -71,14 +71,18 @@ INSTALLED_APPS = [
     'import_export',
     'debug_toolbar',
     'ckeditor',
+    'modeltranslation',
     'rest_framework',
     'drf_multiple_model',
+    'corsheaders',
     'shop',
+    'order',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -169,13 +173,11 @@ LOCALE_PATHS = (
 
 # Extra places for collectstatic to find static files.
 STATIC_ROOT = config('STATIC_ROOT')
-STATIC_ROOT = '/home/orten/orten_v2.in.ua/static/static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 MEDIA_ROOT = config('MEDIA_ROOT')
-MEDIA_ROOT = '/home/orten/orten_v2.in.ua/static/media'
 MEDIA_URL = '/media/'
 
 # Email
@@ -224,3 +226,5 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
         ]
 }
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=Csv())
+CORS_ALLOW_METHODS = config('CORS_ALLOW_METHODS', cast=Csv())

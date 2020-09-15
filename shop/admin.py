@@ -3,7 +3,7 @@ from .models import Rates, Category, Product, Services, Polygraphy # ProductStoc
 from mptt.admin import MPTTModelAdmin
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
-from django.contrib.admin.widgets import FilteredSelectMultiple
+# from django.contrib.admin.widgets import FilteredSelectMultiple
 
 from django.contrib.flatpages.admin import FlatPageAdmin
 from django.contrib.flatpages.forms import FlatpageForm
