@@ -21,9 +21,9 @@ class Order(models.Model):
 	city = models.CharField(verbose_name='Город', blank=True, max_length=100)
 	department_np = models.CharField(verbose_name='НП №', blank=True, max_length=300)
 
-	mobile_phone = models.CharField(max_length=15, verbose_name='Телефон')
+	phone = models.CharField(max_length=15, verbose_name='Телефон')
 	email = models.EmailField(blank=True, verbose_name='Email')
-	note_text =  models.TextField(blank=True, max_length=512, verbose_name='Дополнения, пожелания, заметки')
+	note =  models.TextField(blank=True, max_length=512, verbose_name='Дополнения, пожелания, заметки')
 
 	created = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
 	updated = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
@@ -36,11 +36,12 @@ class Order(models.Model):
 	def __str__(self):
 		return 'Заказ: {}'.format(self.id)
 
+
 	def get_total_cost(self):
 		return sum(item.get_cost() for item in self.items.all())
 
 class OrderItem(models.Model):
-	order = models.ForeignKey(Order, related_name='items',on_delete=models.CASCADE)
+	order = models.ForeignKey(Order, related_name='order',on_delete=models.CASCADE)
 	product = models.ForeignKey(Product, related_name='product', on_delete=models.CASCADE)
 	price = models.DecimalField(verbose_name='Цена', max_digits=10, decimal_places=2)
 	quantity = models.PositiveIntegerField(verbose_name='Количество', default=1)
