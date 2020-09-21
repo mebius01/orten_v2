@@ -18,5 +18,7 @@ from django.urls import path, re_path
 from order.views import *
 
 urlpatterns = [
-  path('order/', OrderList.as_view(), name='order'),
+  path('order/', OrderList.as_view(), name = 'order'),
+  path('aggr/', OrderAggr.as_view(), name='aggr'),
+  
 ]
