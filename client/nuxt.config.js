@@ -10,7 +10,17 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png' }
+      { rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon-32x32.png'
+      },
+      { rel: 'stylesheet',
+        crossorigin: 'anonymous',
+        integrity: 'sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/',href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css'
+      },
+      { rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap'
+      }
     ]
   },
   /*

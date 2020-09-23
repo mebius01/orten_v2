@@ -2,7 +2,7 @@
   "name": "client",
   "version": "1.0.0",
   "description": "Nuxt.js project",
-  "author": "iv <consmebius@gmail.com>",
+  "author": "iv",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -13,7 +13,10 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "@fortawesome/vue-fontawesome": "^2.0.0",
+    "node-sass": "^4.14.1",
+    "nuxt": "^2.0.0",
+    "sass-loader": "^10.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

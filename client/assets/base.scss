@@ -1,0 +1,138 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+$text-color: #2E4053;
+$green-color: #85C987;
+$global_blue: #428bca;
+html {
+  height: 100%;
+  color: $text-color;
+}
+li {list-style: none;}
+hr{
+  border: none;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  height: 1px;
+}
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+h1, h2{
+  margin: 0;
+  padding: 0;
+}
+.padding-12 {
+  padding: 12px 24px;
+}
+.padding-5 {
+  padding: 0;
+  padding: 12px 24px;
+}
+.link_style {
+  text-decoration: none;
+  color: $text-color;
+  display: block;
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.bord {
+  border: 1px solid;
+}
+.shadow {
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+}
+.shadow-hover {
+  box-shadow: 0px 0px 4px 0px $green-color;
+}
+.color--blue {
+  color: $global_blue;
+}
+.color--grey {
+  color: $text-color;
+}
+input[name=quantity] {
+  height: 31px;
+  width: 84px;
+  text-decoration: none;
+  background-color: white;
+  text-align: center;
+  border: 1px $green-color solid;
+  outline: none;
+}
+button{
+  width: auto;
+  height: 32px;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+.apply {
+  padding: 0 10px;
+  background-color: white;
+  color: #5cb85c;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid #5cb85c;
+    &:hover{
+    background-color: #5cb85c;
+    color:white;
+  }
+}
+.reset{
+  padding: 0 10px;
+  background-color: white;
+  color: #d9534f;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid #d9534f;
+  &:hover{
+    background-color: #d9534f;
+    color:white;
+  }
+}
+.return{
+  background-color: white;
+  color: #0275d8;
+  text-decoration: none;
+  outline: none;
+  border: 1px solid #0275d8;
+    &:hover {
+      background-color: #0275d8;
+      color:white;
+  }
+}
+/* plus - minus input form for card */
+.plas, .minus{
+  height: 31px;
+  width: 31px;
+  text-decoration: none;
+  border: none;
+  text-align: center;
+}
+.plas{
+  color: white;
+  background-color:#5cb85c;
+  &:hover{
+    border: 1px solid;
+    background-color: white;
+    color: #5cb85c;
+  }
+}
+.minus{
+  color: white;
+  background-color:#d9534f;
+  &:hover{
+    border: 1px solid;
+    background-color: white;
+    color: #d9534f;
+  }
+}
