@@ -1,9 +1,14 @@
 <template>
   <ul class="menu">
     <li v-for="(item, index) in data" :key="index">
-      <a :class="item.link.class" :href="item.link.href">
-        <i :class="item.class"></i>{{item.text}}
-      </a>
+      <template v-if="item.link">
+        <nuxt-link :class="item.link.class" :to="item.link.href" exact>
+          <i :class="item.class"></i>{{item.text}}
+        </nuxt-link>
+      </template>
+      <template v-else>
+          <i :class="item.class"></i>{{item.text}}
+      </template>
     </li>
   </ul>
 </template>
@@ -15,11 +20,11 @@ export default {
       data: [
         {class: "fas fa-folder-minus", text: "Меню", link: false},
         {class: "fas fa-handshake", text: "Кто мы", link: {class: "", href: "/about"}},
-        {class: "fas fa-folder-minus", text: "Категории", link: {class: "", href: ""}},
-        {class: "fab fa-product-hunt", text: "Товары", link: {class: "", href: ""}},
-        {class: "fas fa-cogs", text: "Сервис", link: {class: "", href: ""}},
-        {class: "fas fa-print", text: "Полиграфия", link: {class: "", href: ""}},
-        {class: "fas fa-cash-register", text: "Доставка и оплата", link: {class: "", href: ""}},
+        {class: "fas fa-folder-minus", text: "Категории", link: {class: "", href: "/category"}},
+        {class: "fab fa-product-hunt", text: "Товары", link: {class: "", href: "/product"}},
+        {class: "fas fa-cogs", text: "Сервис", link: {class: "", href: "/service"}},
+        {class: "fas fa-print", text: "Полиграфия", link: {class: "", href: "/poligraph"}},
+        {class: "fas fa-cash-register", text: "Доставка и оплата", link: {class: "", href: "/pay"}},
       ]
     }
   },
@@ -33,10 +38,13 @@ $text-color: #2E4053;
   color: $text-color;
   display: block;
 }
+.nuxt-link-active {
+  border-bottom: $text-color 2px solid;
+}
 ul {
   padding: 5px;
-  border: 1px solid;
-  margin: 0 5px;
+  // border: 1px solid;
+  // margin: 0 5px;
     li {
       padding: 2px;
       i {
@@ -44,12 +52,12 @@ ul {
       }
     }
     a {
-      @extend .link_style;
-      border-bottom: white 1px solid;
-      &:hover {
-        border-bottom: $text-color 1px solid;
-        transition: border-bottom 2s;
-      }
+        @extend .link_style;
+        border-bottom: white 2px solid;
+        &:hover {
+          border-bottom: $text-color 2px solid;
+          transition: border-bottom 2s;
+        }
     }
 }
 </style>

@@ -40,7 +40,7 @@ $text-color: #2E4053;
   display: block;
 }
 .main_categories {
-  border: 1px solid;
+  // border: 1px solid;
   @extend .space-between;
   @extend .padding-12;
   @media (max-width: 700px) {
@@ -49,8 +49,11 @@ $text-color: #2E4053;
     li {
       a {
         @extend .link_style;
-        text-align: center;
-        margin: 5px;
+        border-bottom: white 2px solid;
+        &:hover {
+          border-bottom: $text-color 2px solid;
+          transition: border-bottom 2s;
+        }
       }
     }
   }
