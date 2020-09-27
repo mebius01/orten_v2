@@ -12,7 +12,12 @@ export default {
   data() {
     return {
       data: [
-        {text: "Ricoh", class: "", title: "", href: ""},
+        {
+          text: "Ricoh",
+          class: "",
+          title: "",
+          href: ""
+        },
         {text: "Konica Minolta", class: "", title: "", href: ""},
         {text: "Цифровые дупликаторы", class: "", title: "", href: ""},
         {text: "ColorWay", class: "", title: "", href: ""},
@@ -52,7 +57,7 @@ $text-color: #2E4053;
         border-bottom: white 2px solid;
         &:hover {
           border-bottom: $text-color 2px solid;
-          transition: border-bottom 2s;
+          transition: border-bottom 1s;
         }
       }
     }

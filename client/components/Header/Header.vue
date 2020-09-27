@@ -11,7 +11,7 @@
           />
         </nuxt-link>
       </div>
-      <div class="contact_g">
+      <div class="menu-sched-contact">
         <Menu />
         <Schedule />
         <Contact />
@@ -19,35 +19,11 @@
     </div>
     <div class="two_header">
       <div class="ad">
-        У зв'язку з посиленням карантинних мір
-        <br />
-        У суботу офіс тимчасово не працює.
+        У зв'язку з посиленням карантинних мір. У суботу офіс тимчасово не працює.
       </div>
     </div>
     <MainCategory />
     <Nav />
-    <!-- <nav class="nav">
-      <div class="toggle">
-        <i class="fa fa-bars menu"></i>
-      </div>
-      <div class="control">
-        
-        <div class="langdown"></div>
-        <div class="control_search">
-          
-
-          <form role="search">
-            <input type="text" placeholder="Search..." name="search" />
-          </form>
-        </div>
-        <div class="control_cart">
-          <a href="" title="Пока, что Ваша корзина пуста">
-            <i class="fa fa-shopping-cart"></i>
-            <span>0</span>
-          </a>
-        </div>
-      </div>
-    </nav> -->
     <ul class="breadcrumbs">
       <li>
         <a href="/"><i class="fas fa-home"></i></a>
@@ -57,11 +33,11 @@
 </template>
 
 <script>
-import Schedule from '../components/Header/Schedule'
-import Contact from '../components/Header/Contact'
-import Menu from '../components/Header/Menu'
-import MainCategory from '../components/Header/MainCategory'
-import Nav from '../components/Header/ControlPanel/Nav'
+import Schedule from './Schedule'
+import Contact from './Contact'
+import Menu from './Menu'
+import MainCategory from './MainCategory'
+import Nav from './ControlPanel/Nav'
 export default {
   components: {
     Schedule,
@@ -72,3 +48,44 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss" scoped>
+.padding-12 {
+  padding: 12px 24px;
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+
+  .header-row {
+    @extend .padding-12;
+    @extend .space-between;
+    @media (max-width: 650px) {
+      flex-direction: column;
+    }
+    .logo__img {
+      width: 160px;
+      height: auto;
+    }
+    .menu-sched-contact {
+      @extend .space-between;
+      @media (max-width: 650px) {
+        padding: 12px 0;
+      }
+      @media (max-width: 480px) {
+        flex-direction: column;
+      }
+    }
+  }
+  .ad {
+    padding: 12px 80px;
+    text-align: center;
+    border: 1px dashed red;
+  }
+}
+</style>

@@ -61,3 +61,17 @@
     </button>
   </div>
 </template>
+
+<script>
+import Menu from '../Header/Menu'
+export default {
+  data() {
+    return {
+      
+    }
+  },
+  components: {
+    Menu
+  }
+}
+</script>

@@ -107,8 +107,8 @@ class SearchList(ObjectMultipleModelAPIView):
 	search_fields = ['name', 'description',]
 	ordering_fields = ['vendor', 'name', 'price',]
 	querylist = [
-			{'queryset': Product.objects.all(),'serializer_class': ProductSerializer,'label':'product'},
-			{'queryset': Services.objects.all(),'serializer_class': ServicesSerializer,'label':'service'}
+			{'queryset': Product.objects.all().order_by('-available', '-action', '-image',),'serializer_class': ProductSerializer,'label':'product'},
+			{'queryset': Services.objects.all().order_by('-price', '-image',),'serializer_class': ServicesSerializer,'label':'service'}
 	]
 
 

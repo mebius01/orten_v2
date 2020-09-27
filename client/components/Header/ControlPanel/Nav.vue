@@ -1,10 +1,10 @@
 <template>
   <nav class="nav">
+    <Category />
     <Search />
     <Language />
     <Like />
     <Basket />
-    <Menu />
   </nav>
 </template>
 
@@ -13,7 +13,7 @@ import Like from './Like'
 import Basket from './Basket'
 import Search from './Search'
 import Language from './Language'
-import Menu from './Menu'
+import Category from './Category'
 
 export default {
   components: {
@@ -21,7 +21,7 @@ export default {
     Like,
     Basket,
     Language,
-    Menu
+    Category
   }
 }
 </script>
@@ -35,13 +35,14 @@ $global_blue: #428bca;
 }
 .space-between {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .nav {
   background-color: $green-color;
   @extend .space-between;
-  padding: 5px 0;
+  @extend .padding-12;
+  // padding: 5px 0;
 }
 </style>
