@@ -25,10 +25,16 @@
                   <i v-if="item.available" class="fas fa-check" style="color:green"></i>
                   <i v-else class="fas fa-times" style="color:red"></i>
                 </span>
+                <span v-if="item.action">
+                  <i class="fas fa-splotch" style="color:#fc6251; margin-left:10px; font-size:10px;">
+                    Aкция до {{item.end_action}}
+                  </i>
+                </span>
               </div>
               <div class="btn-gruop">
                 <span class="vendor_code">PN: {{item.vendor_code}}</span>
-                <span class="price">{{item.price}}грн.</span>
+                <span class="price" v-if="item.discount">{{item.discount}}грн.</span>
+                <span class="price" v-else>{{item.price}}грн.</span>
               </div>
             </li>
           </template>
@@ -64,7 +70,8 @@ export default {
     },
     methods: {
       onChangeInput() {
-        axios
+        if (this.search.length > 4 ) {
+          axios
         .get('http://127.0.0.1:8000/api/search/?format=json&search='+this.search)
         .then(response => {
           let data = response.data
@@ -73,6 +80,8 @@ export default {
           this.overall_total = data.overall_total
         })
         .catch(error => (this.statusError = error))
+        }
+        
       },
       clossSearch() {
         this.search = ''
@@ -151,7 +160,6 @@ $blue-color: #428bca;
     border-bottom: #85C987 1px solid;
 
     .content {
-      // border: 1px solid;
       @extend .align-items;
       justify-content: flex-start;
       width: 70%;

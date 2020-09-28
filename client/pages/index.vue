@@ -1,6 +1,6 @@
 <template>
   <div class="card-grid">
-    <div class="card" v-for="(item, index) in object_list" :key="index">
+    <div class="card" v-for="(item, index) in object_list.results" :key="index">
         <div class="card__action" v-if="item.action">Акция до {{item.end_action}}</div>
     <a class="card__link" :href="'/product/'+item.slug">
         <div class="card__img">
@@ -47,21 +47,12 @@
 </template>
 
 <script>
-import axios from 'axios'
-export default {
-  data() {
-    return {
-      object_list: [],
-      statusError: ''
+  export default {
+    async asyncData({$axios, params }) {
+    const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
+      return {object_list}
     }
-  },
-  mounted() {
-    axios
-      .get('http://127.0.0.1:8000/api/home/')
-      .then(response => (this.object_list = response.data))
-      .catch(error => (this.statusError = error))
-},
-}
+  }
 </script>
 
 <style lang="scss" scoped>

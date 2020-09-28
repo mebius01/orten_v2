@@ -22,19 +22,22 @@
               <span>{{object.type_product}}</span>
           </p>
           <div class="card__price">
-              <!-- {% if object.action %} -->
-                  <p class="card--left-right">
-                      <span>Цена:</span>
-                      <span class="card--text-crossed">{{object.price}}</span>
-                  </p>
-                  <p class="card--left-right">
-                      <span>Цена:</span>
-                      <span class="card--red-text">{{object.discount}}</span>
-                  </p>
-              <!-- {% else %} -->
-                  <p class="card--left-right">
-                      <span>Цена:</span><span class="card__price--text">{{object.price}}</span></p>
-              <!-- {% endif %} -->
+            <template v-if="object.discount">
+              <p class="card--left-right">
+                <span>Цена:</span>
+                <span class="card--text-crossed">{{object.price}}</span>
+              </p>
+              <p class="card--left-right">
+                <span>Цена:</span>
+                <span class="card__price--text">{{object.discount}}</span>
+              </p>
+            </template>
+            <template v-else>
+              <p class="card--left-right">
+                <span>Цена:</span>
+                <span class="card__price--text">{{object.price}}</span>
+              </p>
+            </template>
           </div>
       </div>
       
@@ -43,60 +46,40 @@
           <li><i class="fas fa-truck"></i></li>
           <li><i class="fas fa-phone"></i></li>
       </ul>
-            
-          <form class="space-between" method="post">
-              <button type="submit" class="apply">
-              <i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить</button>
-          </form>
-          <p style="color:red; text-align: center">
-              <span>
-                      В данный момент этот товар отсутствует,
-                      но Вы можете сделать заказ и
-                      получить детальную информацию о возможности поставки.
-              </span>
-          </p>
-          <form class="space-between" method="post">
-              <button type="submit" class="apply">
-              <i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить</button>
-          </form>
+      <button type="submit" class="apply" v-if="object.available">
+        <i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить
+      </button>
+      <p style="color:red; text-align: center" v-else>
+        <span>
+          В данный момент этот товар отсутствует,
+          но Вы можете сделать заказ и
+          получить детальную информацию о возможности поставки.
+        </span>
+      </p>
   </div>
-  <!-- {% if object.description or object.specifications%} -->
       <div class="product__description">
           <div class="descript">
-              <!-- {% if object.description %} -->
                   <strong>Краткое описание:</strong>
                   {{ object.description }}
-              <!-- {% endif %}  -->
           </div>
           <div class="spec">
-              <!-- {% if object.specifications %} -->
                   <strong>Характеристика:</strong>
                   {{ object.specifications}}
-              <!-- {% endif %} -->
           </div>
       </div>
-  <!-- {% endif %} -->
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   validate({ params }) {
   return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
   },
-  data() {
-    return {
-      slug:  this.$route.params.slug,
-      object: []
-    }
-  },
-  mounted() {
-    axios
-        .get('http://127.0.0.1:8000/api/product/'+this.slug)
-        .then(response => (this.object = response.data))
-        .catch(error => (this.statusError = error))
-  },
+
+  async asyncData({$axios, params }) {
+    const object = await $axios.$get(`http://127.0.0.1:8000/api/product/${params.slug}`)
+      return {object}
+  }
 }
 </script>
 

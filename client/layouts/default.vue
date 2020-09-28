@@ -12,7 +12,7 @@ import Footer from "~/components/Footer/Footer.vue"
 export default {
   components: {
     Header,
-    Footer
+    Footer,
   }
 }
 </script>
@@ -70,7 +70,7 @@ h1, h2{
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
 }
 .shadow-hover {
-  box-shadow: 0px 0px 4px 0px $green-color;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.61);
 }
 .color--blue {
   color: $global_blue;
@@ -446,7 +446,7 @@ button{
 .card-grid {
   padding-top: 5px;
   display: grid;
-  gap: 24px;
+  gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(220px, auto));
   grid-template-rows: repeat(auto-fit, minmax(auto, auto));
 }

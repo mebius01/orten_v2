@@ -18,20 +18,20 @@
               <span>{{object.vendor}}</span>
           </p>
           <p class="space-between">
-              <span>Тип товара:</span>
+              <span>Тип сервиса:</span>
               <span>{{object.type_service}}</span>
           </p>
           <div class="card__price">
-            <p class="card--left-right">
-              <span>Цена:</span>
-              <span class="card--text-crossed">{{object.price}}</span>
-            </p>
+              <p class="card--left-right">
+                <span>Цена:</span>
+                <span class="card__price--text">{{object.price}}</span>
+              </p>
           </div>
       </div>
         
         <ul class="space-between modal">
             <li><i class="far fa-credit-card"></i></li>
-            <!-- <li><i class="fas fa-truck"></i></li> -->
+            <li><i class="fas fa-truck"></i></li>
             <li><i class="fas fa-phone"></i></li>
         </ul>
     </div>
@@ -54,18 +54,10 @@ export default {
   validate({ params }) {
   return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
   },
-  data() {
-    return {
-      slug:  this.$route.params.slug,
-      object: []
-    }
-  },
-  mounted() {
-    axios
-        .get('http://127.0.0.1:8000/api/service/'+this.slug)
-        .then(response => (this.object = response.data))
-        .catch(error => (this.statusError = error))
-  },
+  async asyncData({$axios, params }) {
+    const object = await $axios.$get(`http://127.0.0.1:8000/api/service/${params.slug}`)
+      return {object}
+  }
 }
 </script>
 
