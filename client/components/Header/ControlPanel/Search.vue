@@ -20,10 +20,7 @@
             <li v-for="item in product" :key="item.id">
               <div class="content">
                 <img :src="item.image" alt="">
-                <a :href="'product/'+item.slug" @click.prevent="openProduct(item)">{{item.name}}</a>
-                <!-- <nuxt-link :to="'product/'+item.slug">
-                  {{item.name}} 
-                </nuxt-link> -->
+                <a :href="'/product/'+item.slug" @click.prevent="openProduct(item)">{{item.name}}</a>
                 <span class="available">
                   <i v-if="item.available" class="fas fa-check" style="color:green"></i>
                   <i v-else class="fas fa-times" style="color:red"></i>
@@ -39,10 +36,7 @@
             <li v-for="item in service" :key="item.id">
               <div class="content">
                 <img :src="item.image" alt="">
-                <!-- <a href="#" @click.prevent="openProduct(item)">{{item.name}}</a> -->
-                <nuxt-link :to="'service/'+item.slug">
-                  {{item.name}} 
-                </nuxt-link>
+                <a href="'service/'+item.slug" @click.prevent="openService(item)">{{item.name}}</a>
               </div>
               <div class="btn-gruop">
                 <span class="vendor_code">PN: {{item.vendor_code}}</span>
@@ -65,6 +59,7 @@ export default {
         overall_total: 0,
         product: [],
         service: [],
+        statusError: ''
       };
     },
     methods: {
@@ -76,9 +71,6 @@ export default {
           this.product = data.results.product
           this.service = data.results.service
           this.overall_total = data.overall_total
-          console.log(data);
-          console.log(this.product);
-          console.log(this.service);
         })
         .catch(error => (this.statusError = error))
       },
@@ -86,9 +78,12 @@ export default {
         this.search = ''
       },
       openProduct(product) {
-        console.log(product);
-        console.log(this.$router.params);
+        this.clossSearch()
         this.$router.push('/product/'+product.slug)
+      },
+      openService(service) {
+        this.clossSearch()
+        this.$router.push('/service/'+service.slug)
       }
     },
 }

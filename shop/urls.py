@@ -22,11 +22,11 @@ app_name = 'shop'
 urlpatterns = [
     path('home/', Home.as_view(), name='home'),
     path('product/', ProductList.as_view(), name ='product_list'),
-    path('product/<int:id>/', ProductDetail.as_view(), name='product_detail'),
+    path('product/<slug:slug>/', ProductDetail.as_view(), name='product_detail'),
     path('service/', ServicesList.as_view(), name ='services_list'),
-    path('service/<int:id>/', ServicesDetail.as_view(), name = 'services_detail'),
+    path('service/<slug:slug>/', ServicesDetail.as_view(), name = 'services_detail'),
     path('category/', CategoryList.as_view(), name = 'category_list'),
-    path('category/<int:id>', CategoryDetail.as_view(), name ='category_detail'),
+    path('category/<slug:slug>', CategoryDetail.as_view(), name ='category_detail'),
     path('search/', SearchList.as_view(), name ='serch_list'),
 
 ]

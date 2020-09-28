@@ -2,7 +2,7 @@
   <div>
     <Header />
       <nuxt/>
-    <!-- <Footer /> -->
+    <Footer />
   </div>
 </template>
 
@@ -535,65 +535,65 @@ button{
   }
 }
 // Product Detail
-.product{
-  color: $text-color;
-  @extend .padding-12;
-  display: grid;
-  gap:30px;
-  grid-template-columns: auto 30% auto;
-  grid-template-rows: auto;
-  grid-template-areas: "head head head"
-                      "img feature descript";
+// .product{
+//   color: $text-color;
+//   @extend .padding-12;
+//   display: grid;
+//   gap:30px;
+//   grid-template-columns: auto 30% auto;
+//   grid-template-rows: auto;
+//   grid-template-areas: "head head head"
+//                       "img feature descript";
   
-  @media (max-width: 680px) {
-    grid-template-columns: 60% auto;
-    grid-template-areas: "head head"
-                        "img img"
-                        "feature descript";
-  }
-  @media (max-width: 480px) {
-    grid-template-columns: auto;
-    grid-template-areas: "head"
-                        "img"
-                        "feature"
-                        "descript";
-  }
+//   @media (max-width: 680px) {
+//     grid-template-columns: 60% auto;
+//     grid-template-areas: "head head"
+//                         "img img"
+//                         "feature descript";
+//   }
+//   @media (max-width: 480px) {
+//     grid-template-columns: auto;
+//     grid-template-areas: "head"
+//                         "img"
+//                         "feature"
+//                         "descript";
+//   }
 
-  .border-product {
-    border-bottom: 1px solid $green-color;
-  }
-  &__head{
-    grid-area: head;
-    text-align: center;
-    color: #428bca;
-    h2 {
-      color: #fc6251;
-    }
-  }
-  &__img {
-    grid-area: img;
-    @extend .padding-12;
-  }
-  &__feature {
-    grid-area: feature;
-    @extend .padding-12;
-    p {
-      padding: 12px 0;
-    }
-    .modal {
-      padding: 20px 0;
-      i {
-        color: $global_blue;
-        cursor: pointer;
-        font-size: 42px;
-      }
-    }
-  }
-  &__description {
-    grid-area: descript;
-    @extend .padding-12;
-  }
-}
+//   .border-product {
+//     border-bottom: 1px solid $green-color;
+//   }
+//   &__head{
+//     grid-area: head;
+//     text-align: center;
+//     color: #428bca;
+//     h2 {
+//       color: #fc6251;
+//     }
+//   }
+//   &__img {
+//     grid-area: img;
+//     @extend .padding-12;
+//   }
+//   &__feature {
+//     grid-area: feature;
+//     @extend .padding-12;
+//     p {
+//       padding: 12px 0;
+//     }
+//     .modal {
+//       padding: 20px 0;
+//       i {
+//         color: $global_blue;
+//         cursor: pointer;
+//         font-size: 42px;
+//       }
+//     }
+//   }
+//   &__description {
+//     grid-area: descript;
+//     @extend .padding-12;
+//   }
+// }
 // Table
 table{
   margin-top: 12px;

@@ -24,13 +24,13 @@ class LargeResultsSetPagination(PageNumberPagination):
     max_page_size = 10
 
 class Home(ListAPIView):
-	qset = Product.objects.all();
-	qset_action = qset.order_by('-action', '-image',)[:12];
-	qset_all = qset.order_by('-action', '-image',)
-	if len(qset_all) >= len(qset_action):
-		queryset = qset_all
-	else:
-		queryset = Product.objects.all().order_by('-action', '-image',)[:12]
+	queryset = Product.objects.all().order_by('-available', '-action', '-image',)[:24];
+	# qset_action = qset.order_by('-action', '-image',)[:12];
+	# qset_all = qset.order_by('-action', '-image',)
+	# if len(qset_all) >= len(qset_action):
+	# 	queryset = qset_all
+	# else:
+	# 	queryset = Product.objects.all().order_by('-action', '-image',)[:12]
 	serializer_class = ProductSerializer
 
 class ProductFilter(FilterSet):
@@ -62,7 +62,7 @@ class ProductList(ListAPIView):
 class ProductDetail(RetrieveAPIView):
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
-	lookup_field = 'id'
+	lookup_field = 'slug'
 
 class ServicesFilter(ProductFilter):
 	min_price = NumberFilter(field_name="price", lookup_expr='gte')
@@ -90,7 +90,7 @@ class ServicesList(ListAPIView):
 class ServicesDetail(RetrieveAPIView):
 	queryset = Services.objects.all()
 	serializer_class = ServicesSerializer
-	lookup_field = 'id'
+	lookup_field = 'slug'
 
 class CategoryList(ListAPIView):
 	queryset = Category.objects.all()
@@ -99,7 +99,7 @@ class CategoryList(ListAPIView):
 class CategoryDetail(RetrieveAPIView):
 	queryset = Category.objects.all()
 	serializer_class = CategorySerializer
-	lookup_field = 'id'
+	lookup_field = 'slug'
 
 class SearchList(ObjectMultipleModelAPIView):
 	pagination_class = LimitPagination

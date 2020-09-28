@@ -1,7 +1,6 @@
 <template>
-  <div class="card-grid">
-    <div class="card" v-for="(item, index) in object_list" :key="index">
-        <div class="card__action" v-if="item.action">Акция до {{item.end_action}}</div>
+    <div>
+      <div class="card__action" v-if="item.action">Акция до {{item.end_action}}</div>
     <a class="card__link" :href="'/product/'+item.slug">
         <div class="card__img">
             <img class="card-img-top" :src="item.image" :alt="item.name">
@@ -43,32 +42,5 @@
         <button type="submit" class="apply"><i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить</button>
     </form>
 </div>
-  </div>
+    </div>
 </template>
-
-<script>
-import axios from 'axios'
-export default {
-  data() {
-    return {
-      object_list: [],
-      statusError: ''
-    }
-  },
-  mounted() {
-    axios
-      .get('http://127.0.0.1:8000/api/home/')
-      .then(response => (this.object_list = response.data))
-      .catch(error => (this.statusError = error))
-},
-}
-</script>
-
-<style lang="scss" scoped>
-.padding-12 {
-  padding: 12px 24px;
-}
-.card-grid {
-  @extend .padding-12;
-}
-</style>
