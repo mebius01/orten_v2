@@ -42,13 +42,16 @@
       </div>
       
       <ul class="space-between modal">
-          <li><i class="far fa-credit-card"></i></li>
-          <li><i class="fas fa-truck"></i></li>
-          <li><i class="fas fa-phone"></i></li>
+        <li><i class="far fa-credit-card"></i></li>
+        <li><i class="fas fa-truck"></i></li>
+        <li><i class="fas fa-phone"></i></li>
       </ul>
-      <button type="submit" class="apply" v-if="object.available">
-        <i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить
-      </button>
+      <form class="space-between" v-if="object.available">
+        <PlusMinus />
+        <button class="apply">
+          <i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить
+        </button>
+      </form>
       <p style="color:red; text-align: center" v-else>
         <span>
           В данный момент этот товар отсутствует,
@@ -57,25 +60,28 @@
         </span>
       </p>
   </div>
-      <div class="product__description">
-          <div class="descript">
-                  <strong>Краткое описание:</strong>
-                  {{ object.description }}
-          </div>
-          <div class="spec">
-                  <strong>Характеристика:</strong>
-                  {{ object.specifications}}
-          </div>
+    <div class="product__description" v-if="object.description || object.specifications">
+      <div class="descript" v-if="object.description">
+        <strong>Краткое описание:</strong>
+        <p>{{ object.description }}</p>
       </div>
+      <div class="spec" v-if="object.specifications">
+        <strong>Характеристика:</strong>
+        <p v-html="object.specifications"></p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import PlusMinus from '../../components/PlusMinus'
 export default {
+  components: {
+    PlusMinus
+  },
   validate({ params }) {
   return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
   },
-
   async asyncData({$axios, params }) {
     const object = await $axios.$get(`http://127.0.0.1:8000/api/product/${params.slug}`)
       return {object}
@@ -137,14 +143,19 @@ $color_red: #fc6251;
     @extend .padding-12;
     p {
       padding: 12px 0;
+      @extend .border-product
     }
     .modal {
-      padding: 20px 0;
+      padding: 12px 0;
+      @extend .border-product;
       i {
         color: $global_blue;
         cursor: pointer;
-        font-size: 42px;
+        font-size: 32px;
       }
+    }
+    form {
+      padding: 12px 0;
     }
   }
   &__description {

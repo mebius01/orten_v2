@@ -27,6 +27,7 @@ export default {
 $text-color: #2E4053;
 $green-color: #85C987;
 $global_blue: #428bca;
+$color-red: #d9534f;
 html {
   height: 100%;
   color: $text-color;
@@ -131,31 +132,31 @@ button{
   }
 }
 /* plus - minus input form for card */
-.plas, .minus{
-  height: 31px;
-  width: 31px;
-  text-decoration: none;
-  border: none;
-  text-align: center;
-}
-.plas{
-  color: white;
-  background-color:#5cb85c;
-  &:hover{
-    border: 1px solid;
-    background-color: white;
-    color: #5cb85c;
-  }
-}
-.minus{
-  color: white;
-  background-color:#d9534f;
-  &:hover{
-    border: 1px solid;
-    background-color: white;
-    color: #d9534f;
-  }
-}
+// .plas, .minus{
+//   height: 31px;
+//   width: 31px;
+//   text-decoration: none;
+//   border: none;
+//   text-align: center;
+// }
+// .plas{
+//   color: white;
+//   background-color:#5cb85c;
+//   &:hover{
+//     border: 1px solid;
+//     background-color: white;
+//     color: #5cb85c;
+//   }
+// }
+// .minus{
+//   color: white;
+//   background-color:#d9534f;
+//   &:hover{
+//     border: 1px solid;
+//     background-color: white;
+//     color: #d9534f;
+//   }
+// }
 .header {
   display: flex;
   flex-direction: column;
