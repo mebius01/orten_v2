@@ -79,15 +79,15 @@ h1, h2{
 .color--grey {
   color: $text-color;
 }
-input[name=quantity] {
-  height: 31px;
-  width: 84px;
-  text-decoration: none;
-  background-color: white;
-  text-align: center;
-  border: 1px $green-color solid;
-  outline: none;
-}
+// input[name=quantity] {
+//   height: 31px;
+//   width: 84px;
+//   text-decoration: none;
+//   background-color: white;
+//   text-align: center;
+//   border: 1px $green-color solid;
+//   outline: none;
+// }
 button{
   width: auto;
   height: 32px;
@@ -407,7 +407,7 @@ button{
     }
   }
   input, select {
-    @extend input[name=quantity];
+    // @extend input[name=quantity];
     margin-bottom: 24px;
     width: 100%;
     // height: 32px;
@@ -637,8 +637,8 @@ table {text-align: center;}
 
 .flat_block{
   @extend .padding-12;
-  @extend .shadow;
-  @extend .color--grey;
+  // @extend .shadow;
+  // @extend .color--grey;
 
   p {
     padding: 12px 0;

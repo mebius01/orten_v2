@@ -42,10 +42,11 @@
       </div>
       
       <ul class="space-between modal">
-        <li><i class="far fa-credit-card"></i></li>
-        <li><i class="fas fa-truck"></i></li>
-        <li><i class="fas fa-phone"></i></li>
+        <li><i @click="showPay = true" class="far fa-credit-card"></i></li>
+        <li><i @click="showDelivery = true" class="fas fa-truck"></i></li>
+        <li><i @click="showPhone = true" class="fas fa-phone"></i></li>
       </ul>
+
       <form class="space-between" v-if="object.available">
         <PlusMinus />
         <button class="apply">
@@ -70,17 +71,69 @@
         <p v-html="object.specifications"></p>
       </div>
     </div>
+
+    <PopUp
+      v-if="showPhone"
+      @closePopUp='closePopUp'
+    >
+    <div slot="phone">
+      <Contact />
+    </div>
+
+    </PopUp>
+
+    <PopUp
+      v-if="showDelivery"
+      @closePopUp='closePopUp'
+    >
+    <div slot="delivery">
+      <h2>Delivery</h2>
+    </div>
+    
+    </PopUp>
+
+    <PopUp
+      v-if="showPay"
+      @closePopUp='closePopUp'
+    >
+    <div slot="pay">
+      <h2>Pay</h2>
+    </div>
+    
+    </PopUp>
+
   </div>
 </template>
 
 <script>
 import PlusMinus from '../../components/PlusMinus'
+import PopUp from '../../components/PopUp'
+import Contact from '../../components/Contact'
 export default {
   components: {
-    PlusMinus
+    PlusMinus,
+    PopUp,
+    Contact
   },
   validate({ params }) {
   return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
+  },
+  data() {
+    return {
+      showPay: false,
+      showPhone: false,
+      showDelivery: false,
+    }
+  },
+  methods: {
+    openPopUp() {
+      this.showPopUp = true;
+    },
+    closePopUp() {
+      this.showPhone = false
+      this.showPay = false
+      this.showDelivery = false
+    }
   },
   async asyncData({$axios, params }) {
     const object = await $axios.$get(`http://127.0.0.1:8000/api/product/${params.slug}`)
