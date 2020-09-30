@@ -53,12 +53,6 @@
         <span style="color: #e74c3c;"></span> 8-th Port</a
       >
     </div>
-    <button id="scrollA" title="Go to top">
-      <i class="fas fa-chevron-up"></i>
-    </button>
-    <button id="scrollB" title="Go to down">
-      <i class="fas fa-chevron-down"></i>
-    </button>
   </div>
 </template>
 
@@ -75,3 +69,91 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+$text-color: #2E4053;
+$green-color: #85C987;
+$global_blue: #428bca;
+$color-red: #d9534f;
+
+.padding-12 {
+  padding: 12px 24px;
+}
+.padding-5 {
+  padding: 0;
+  padding: 12px 24px;
+}
+.link_style {
+  text-decoration: none;
+  color: $text-color;
+  display: block;
+}
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.footer {
+  @extend .padding-12;
+  @extend .space-between;
+  justify-content: flex-start;
+  background-color: $green-color;
+  display: flex;
+  justify-content: space-between;
+  color: $text-color;
+  @media (max-width: 850px) {
+    display: none;
+  }
+  hr {
+    height: 3px;
+    color: white;
+  }
+  ul {
+    margin: 0 10px;
+    li {
+      padding: 3px;
+      i {
+        margin-right: 5px;
+      }
+    }
+    a {
+      @extend .link_style;
+    }
+  }
+  .map {
+    // @extend .space-between;
+    width: 260px;
+    height: auto;
+    
+
+    image {
+      max-width: 100%;
+    }
+  }
+
+}
+.copyright {
+  @extend .padding-12;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  @extend .space-between;
+  align-items: center;
+  font-size: 12px;
+  background-color: $text-color;
+  color: white;
+}
+.header-for-block {
+  padding-left: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 30px;
+  color: $text-color;
+  background-color: $green-color;
+
+  i {
+    margin-right: 5px;
+  }
+}
+</style>

@@ -42,9 +42,9 @@
       </div>
       
       <ul class="space-between modal">
-        <li><i @click="showPay = true" class="far fa-credit-card"></i></li>
-        <li><i @click="showDelivery = true" class="fas fa-truck"></i></li>
-        <li><i @click="showPhone = true" class="fas fa-phone"></i></li>
+        <li @click="showPay = true"><i class="far fa-credit-card"></i></li>
+        <li @click="showDelivery = true"><i class="fas fa-truck"></i></li>
+        <li @click="showPhone = true"><i class="fas fa-phone"></i></li>
       </ul>
 
       <form class="space-between" v-if="object.available">
@@ -72,24 +72,16 @@
       </div>
     </div>
 
-    <PopUp
-      v-if="showPhone"
-      @closePopUp='closePopUp'
-    >
+    <PopUp v-if="showPhone" @closePopUp='closePopUp'>
     <div slot="phone">
       <Contact />
     </div>
-
     </PopUp>
 
-    <PopUp
-      v-if="showDelivery"
-      @closePopUp='closePopUp'
-    >
+    <PopUp v-if="showDelivery" @closePopUp='closePopUp'>
     <div slot="delivery">
-      <h2>Delivery</h2>
+      <Delivery />
     </div>
-    
     </PopUp>
 
     <PopUp
@@ -97,7 +89,7 @@
       @closePopUp='closePopUp'
     >
     <div slot="pay">
-      <h2>Pay</h2>
+      <Pay />
     </div>
     
     </PopUp>
@@ -106,14 +98,18 @@
 </template>
 
 <script>
-import PlusMinus from '../../components/PlusMinus'
+import PlusMinus from '../../components/SmallComponents/PlusMinus'
 import PopUp from '../../components/PopUp'
 import Contact from '../../components/Contact'
+import Delivery from '../../components/Delivery'
+import Pay from '../../components/Pay'
 export default {
   components: {
     PlusMinus,
     PopUp,
-    Contact
+    Contact,
+    Delivery,
+    Pay
   },
   validate({ params }) {
   return /^[a-z0-9-]+$/.test(params.slug) // если params валидно

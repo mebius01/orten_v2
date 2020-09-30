@@ -2,6 +2,7 @@
 			<!-- <div class="card-grid"> -->
 	<div class="flat_block">
 		<h3 class="card_header">Контакты</h3>
+		<hr>
 		<p class="space-between">
 			<span><i class="fas fa-clock"></i>График:</span>
 			<span>

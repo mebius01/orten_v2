@@ -2,12 +2,12 @@
   <div class="card-grid">
     <div class="card" v-for="(item, index) in object_list.results" :key="index">
         <div class="card__action" v-if="item.action">Акция до {{item.end_action}}</div>
-    <a class="card__link" :href="'/product/'+item.slug">
-        <div class="card__img">
-            <img class="card-img-top" :src="item.image" :alt="item.name">
-        </div>
-    </a>
-    <a class="card__link" :href="'/product/'+item.slug">
+    <nuxt-link class="card__link" :to="'/product/'+item.slug">
+      <div class="card__img">
+        <img class="card-img-top" :src="item.image" :alt="item.name">
+      </div>
+    </nuxt-link>
+    <nuxt-link class="card__link" :to="'/product/'+item.slug">
         <div class="card__body">
             <h2 class="card__name color--blue">{{item.name}}</h2>
             <p class="card__pn space-between">
@@ -37,7 +37,7 @@
                   </template>
             </div>
         </div>
-    </a>
+    </nuxt-link>
     <form class="form-footer" method="post">
         <input type="number" name="" value="1" min="1"> 
         <button type="submit" class="apply"><i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить</button>
