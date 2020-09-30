@@ -1,5 +1,7 @@
 <template>
-  <div class="card-grid">
+  <div>
+    <Categories />
+    <!-- <div class="card-grid">
     <div class="card" v-for="(item, index) in object_list.results" :key="index">
         <div class="card__action" v-if="item.action">Акция до {{item.end_action}}</div>
     <a class="card__link" :href="'/product/'+item.slug">
@@ -43,15 +45,20 @@
         <button type="submit" class="apply"><i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить</button>
     </form>
 </div>
+  </div> -->
   </div>
 </template>
 
 <script>
+  import Categories from '../components/Category/Categories'
   export default {
-    async asyncData({$axios, params }) {
-    const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
-      return {object_list}
-    }
+    components: {
+      Categories
+    },
+    // async asyncData({$axios, params }) {
+    // const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
+    //   return {object_list}
+    // }
   }
 </script>
 
