@@ -16,7 +16,7 @@
 <script>
 import Contact from './Contact'
   export default {
-    // https://overcoder.net/q/499771/%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B5-vuejs-%D0%B2-%D0%BE%D0%BA%D0%BD%D0%BE
+    // https://overcoder.net/q/499771/%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B5-vuejs-%D0%B2-%D0%BE%D0%BA%D0%BD%D0%BEd
     // created() {
     //   window.addEventListener('scroll', this.handleScroll);
     // },

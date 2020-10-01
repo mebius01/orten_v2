@@ -1,8 +1,6 @@
 <template>
   <div class="form_quantity">
-    <button @click.prevent="plas" class="plas">+</button>
-    <input class="quantity" name="quantity" min="1" :value="value">
-    <button @click.prevent="minus" class="minus">-</button>
+    <button @click.prevent="plas" class="plas">+</button><input class="quantity" name="quantity" min="1" :value="value"><button @click.prevent="minus" class="minus">-</button>
   </div>
 </template>
 
@@ -34,15 +32,17 @@ $global_blue: #428bca;
 $color-red: #d9534f;
 
 .form_quantity {
-  // border: 1px solid $green-color;
 }
   .quantity{
+    display: inline-block;
+    margin: 0;
     height: 31px;
     width: 31px;
-    // text-decoration: none;
     background-color: white;
     text-align: center;
-    border: 1px solid #a0a0a0;
+    border: none;
+    border-top: 1px solid #a0a0a0;
+    border-bottom: 1px solid #a0a0a0;
     outline: none;
   }
   .plas, .minus{

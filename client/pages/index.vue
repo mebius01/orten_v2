@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Categories />
-    <!-- <div class="card-grid">
+    <div class="card-grid">
     <div class="card" v-for="(item, index) in object_list.results" :key="index">
         <div class="card__action" v-if="item.action">Акция до {{item.end_action}}</div>
     <nuxt-link class="card__link" :to="'/product/'+item.slug">
@@ -45,20 +44,16 @@
         <button type="submit" class="apply"><i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить</button>
     </form>
 </div>
-  </div> -->
+  </div>
   </div>
 </template>
 
 <script>
-  import Categories from '../components/Category/Categories'
   export default {
-    components: {
-      Categories
-    },
-    // async asyncData({$axios, params }) {
-    // const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
-    //   return {object_list}
-    // }
+    async asyncData({$axios, params }) {
+    const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
+      return {object_list}
+    }
   }
 </script>
 
