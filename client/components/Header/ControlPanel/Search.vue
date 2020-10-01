@@ -33,7 +33,7 @@
               </div>
               <div class="btn-gruop">
                 <span class="vendor_code">PN: {{item.vendor_code}}</span>
-                <span class="price" v-if="item.discount">{{item.discount}}грн.</span>
+                <span class="price" v-if="item.action">{{item.discount}}грн.</span>
                 <span class="price" v-else>{{item.price}}грн.</span>
               </div>
             </li>
