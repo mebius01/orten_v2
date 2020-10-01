@@ -1,59 +1,37 @@
 <template>
-  <div>
-    <div class="card-grid">
-    <div class="card" v-for="(item, index) in object_list.results" :key="index">
-        <div class="card__action" v-if="item.action">Акция до {{item.end_action}}</div>
-    <nuxt-link class="card__link" :to="'/product/'+item.slug">
-      <div class="card__img">
-        <img class="card-img-top" :src="item.image" :alt="item.name">
-      </div>
-    </nuxt-link>
-    <nuxt-link class="card__link" :to="'/product/'+item.slug">
-        <div class="card__body">
-            <h2 class="card__name color--blue">{{item.name}}</h2>
-            <p class="card__pn space-between">
-                <span>Артикул:</span>
-                <span>{{item.vendor_code}}</span>
-            </p>
-            <p class="card__vendor space-between">
-                <span>Вендор:</span>
-                <span>{{item.vendor}}</span>
-            </p>
-            <div class="card__price">
-                  <template v-if="item.action">
-                    <p class="space-between">
-                        <span>Цена:</span>
-                        <span class="card--text-crossed">{{item.price}}</span>
-                    </p>
-                    <p class="space-between">
-                        <span>Цена:</span>
-                        <span class="card--red-text">{{item.discount}}</span>
-                    </p>
-                  </template>
-                  <template v-else>
-                    <p class="space-between">
-                      <span>Цена:</span>
-                      <span class="card__price--text">{{item.price}}</span>
-                  </p>
-                  </template>
-            </div>
-        </div>
-    </nuxt-link>
-    <form class="form-footer" method="post">
-        <input type="number" name="" value="1" min="1"> 
-        <button type="submit" class="apply"><i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить</button>
-    </form>
-</div>
-  </div>
+  <div class="card-grid">
+    <Card v-for="item in this.$store.state.products.object_list"
+      :key="item.id"
+      :product="item">
+    </Card>
+    <!-- {{object_list}} -->
   </div>
 </template>
 
 <script>
+import Card from '../components/Card'
+import {mapGetters, mapActions} from 'vuex'
   export default {
-    async asyncData({$axios, params }) {
-    const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
-      return {object_list}
-    }
+    name: "Products",
+    components: {
+      Card
+    },
+    data() {
+      return {
+        object_list: this.$store.state.products.object_list
+      }
+    },
+    methods: {
+      ...mapActions("products", ['GET_OBJECT_LIST']),
+      // ...mapGetters("products", ['OBJECT_LIST'])
+    },
+    mounted() {
+      this.GET_OBJECT_LIST()
+    },
+    // async asyncData({$axios}) {
+    // const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
+    //   return {object_list}
+    // }
   }
 </script>
 

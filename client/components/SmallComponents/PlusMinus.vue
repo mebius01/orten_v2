@@ -1,7 +1,10 @@
 <template>
-  <div class="form_quantity">
-    <button @click.prevent="plas" class="plas">+</button><input class="quantity" name="quantity" min="1" :value="value"><button @click.prevent="minus" class="minus">-</button>
-  </div>
+  <form class="space-between">
+    <div class="form_quantity">
+      <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="value"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
+    </div>
+    <button type="submit" class="apply"><i class="fa fa-shopping-cart"></i>Купить</button>
+  </form>
 </template>
 
 <script>
@@ -31,18 +34,28 @@ $green-color: #85C987;
 $global_blue: #428bca;
 $color-red: #d9534f;
 
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.apply {
+  i {
+    padding-right: 5px;
+  }
+}
 .form_quantity {
 }
   .quantity{
     display: inline-block;
     margin: 0;
     height: 31px;
-    width: 31px;
+    width: 35px;
     background-color: white;
+    color: $text-color;
+    font-weight: 600;
+    font-size: 20px;
     text-align: center;
     border: none;
-    border-top: 1px solid #a0a0a0;
-    border-bottom: 1px solid #a0a0a0;
     outline: none;
   }
   .plas, .minus{
@@ -53,21 +66,22 @@ $color-red: #d9534f;
     text-align: center;
   }
   .plas{
-    color: white;
-    background-color: $green-color;
+    color: $green-color;
+    background-color: white;
+    border: $green-color 1px solid;
     &:hover{
-      border: 1px solid;
-      background-color: white;
-      color: $green-color;
+      background-color: $green-color;
+      color: white;
     }
   }
   .minus{
-    color: white;
-    background-color: $color-red;
+    color: $color-red;
+    background-color: white;
+    border: $color-red 1px solid;
     &:hover{
-      border: 1px solid;
-      background-color: white;
-      color: $color-red;
+      background-color: $color-red;
+      color: white;
+      
     }
   }
 </style>

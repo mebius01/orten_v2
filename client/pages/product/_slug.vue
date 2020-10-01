@@ -47,12 +47,10 @@
         <li @click="showPhone = true"><i class="fas fa-phone"></i></li>
       </ul>
 
-      <form class="space-between" v-if="object.available">
+      <template v-if="object.available">
         <PlusMinus />
-        <button class="apply">
-          <i style="padding-right:5px;" class="fa fa-shopping-cart"></i>Купить
-        </button>
-      </form>
+      </template>
+
       <p style="color:red; text-align: center" v-else>
         <span>
           В данный момент этот товар отсутствует,
