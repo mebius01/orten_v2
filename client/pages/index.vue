@@ -1,6 +1,6 @@
 <template>
   <div class="card-grid">
-    <Card v-for="item in this.$store.state.products.object_list"
+    <Card v-for="item in OBJECT_LIST"
       :key="item.id"
       :product="item">
     </Card>
@@ -16,19 +16,19 @@ import {mapGetters, mapActions} from 'vuex'
     components: {
       Card
     },
-    data() {
-      return {
-        object_list: this.$store.state.products.object_list
-      }
+    computed: {
+      ...mapGetters("products", ['OBJECT_LIST'])
     },
     methods: {
       ...mapActions("products", ['GET_OBJECT_LIST']),
-      // ...mapGetters("products", ['OBJECT_LIST'])
     },
     mounted() {
       this.GET_OBJECT_LIST()
     },
-    // async asyncData({$axios}) {
+    asyncData(context) {
+      console.log(context);
+    }
+    // async asyncData({$store}) {
     // const object_list = await $axios.$get('http://127.0.0.1:8000/api/product/')
     //   return {object_list}
     // }

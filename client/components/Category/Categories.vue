@@ -16,10 +16,10 @@ import axios from 'axios'
         object_list: [],
       }
     },
-    mounted() {
-      axios.get('http://127.0.0.1:8000/api/category/')
-      .then(response => this.object_list = response)
-    },
+    // mounted() {
+    //   axios.get('http://127.0.0.1:8000/api/category/')
+    //   .then(response => this.object_list = response)
+    // },
   }
 </script>
 
