@@ -29,11 +29,30 @@
           </div>
       </div>
         
-        <ul class="space-between modal">
-            <li><i class="far fa-credit-card"></i></li>
-            <li><i class="fas fa-truck"></i></li>
-            <li><i class="fas fa-phone"></i></li>
-        </ul>
+      <ul class="space-between modal">
+        <li @click="showPay = true"><i class="far fa-credit-card"></i></li>
+        <li @click="showDelivery = true"><i class="fas fa-truck"></i></li>
+        <li @click="showPhone = true"><i class="fas fa-phone"></i></li>
+      </ul>
+      <PopUp v-if="showPhone" @closePopUp='closePopUp'>
+      <div slot="phone">
+        <Contact />
+      </div>
+      </PopUp>
+
+      <PopUp v-if="showDelivery" @closePopUp='closePopUp'>
+      <div slot="delivery">
+        <Delivery />
+      </div>
+      </PopUp>
+
+      <PopUp
+        v-if="showPay"
+        @closePopUp='closePopUp'>
+      <div slot="pay">
+        <Pay />
+      </div>
+      </PopUp>
     </div>
     <div class="product__description" v-if="object.description || object.specifications">
       <div class="descript" v-if="object.description">
@@ -50,9 +69,36 @@
 
 <script>
 import axios from 'axios'
+import PopUp from '../../components/PopUp'
+import Contact from '../../components/Contact'
+import Delivery from '../../components/Delivery'
+import Pay from '../../components/Pay'
 export default {
+  components: {
+    PopUp,
+    Contact,
+    Delivery,
+    Pay
+  },
   validate({ params }) {
   return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
+  },
+  data() {
+    return {
+      showPay: false,
+      showPhone: false,
+      showDelivery: false,
+    }
+  },
+  methods: {
+    openPopUp() {
+      this.showPopUp = true;
+    },
+    closePopUp() {
+      this.showPhone = false
+      this.showPay = false
+      this.showDelivery = false
+    }
   },
   async asyncData({$axios, params }) {
     const object = await $axios.$get(`http://127.0.0.1:8000/api/service/${params.slug}`)
@@ -115,14 +161,19 @@ $color_red: #fc6251;
     @extend .padding-12;
     p {
       padding: 12px 0;
+      @extend .border-product
     }
     .modal {
-      padding: 20px 0;
+      padding: 12px 0;
+      @extend .border-product;
       i {
         color: $global_blue;
         cursor: pointer;
-        font-size: 42px;
+        font-size: 32px;
       }
+    }
+    form {
+      padding: 12px 0;
     }
   }
   &__description {

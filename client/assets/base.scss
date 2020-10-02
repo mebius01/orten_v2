@@ -367,63 +367,63 @@ button{
   display: flex;
   justify-content: space-between;
 }
-.accordion {
-  padding-top: 5px;
-  li {
-    .node-count {
-      color: $global_blue;
-    }
-    a {
-      @extend .link_style;
-      padding: 2px 0 2px 12px;
-    }
-  }
-  .submenu {
-    padding-left: 24px;
-    li {
-      a {
-        @extend .link_style;
-      }
-    }
-  }
-  input, select {
-    // @extend input[name=quantity];
-    margin-bottom: 24px;
-    width: 100%;
-    // height: 32px;
-  }
-  .min_max {
-    @extend .space-between;
+// .accordion {
+//   padding-top: 5px;
+//   li {
+//     .node-count {
+//       color: $global_blue;
+//     }
+//     a {
+//       @extend .link_style;
+//       padding: 2px 0 2px 12px;
+//     }
+//   }
+//   .submenu {
+//     padding-left: 24px;
+//     li {
+//       a {
+//         @extend .link_style;
+//       }
+//     }
+//   }
+//   input, select {
+//     // @extend input[name=quantity];
+//     margin-bottom: 24px;
+//     width: 100%;
+//     // height: 32px;
+//   }
+//   .min_max {
+//     @extend .space-between;
 
-    input {
-    width: 40%;
-    height: 32px;
-    }
-  }
-  .form-footer{
-    input {
-      width: 40%;
-      height: 32px;
-      }
-  }
-}
-.main-container {
-  @extend .padding-12;
-  display: grid;
-  grid-template-columns: 30% auto;
-  gap: 12px;
+//     input {
+//     width: 40%;
+//     height: 32px;
+//     }
+//   }
+//   .form-footer{
+//     input {
+//       width: 40%;
+//       height: 32px;
+//       }
+//   }
+// }
+// .main-container {
+//   @extend .padding-12;
+//   display: grid;
+//   grid-template-columns: 30% auto;
+//   gap: 12px;
 
-  @media (max-width: 767px) {
-    grid-template-columns: 40% auto;
-  }
-  @media (max-width: 650px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    padding: 0;
-  }
-}
+//   @media (max-width: 767px) {
+//     grid-template-columns: 40% auto;
+//   }
+//   @media (max-width: 650px) {
+//     grid-template-columns: 1fr 1fr;
+//   }
+//   @media (max-width: 480px) {
+//     grid-template-columns: 1fr;
+//     padding: 0;
+//   }
+// }
 .card-grid {
   padding-top: 5px;
   display: grid;

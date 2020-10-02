@@ -84,12 +84,10 @@
 
     <PopUp
       v-if="showPay"
-      @closePopUp='closePopUp'
-    >
+      @closePopUp='closePopUp'>
     <div slot="pay">
       <Pay />
     </div>
-    
     </PopUp>
 
   </div>
