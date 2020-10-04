@@ -4,9 +4,9 @@
       <i class="fas fa-times"></i>
     </div>
     <div class="popup__content">
-      <slot name="phone">
-        <Contact />
-      </slot>
+      <slot name="basket"></slot>
+      <slot name="like"></slot>
+      <slot name="phone"></slot>
       <slot name="pay"></slot>
       <slot name="delivery"></slot>
     </div>

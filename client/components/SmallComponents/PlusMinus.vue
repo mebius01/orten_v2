@@ -1,28 +1,46 @@
 <template>
   <form class="space-between">
     <div class="form_quantity">
-      <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="value"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
+      <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="quantity"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
     </div>
-    <button type="submit" class="apply"><i class="fa fa-shopping-cart"></i>Купить</button>
+    <button class="apply" @click.prevent="putBasket(object)"><i class="fa fa-shopping-cart"></i>Купить</button>
   </form>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
   export default {
-    data() {
-      return {
-        value: 1
+    props: {
+      object: {
+        type: Object,
+        default() {
+          return {}
+        }
       }
     },
+    data() {
+      return {
+        quantity: 1,
+        total_cost: null,
+      }
+    },
+
     methods: {
+      ...mapActions("basket", ['ACTION_FOR_PRODUCTS']),
       minus() {
-        if (this.value <= 1) {
+        if (this.quantity <= 1) {
           this.plas()
         }
-        this.value--
+        this.quantity--
       },
       plas() {
-        this.value++
+        this.quantity++
+      },
+      putBasket(object) {
+        object.quantity = this.quantity
+        object.total_cost = this.quantity * object.price
+        this.ACTION_FOR_PRODUCTS(object)
+				this.quantity = object.quantity
       }
     },
   }

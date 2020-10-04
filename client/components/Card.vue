@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <div class="card__action" v-if="product.action">Акция до {{product.end_action}}</div>
+    <i class="far fa-heart" @click="addToLike(product)"></i>
     <nuxt-link class="card__link" :to="'/product/'+product.slug">
       <div class="card__img">
         <img class="card-img-top" :src="product.image" :alt="product.name">
@@ -37,18 +38,23 @@
           </template>
         </div>
       </div>
-    <form class="space-between">
-      <div class="form_quantity">
-      <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="value"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
-      </div>
-      <button @click.prevent="submit(product)" class="apply"><i class="fa fa-shopping-cart"></i>Купить</button>
-    </form>
+      <template v-if="product.available">
+        <PlusMinus :object="product"></PlusMinus>
+      </template>
+      <template v-else>
+        <p class="space-between" style="color:#d9534f">Нет в наличии</p>
+      </template>
   </div>
 </template>
 
 <script>
+import PlusMinus from "~/components/SmallComponents/PlusMinus"
+import {mapGetters, mapActions, mapMutations} from 'vuex'
   export default {
     name: "Card",
+    components: {
+      PlusMinus
+    },
     props: {
       product: {
         type: Object,
@@ -59,24 +65,21 @@
     },
     data() {
       return {
-        value: 1
+        like: false,
       }
     },
     methods: {
-      minus() {
-        if (this.value <= 1) {
-          this.plas()
+      ...mapActions("like", ['ACTION_FOR_LIKE']),
+      addToLike(product) {
+        if (product.like) {
+          product.like = false
         }
-        this.value--
-      },
-      plas() {
-        this.value++
-			},
-			submit(product) {
-				product.quantity = this.value
-				console.log(product);
-				this.value = 1
-			}
+        else {
+          product.like = true
+          this.ACTION_FOR_LIKE(product)
+        }
+        console.log(product.like);
+      }
     },
   }
 </script>
@@ -85,7 +88,7 @@
 $text-color: #2E4053;
 $green-color: #85C987;
 $global_blue: #428bca;
-$color-red: #d9534f;
+$color_red: #d9534f;
 
 .shadow {
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
@@ -107,6 +110,7 @@ $color-red: #d9534f;
   color: $text-color;
   display: block;
 }
+
 .card {
   position: relative;
   @extend .shadow;
@@ -135,6 +139,20 @@ $color-red: #d9534f;
     color: white;
     opacity: 0.5;
     transform: rotate(-45deg);
+  }
+  .fa-heart {
+    position: absolute;
+    // top: 10px;
+    right: 6px;
+    font-size: 30px;
+    color: $global_blue;
+    cursor: pointer;
+    &:hover {
+      color: $color_red;
+    }
+  }
+  .activ_like {
+    color: $color_red;
   }
   &__name {
     margin-top: 12px;
@@ -198,11 +216,11 @@ $color-red: #d9534f;
   }
   }
   .minus{
-  color: $color-red;
+  color: $color_red;
   background-color: white;
-  border: $color-red 1px solid;
+  border: $color_red 1px solid;
   &:hover{
-    background-color: $color-red;
+    background-color: $color_red;
     color: white;
     
   }

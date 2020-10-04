@@ -14,7 +14,7 @@
       <span class="overall_total" v-if="search">
         {{overall_total}}
       </span>
-      <ul class="result" :class="animationClass" v-if="search">
+      <ul class="result" :class="{scale_up: search}" v-if="search">
           <template v-if="product">
             <ProductList
               v-for="item in products"
@@ -55,7 +55,6 @@ export default {
         statusError: '',
         product: {},
         service: {},
-        animationClass: "scale-up"
       };
     },
     methods: {
@@ -74,7 +73,7 @@ export default {
       },
       clossSearch() {
         this.search = ''
-        // this.animationClass = "scale-down"
+        // this.animationClass = "scale_down"
         // setTimeout(() => this.search = '', 400);
       },
     },
@@ -82,10 +81,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scale-up {
-	animation: scale-up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+.scale_up {
+	animation: scale_up 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
-@keyframes scale-up {
+@keyframes scale_up {
   0% {
     transform: scaleY(0.1);
     transform-origin: 100% 0%;
@@ -96,10 +95,10 @@ export default {
   }
 }
 
-.scale-down {
-	animation: scale-down 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+.scale_down {
+	animation: scale_down 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
-@keyframes scale-down {
+@keyframes scale_down {
   0% {
     transform: scaleY(1);
     transform-origin: 100% 0%;

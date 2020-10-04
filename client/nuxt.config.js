@@ -25,6 +25,7 @@ module.exports = {
   },
   modules: [
     '@nuxtjs/axios',
+    'nuxt-vuex-localstorage'
   ],
   /*
   ** Customize the progress bar color

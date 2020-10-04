@@ -22,7 +22,7 @@
               <span>{{object.type_product}}</span>
           </p>
           <div class="card__price">
-            <template v-if="object.discount">
+            <template v-if="object.action">
               <p class="card--left-right">
                 <span>Цена:</span>
                 <span class="card--text-crossed">{{object.price}}</span>
@@ -48,7 +48,7 @@
       </ul>
 
       <template v-if="object.available">
-        <PlusMinus />
+        <PlusMinus :object="object"></PlusMinus>
       </template>
 
       <p style="color:red; text-align: center" v-else>
