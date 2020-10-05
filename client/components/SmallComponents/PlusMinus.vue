@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
   export default {
     props: {
       object: {
@@ -24,7 +24,9 @@ import {mapActions} from 'vuex'
         total_cost: null,
       }
     },
-
+    computed: {
+      ...mapGetters("basket", ['GET_PRODUCTS'])
+    },
     methods: {
       ...mapActions("basket", ['ACTION_FOR_PRODUCTS']),
       minus() {
@@ -37,10 +39,19 @@ import {mapActions} from 'vuex'
         this.quantity++
       },
       putBasket(object) {
-        object.quantity = this.quantity
+        // object.quantity = this.quantity
         object.total_cost = this.quantity * object.price
+        let arr = this.GET_PRODUCTS
+        arr.find(item => {
+          if (item.id == object.id) {
+            // this.quantity = 1
+            object.quantity = item.quantity + this.quantity
+            console.log(object.name, object.quantity)
+          } //, item.name, item.quantity, object.quantity);
+        })
+        // console.log(object.name, object.quantity);
+
         this.ACTION_FOR_PRODUCTS(object)
-				this.quantity = object.quantity
       }
     },
   }
