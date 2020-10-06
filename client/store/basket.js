@@ -22,9 +22,8 @@ const mutations = {
   const actions = {
     ACTION_FOR_PRODUCTS({state, commit}, object) {
       commit('SET_ADD_PRODUCT', object)
-      let arr = Array.from(new Set(state.products))
-      commit('SET_MODIFY_PRODUCTS', arr)
-
+      let arr = state.products
+      
       let full_cost = arr.reduce((sum, current) => {
         return sum + current.total_cost;
       }, 0)

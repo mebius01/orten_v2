@@ -39,7 +39,7 @@
         </div>
       </div>
       <template v-if="product.available">
-        <PlusMinus :object="product"></PlusMinus>
+        <Buy :object="product"></Buy>
       </template>
       <template v-else>
         <p class="space-between" style="color:#d9534f">Нет в наличии</p>
@@ -48,12 +48,12 @@
 </template>
 
 <script>
-import PlusMinus from "~/components/SmallComponents/PlusMinus"
+import Buy from "~/components/SmallComponents/Buy"
 import {mapGetters, mapActions, mapMutations} from 'vuex'
   export default {
     name: "Card",
     components: {
-      PlusMinus
+      Buy
     },
     props: {
       product: {

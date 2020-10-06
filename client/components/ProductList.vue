@@ -23,12 +23,19 @@
       <span class="price" v-if="product.action">{{product.discount}}грн.</span>
       <span class="price" v-else>{{product.price}}грн.</span>
     </div>
+    <!-- <Buy
+    :product="product"
+    ></Buy> -->
   </li>
 </template>
 
 <script>
+import Buy from './SmallComponents/Buy'
   export default {
     name: "ProductList",
+    components: {
+      Buy
+    },
     props: {
       product: {
         type: Object,

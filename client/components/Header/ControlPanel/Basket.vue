@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     ...mapActions("basket", ['ACTION_FOR_PRODUCTS']),
-    ...mapMutations("basket", ['SET_ADD_PRODUCT','SET_MODIFY_PRODUCTS','SET_COUNTER','SET_FULL_COST']),
+    ...mapMutations("basket", ['SET_ADD_PRODUCT','SET_COUNTER','SET_FULL_COST']),
     closePopUp() {
       this.showPopUp = false
     }
@@ -39,35 +39,35 @@ export default {
     ...mapGetters("basket", ['GET_PRODUCTS', 'GET_FULL_COST', 'GET_COUNTER'])
   },
 
-  mounted() {
+  // mounted() {
 
-    if (localStorage.basket_products) {
-      // this.SET_MODIFY_PRODUCTS(JSON.parse(localStorage.getItem("basket_products")))
-      for (const iterator of JSON.parse(localStorage.getItem("basket_products"))) {
-        this.SET_ADD_PRODUCT(iterator)
-        // console.log(this.GET_PRODUCTS);
-        // console.log(iterator);
-      }
-      // this.SET_MODIFY_PRODUCTS(JSON.parse(localStorage.getItem("basket_products")))
-    }
-    if (localStorage.basket_counter) {
-      // let basket_counter = localStorage.getItem("basket_counter")
-      this.SET_COUNTER(Number(localStorage.getItem("basket_counter")))
-    }
-    if (localStorage.full_cost) {
-      // let basket_full_cost = localStorage.getItem("basket_full_cost")
-      this.SET_FULL_COST(Number(localStorage.getItem("basket_full_cost")))
-      console.log(this.SET_FULL_COST);
-    }
+  //   if (localStorage.basket_products) {
+  //     // this.SET_MODIFY_PRODUCTS(JSON.parse(localStorage.getItem("basket_products")))
+  //     for (const iterator of JSON.parse(localStorage.getItem("basket_products"))) {
+  //       this.ACTION_FOR_PRODUCTS(iterator)
+  //       // console.log(this.GET_PRODUCTS);
+  //       // console.log(iterator);
+  //     }
+  //     // this.SET_MODIFY_PRODUCTS(JSON.parse(localStorage.getItem("basket_products")))
+  //   }
+  //   // if (localStorage.basket_counter) {
+  //   //   // let basket_counter = localStorage.getItem("basket_counter")
+  //   //   this.SET_COUNTER(Number(localStorage.getItem("basket_counter")))
+  //   // }
+  //   // if (localStorage.full_cost) {
+  //   //   // let basket_full_cost = localStorage.getItem("basket_full_cost")
+  //   //   this.SET_FULL_COST(Number(localStorage.getItem("basket_full_cost")))
+  //   //   console.log(this.SET_FULL_COST);
+  //   // }
 
-  },
-  watch: {
-    GET_PRODUCTS() {
-      localStorage.setItem("basket_products", JSON.stringify(this.GET_PRODUCTS));
-      localStorage.setItem("basket_counter", this.GET_COUNTER);
-      localStorage.setItem("basket_full_cost", this.GET_FULL_COST);
-    }
-  }
+  // },
+  // watch: {
+  //   GET_PRODUCTS() {
+  //     localStorage.setItem("basket_products", JSON.stringify(this.GET_PRODUCTS));
+  //     localStorage.setItem("basket_counter", this.GET_COUNTER);
+  //     localStorage.setItem("basket_full_cost", this.GET_FULL_COST);
+  //   }
+  // }
 }
 </script>
 

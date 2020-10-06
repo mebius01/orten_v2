@@ -48,7 +48,7 @@
       </ul>
 
       <template v-if="object.available">
-        <PlusMinus :object="object"></PlusMinus>
+        <Buy :object="object"></Buy>
       </template>
 
       <p style="color:red; text-align: center" v-else>
@@ -94,14 +94,14 @@
 </template>
 
 <script>
-import PlusMinus from '../../components/SmallComponents/PlusMinus'
+import Buy from '../../components/SmallComponents/Buy'
 import PopUp from '../../components/PopUp'
 import Contact from '../../components/Contact'
 import Delivery from '../../components/Delivery'
 import Pay from '../../components/Pay'
 export default {
   components: {
-    PlusMinus,
+    Buy,
     PopUp,
     Contact,
     Delivery,
