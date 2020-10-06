@@ -40,17 +40,14 @@
             </template>
           </div>
       </div>
-      
       <ul class="space-between modal">
         <li @click="showPay = true"><i class="far fa-credit-card"></i></li>
         <li @click="showDelivery = true"><i class="fas fa-truck"></i></li>
         <li @click="showPhone = true"><i class="fas fa-phone"></i></li>
       </ul>
-
       <template v-if="object.available">
         <Buy :object="object"></Buy>
       </template>
-
       <p style="color:red; text-align: center" v-else>
         <span>
           В данный момент этот товар отсутствует,
@@ -82,9 +79,7 @@
     </div>
     </PopUp>
 
-    <PopUp
-      v-if="showPay"
-      @closePopUp='closePopUp'>
+    <PopUp v-if="showPay" @closePopUp='closePopUp'>
     <div slot="pay">
       <Pay />
     </div>

@@ -5,23 +5,43 @@ const state = () => ({
 })      // state
 
 const mutations = {
-    SET_ADD_PRODUCT: (state, payload) => {
-      state.products.push(payload)
-    },
-    SET_MODIFY_PRODUCTS: (state, payload) => {
-      state.products = payload
-    },
-    SET_COUNTER: (state, payload) => {
-      state.counter = payload
-    },
-    SET_FULL_COST: (state, payload) => {
-      state.full_cost = payload
+  SET_ADD_PRODUCT: (state, payload) => {
+    state.products.push(payload)
+  },
+  SET_MODIFY_PRODUCTS: (state, payload) => {
+    state.products = payload
+  },
+  SET_COUNTER: (state, payload) => {
+    state.counter = payload
+  },
+  SET_FULL_COST: (state, payload) => {
+    state.full_cost = payload
+  },
+  SET_INDEXED_PROD: (state, payload) => {
+    /**
+     * payload = {
+     * index,
+     * quantity,
+     * total_cost
+     * }
+     */
+    state.products[payload.index].quantity = payload.quantity
+    state.products[payload.index].total_cost = payload.total_cost
+  },
+  DELL_INDEXED_PROD: (state, payload) => {
+    /**
+     * payload = {
+     * index,
+     * quantity,
+     * total_cost
+     * }
+     */
+    state.products.splice(payload,1)
   }
 }  // synchronous
 
   const actions = {
-    ACTION_FOR_PRODUCTS({state, commit}, object) {
-      commit('SET_ADD_PRODUCT', object)
+    SHAKE_FOR_PRODUCTS({state, commit}) {
       let arr = state.products
       
       let full_cost = arr.reduce((sum, current) => {
@@ -33,7 +53,7 @@ const mutations = {
         return sum + current.quantity;
       }, 0);
       commit('SET_COUNTER', counter)
-    }
+    },
 }     // asynchronous
 
 const getters = {
@@ -45,6 +65,9 @@ const getters = {
   },
   GET_COUNTER(state) {
     return state.counter
+  },
+  GET_OBJ(state, index) {
+    return state.products[index]
   }
 }    // get data from state
 
