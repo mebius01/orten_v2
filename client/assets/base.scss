@@ -69,48 +69,46 @@ h1, h2{
 //   outline: none;
 // }
 button{
-  width: auto;
-  height: 32px;
   border: none;
   text-decoration: none;
   outline: none;
   cursor: pointer;
 }
-.apply {
-  padding: 0 10px;
-  background-color: white;
-  color: #5cb85c;
-  text-decoration: none;
-  outline: none;
-  border: 1px solid #5cb85c;
-    &:hover{
-    background-color: #5cb85c;
-    color:white;
-  }
-}
-.reset{
-  padding: 0 10px;
-  background-color: white;
-  color: #d9534f;
-  text-decoration: none;
-  outline: none;
-  border: 1px solid #d9534f;
-  &:hover{
-    background-color: #d9534f;
-    color:white;
-  }
-}
-.return{
-  background-color: white;
-  color: #0275d8;
-  text-decoration: none;
-  outline: none;
-  border: 1px solid #0275d8;
-    &:hover {
-      background-color: #0275d8;
-      color:white;
-  }
-}
+// .apply {
+//   padding: 0 10px;
+//   background-color: white;
+//   color: #5cb85c;
+//   text-decoration: none;
+//   outline: none;
+//   border: 1px solid #5cb85c;
+//     &:hover{
+//     background-color: #5cb85c;
+//     color:white;
+//   }
+// }
+// .reset{
+//   padding: 0 10px;
+//   background-color: white;
+//   color: #d9534f;
+//   text-decoration: none;
+//   outline: none;
+//   border: 1px solid #d9534f;
+//   &:hover{
+//     background-color: #d9534f;
+//     color:white;
+//   }
+// }
+// .return{
+//   background-color: white;
+//   color: #0275d8;
+//   text-decoration: none;
+//   outline: none;
+//   border: 1px solid #0275d8;
+//     &:hover {
+//       background-color: #0275d8;
+//       color:white;
+//   }
+// }
 /* plus - minus input form for card */
 // .plas, .minus{
 //   height: 31px;

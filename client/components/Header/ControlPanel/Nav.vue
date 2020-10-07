@@ -39,10 +39,10 @@ $global_blue: #428bca;
   align-items: center;
 }
 
-.nav {
+nav {
   background-color: $green-color;
   @extend .space-between;
   @extend .padding-12;
-  // padding: 5px 0;
+
 }
 </style>

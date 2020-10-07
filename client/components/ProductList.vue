@@ -22,10 +22,10 @@
       <span class="vendor_code">PN: {{product.vendor_code}}</span>
       <span class="price" v-if="product.action">{{product.discount}}грн.</span>
       <span class="price" v-else>{{product.price}}грн.</span>
+      <div class="qty">
+        <Buy :object="product"></Buy>
+      </div>
     </div>
-    <!-- <Buy
-    :product="product"
-    ></Buy> -->
   </li>
 </template>
 
@@ -85,7 +85,7 @@ $color-red: #d9534f;
     .content {
       @extend .align-items;
       justify-content: flex-start;
-      width: 70%;
+      width: 65%;
       &__vendor {
         font-size: 12px;
         font-weight: 600;
@@ -132,6 +132,9 @@ $color-red: #d9534f;
       .vendor_code {
         @extend .padding-5;
         font-size: 12px;
+      }
+      .qty {
+        margin-left: 5px;
       }
     }
     

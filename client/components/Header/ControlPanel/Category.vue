@@ -1,6 +1,6 @@
 <template>
   <div class="control_cart">
-    <i class="fas fa-th-list"></i>
+    <i class="fas fa-th-list" title="Категории"></i>
   </div>
 </template>
 
