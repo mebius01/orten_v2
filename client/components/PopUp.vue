@@ -80,9 +80,9 @@ import Contact from './Contact'
   $green-color: #85C987;
   $global_blue: #428bca;
   $color_red: #fc6251;
-  .shadow {
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
-  }
+  // .shadow {
+  //   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+  // }
   .popup {
     height: 100%;
     width: 100%;
@@ -106,7 +106,8 @@ import Contact from './Contact'
     }
 
     &__content {
-      @extend .shadow;
+      // @extend .shadow;
+      border: 1px $green-color solid;
       width: 100%;
       background: white;
     }
