@@ -33,7 +33,7 @@
               <div class="qty">
                 <Buy :object="item"></Buy>
               </div>
-              <button class="reset" @click.prevent="delProduct(item)"><i class="fas fa-trash-alt"></i></button>
+              <button class="reset" @click.prevent="delLine(item)"><i class="fas fa-trash-alt"></i></button>
             </div>
           </li>
         </ul>
@@ -59,10 +59,17 @@ export default {
   },
   methods: {
     ...mapActions("like", ['ACTION_FOR_LIKE']),
-    ...mapMutations("like", ['SET_MODIFY_LIKE']),
+    ...mapMutations("like", ['SET_MODIFY_LIKE', 'DELL_INDEXED_LIKE']),
     closePopUp() {
       this.showPopUp = false
-    }
+    },
+    delLine(obj) {
+      let arr = this.GET_LIKE
+      let index = arr.indexOf(obj)
+      this.DELL_INDEXED_LIKE(index)
+      // this.SHAKE_FOR_PRODUCTS()
+      console.log(index);
+    },
   },
   computed: {
     ...mapGetters("like", ['GET_LIKE', 'GET_FULL_COST', 'GET_COUNTER'])

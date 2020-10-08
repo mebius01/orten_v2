@@ -9,6 +9,16 @@ const mutations = {
   SET_MODIFY_LIKE: (state, payload) => {
     state.like = payload
   },
+  DELL_INDEXED_LIKE: (state, payload) => {
+    /**
+     * payload = {
+     * index,
+     * quantity,
+     * total_cost
+     * }
+     */
+    state.like.splice(payload,1)
+  }
 }  // synchronous
 
 const actions = {
@@ -17,6 +27,7 @@ const actions = {
       let arr = Array.from(new Set(state.like))
       commit('SET_MODIFY_LIKE', arr)
   },
+
 }     // asynchronous
 
 const getters = {

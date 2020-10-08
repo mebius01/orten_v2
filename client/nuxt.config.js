@@ -2,6 +2,7 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  nuxt: "universal",
   head: {
     title: 'Ортен',
     meta: [

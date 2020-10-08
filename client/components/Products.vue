@@ -24,8 +24,12 @@ import {mapGetters, mapActions} from 'vuex'
     mounted() {
       this.GET_OBJECT_LIST()
     },
-    asyncData(context) {
-      console.log(context);
+    async asyncData({$axios}) {
+      let response = await $axios.$get("http://127.0.0.1:8000/api/product/")
+      let products = response.data.results
+      return {
+        products
+      }
     }
   }
 </script>
