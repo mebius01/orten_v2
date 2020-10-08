@@ -1,9 +1,9 @@
 <template>
   <div class="b-component">
-    <p class="toggle" @click="toggleOn"><i class="fas fa-address-card icon"></i>Наши контакты
+    <!-- <p class="toggle" @click="toggleOn"><i class="fas fa-address-card icon"></i>Наши контакты
       <i :class="chevron"></i>
-    </p>
-    <ul :class="toggleClass" v-if="toggle">
+    </p> -->
+    <ul>
       <li v-for="(item, index) in data" :key="index">
         <template v-if="item.link">
           <a :class="item.link.class" :href="item.link.href" target="_blank">
@@ -110,9 +110,9 @@ export default {
   ul {
     width: 230px;
     padding: 5px;
-    position: fixed;
-    background: rgb(255, 255, 255);
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+    // position: fixed;
+    // background: rgb(255, 255, 255);
+    // box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
     // border: 1px solid;
     margin-top: 10px;
       li {
@@ -124,6 +124,7 @@ export default {
       a {
         @extend .link_style;
         border-bottom: white 2px solid;
+        display: inline-block;
         &:hover {
           border-bottom: $text-color 2px solid;
           transition: border-bottom 1s;

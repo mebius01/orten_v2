@@ -84,7 +84,9 @@
       <Pay />
     </div>
     </PopUp>
-
+  <div>
+    <script v-html="jsonld" type="application/ld+json"></script>
+  </div>
   </div>
 </template>
 
@@ -110,6 +112,34 @@ export default {
       showPay: false,
       showPhone: false,
       showDelivery: false,
+      jsonld:
+      `{
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "{{object.name}}",
+        "image": "{{ object.image.url }}",
+        "description": "{{object.description}}",
+        "brand": "{{ object.vendor }}",
+        "sku": "{{ object.vendor_code }}",
+        "mpn": "{{ object.vendor_code }}",
+        "offers": {
+            "@type": "Offer",
+            "url": "{% url 'shop:product_detail' object.slug %}",
+            "priceCurrency": "UAH",
+            {% if object.action %}
+            "price": "{{object.discount}}",
+            "priceValidUntil": "{{object.end_action|date:"Y-m-d"}}",
+            {% else %}
+            "price": "{{object.price}}",
+            {% endif %}
+            {% if object.available %}
+            "availability": "https://schema.org/InStock",
+            {% else %}
+            "availability": "https://schema.org/OutOfStock",
+            {% endif %}
+            "itemCondition": "https://schema.org/NewCondition"
+            }
+        }`
     }
   },
   methods: {

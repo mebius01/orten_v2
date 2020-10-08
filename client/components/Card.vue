@@ -113,7 +113,8 @@ $color_red: #d9534f;
 
 .card {
   position: relative;
-  @extend .shadow;
+  // @extend .shadow;
+  border: 1px solid rgb(241, 241, 241);
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -144,7 +145,7 @@ $color_red: #d9534f;
     position: absolute;
     // top: 10px;
     right: 6px;
-    font-size: 30px;
+    // font-size: 16px;
     color: $global_blue;
     cursor: pointer;
     &:hover {

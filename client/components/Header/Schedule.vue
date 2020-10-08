@@ -1,9 +1,10 @@
 <template>
   <div class="b-component">
-    <p class="toggle" @click="toggleOn"><i class="fas fa-door-open icon"></i>График работы
+    <!-- <p class="toggle" @click="toggleOn"><i class="fas fa-door-open icon"></i>График работы
       <i :class="chevron"></i>
-    </p>
-    <ul :class="toggleClass" v-if="toggle">
+    </p> -->
+    <!-- <ul :class="toggleClass" v-if="toggle"> -->
+    <ul>
       <li v-for="(item, index) in data" :key="index">
         <template v-if="item.link">
           <nuxt-link :class="item.link.class" :to="item.link.href" exact>
@@ -26,7 +27,7 @@ export default {
         // {class: "fas fa-door-open", text: "График работы", link: false},
         {class: "fas fa-clock", text: "Пн-Пт: 9:00 - 18:00", link: false},
         {class: "fas fa-utensils", text: "Пн-Пт: 12:00 - 12:30", link: false},
-        {class: "fas fa-clock", text: "Сб: 9:00 - 14:00", link: false},
+        {class: "fas fa-clock", text: "Сб-Вс: Выходной", link: false},
       ],
       toggleClass: "fadeInDown",
       chevron:  "fas fa-chevron-down",
@@ -109,9 +110,9 @@ export default {
   ul {
     width: 200px;
     padding: 5px;
-    position: fixed;
-    background: rgb(255, 255, 255);
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+    // position: fixed;
+    // background: rgb(255, 255, 255);
+    // box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
     // border: 1px solid;
     margin-top: 10px;
       li {

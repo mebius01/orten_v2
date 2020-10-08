@@ -3,19 +3,36 @@
     <Categories />
 		<main>
 			<div class="header-for-block"><i class="fas fa-star"></i>Новинки и акции</div>
-			<Products />
+			<!-- <Products :products = "products"/> -->
+      <template>
+        <div class="card-grid">
+          <Card v-for="item in products"
+            :key="item.id"
+            :product="item">
+          </Card>
+        </div>
+      </template>
 		</main>
 	</div>
 </template>
 
 <script>
+import Card from "../components/Card"
 import Products from "~/components/Products"
 import Categories from "~/components/Categories"
   export default {
     name: "Home",
     components: {
+      Card,
       Products,
       Categories
+    },
+    async asyncData({$axios}) {
+      let response = await $axios.$get("http://127.0.0.1:8000/api/product/")
+      let products = response.results
+      return {
+        products
+      }
     }
   }
 </script>

@@ -12,16 +12,16 @@
         </nuxt-link>
       </div>
       <div class="menu-sched-contact">
-        <Menu />
+        <!-- <Menu /> -->
         <Schedule />
         <Contact />
       </div>
     </div>
-    <div class="two_header">
+    <!-- <div class="two_header">
       <div class="ad">
         У зв'язку з посиленням карантинних мір. У суботу офіс тимчасово не працює.
       </div>
-    </div>
+    </div> -->
     <MainCategory />
     <Nav />
     <ul class="breadcrumbs">
