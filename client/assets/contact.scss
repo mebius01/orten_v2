@@ -1,0 +1,39 @@
+$text-color: #2E4053;
+.link_style {
+  text-decoration: none;
+  color: $text-color;
+  display: block;
+}
+.nuxt-link-active {
+  border-bottom: $text-color 2px solid;
+}
+.toggle {
+  // border: 1px solid;
+  padding: 2px;
+  width: 230px;
+  cursor: pointer;
+}
+.icon {
+  margin-right: 5px;
+}
+.b-component {
+  margin-right: 10px;
+}
+ul {
+  width: 230px;
+    li {
+      padding: 2px;
+      i {
+        margin-right: 5px;
+      }
+    }
+    a {
+      @extend .link_style;
+      // border-bottom: white 2px solid;
+      display: inline-block;
+      &:hover {
+        // border-bottom: $text-color 2px solid;
+        transition: border-bottom 1s;
+      }
+    }
+}

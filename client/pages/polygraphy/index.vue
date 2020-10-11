@@ -6,7 +6,6 @@
 
 <script>
   export default {
-    layout: "polygraphy",
     head() {
     return {
       title: "Полиграфия - Ортен",

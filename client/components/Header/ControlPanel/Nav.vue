@@ -1,6 +1,7 @@
 <template>
   <nav class="nav">
-    <Category />
+    <!-- <Category /> -->
+    <Menu />
     <Search />
     <Language />
     <Like />
@@ -14,6 +15,7 @@ import Basket from './Basket'
 import Search from './Search'
 import Language from './Language'
 import Category from './Category'
+import Menu from './Menu'
 
 export default {
   components: {
@@ -21,7 +23,8 @@ export default {
     Like,
     Basket,
     Language,
-    Category
+    Category,
+    Menu
   }
 }
 </script>

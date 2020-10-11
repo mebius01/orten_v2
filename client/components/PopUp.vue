@@ -4,11 +4,13 @@
       <i class="fas fa-times"></i>
     </div>
     <div class="popup__content">
+      <slot name="menu"></slot>
       <slot name="basket"></slot>
       <slot name="like"></slot>
       <slot name="phone"></slot>
       <slot name="pay"></slot>
       <slot name="delivery"></slot>
+      <slot name="map"></slot>
     </div>
   </div>
 </template>
@@ -20,7 +22,7 @@ import Contact from './Contact'
     // created() {
     //   window.addEventListener('scroll', this.handleScroll);
     // },
-    // 
+    
     // bdestroyed () {
     //   window.removeEventListener('scroll', this.handleScroll);
     // },
@@ -34,9 +36,20 @@ import Contact from './Contact'
         this.animationClass = "zoomOut"
         setTimeout(() => this.$emit('closePopUp'), 500);
       },
-      exc() {
-        console.log("Exc"); // Any code to be executed when the window is scrolled
+      closeEsc(e) {
+        if (e.keyCode == 27) {
+          this.close()
+        }
       }
+    },
+    created() {
+      if (process.browser) {
+        window.addEventListener('keydown', this.closeEsc);
+      }
+    },
+    
+    destroyed() {
+      window.removeEventListener('keydown', this.closeEsc);
     },
   }
 </script>
@@ -92,7 +105,7 @@ import Contact from './Contact'
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 9999;
 
     &__header {
       i {
@@ -110,6 +123,7 @@ import Contact from './Contact'
       border: 1px $green-color solid;
       width: 100%;
       background: white;
+      overflow: auto;
     }
   }
 </style>

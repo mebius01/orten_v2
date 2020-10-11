@@ -30,10 +30,10 @@
               <span class="vendor_code">PN: {{item.vendor_code}}</span>
               <span class="price" v-if="item.action">{{item.discount}}грн.</span>
               <span class="price" v-else>{{item.price}}грн.</span>
-              <div class="qty">
+              <div class="buy">
                 <Buy :object="item"></Buy>
+                <button class="reset" @click.prevent="delLine(item)"><i class="fas fa-trash-alt"></i></button>
               </div>
-              <button class="reset" @click.prevent="delLine(item)"><i class="fas fa-trash-alt"></i></button>
             </div>
           </li>
         </ul>
@@ -89,129 +89,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$text_color: #2E4053;
-$green_color: #85C987;
-$global_blue: #428bca;
-$color_red: #d9534f;
-
-.icon {
-  position: relative;
-
-  i {
-    cursor: pointer;
-    padding: 0;
-    font-size: 26px;
-    margin: 0 10px;
-  }
-  span {
-    position: absolute;
-    top: -20px;
-    right: -5px;
-    border-radius: 5px;
-    padding: 0 5px;
-    // font-size: 12px;
-    color: white;
-    background: #F68A8A;
-  }
-}
-// item
-$text-color: #2E4053;
-$blue-color: #428bca;
-$color-red: #d9534f;
-
-.align-items {
-  display: flex;
-  align-items: center;
-}
-.padding-5 {
-  padding: 5px 5px;
-}
-.link_style {
-  text-decoration: none;
-  color: $text-color;
-  display: block;
-}
-  ul {
-    padding: 20px;
-  }
-  li {
-    @extend .align-items;
-    @extend .padding-5;
-    justify-content: space-between;
-    border-bottom: #85C987 1px solid;
-
-    .content {
-      @extend .align-items;
-      justify-content: flex-start;
-      width: 65%;
-      &__vendor {
-        font-size: 12px;
-        font-weight: 600;
-        width: 120px;
-        @extend .padding-5;
-      }
-      &__available {
-        @extend .padding-5;
-      }
-      &__action {
-        font-size: 12px;
-        font-weight: 400;
-        color: $color-red;
-        @extend .padding-5;
-      }
-      img {
-        @extend .padding-5;
-        width: 56px;
-        height: 100%;
-      }
-
-      a {
-        display: flex;
-        padding: 0 5px;
-        @extend .link_style;
-        color: $blue-color;
-
-      }
-      // .available {
-      //   @extend .padding-5;
-      //   font-size: 16px;
-      //   font-weight: 600;
-      // }
-    }
-    .btn-gruop {
-      @extend .align-items;
-      justify-content: flex-end;
-
-      .price {
-        @extend .padding-5;
-        font-size: 16px;
-        font-weight: 600;
-        background-color: rgba(252, 99, 91, 0.18);
-      }
-      .vendor_code {
-        @extend .padding-5;
-        font-size: 12px;
-      }
-      .qty {
-        margin-left: 5px;
-      }
-    }
-
-  }
-  .reset{
-    margin-left: 5px;
-    height: 31px;
-    width: 31px;
-    text-decoration: none;
-    border: none;
-    text-align: center;
-    color: $color-red;
-      background-color: white;
-      border: $color-red 1px solid;
-      &:hover{
-        background-color: $color-red;
-        color: white;
-        
-      }
-  }
+@import "@/assets/icon_header.scss";
 </style>

@@ -1,20 +1,39 @@
 <template>
-  <div class="b">
-    <h1>Polygraphy</h1>
-  </div>
+  <div class="main-container">
+    <Categories />
+		<main>
+			<div class="header-for-block"><i class="fas fa-truck"></i>Доставка и оплата</div>
+      <template>
+        <Pay />
+        <Delivery />
+      </template>
+		</main>
+	</div>
 </template>
 
 <script>
+import Pay from "../../components/Pay"
+import Delivery from "../../components/Delivery"
+import Categories from "../../components/Categories"
   export default {
-    layout: "polygraphy",
+    components: {
+      Pay,
+      Delivery,
+      Categories
+    },
     head() {
     return {
-      title: "Полиграфия - Ортен",
+      title: "Доставка и оплата товаров и услуг от компании Ортен",
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Это описание страницы Полиграфия'
+          content: 'Richo, Duplo, Konica Minolta, ColorWay - Купить в Николаеве, интернет-магазин Ортен ★ Ортен более 20 лет рынке копировальной техники и сервисного обслуживания'
+        },
+        {
+          hid: 'title',
+          name: 'title',
+          content: 'Доставка и оплата товаров и услуг от компании Ортен'
         }
       ]
     }
@@ -23,14 +42,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .b {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  h1 {
-    font-size: 65px;
-    margin: 0 auto;
-  }
+  @import "../../assets/main.scss"
 </style>

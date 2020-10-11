@@ -12,7 +12,6 @@
         </nuxt-link>
       </div>
       <div class="menu-sched-contact">
-        <!-- <Menu /> -->
         <Schedule />
         <Contact />
       </div>
@@ -35,14 +34,12 @@
 <script>
 import Schedule from './Schedule'
 import Contact from './Contact'
-import Menu from './Menu'
 import MainCategory from './MainCategory'
 import Nav from './ControlPanel/Nav'
 export default {
   components: {
     Schedule,
     Contact,
-    Menu,
     MainCategory,
     Nav,
   }
