@@ -35,9 +35,6 @@ import {mapGetters, mapActions} from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-// .padding-12 {
-//   padding: 12px 24px;
-// }
 .card-grid {
   padding: 12px 5px;
 }

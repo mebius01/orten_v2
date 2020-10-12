@@ -1,30 +1,18 @@
 <template>
-<div>
-  <form class="space-between buy">
+  <div class="buy">
     <div class="form_quantity">
-      <!-- <button class="eye" @click.prevent="showPopUp = !showPopUp"><i class="fas fa-eye"></i></button> -->
       <button class="like" @click.prevent="addToLike(object)"><i class="far fa-heart"></i></button>
     </div>
     <div class="form_quantity">
       <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="quantity"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
       <button class="apply" @click.prevent="putBasket(object)"><i class="fa fa-shopping-cart"></i></button>
     </div>
-  </form>
-  <PopUp v-if="showPopUp" @closePopUp='closePopUp'>
-    <div slot="product">
-        <!-- {{object}} -->
-    </div>
-  </PopUp>
-</div>
+  </div>
 </template>
 
 <script>
-import PopUp from "../../components/PopUp"
 import {mapActions, mapGetters, mapMutations} from 'vuex'
   export default {
-    components: {
-      PopUp,
-    },
     props: {
       object: {
         type: Object,
@@ -38,7 +26,6 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
         quantity: 1,
         total_cost: null,
         like: false,
-        showPopUp: false,
       }
     },
     computed: {
@@ -46,12 +33,8 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
     },
     methods: {
       ...mapActions("basket", ['SHAKE_FOR_PRODUCTS']),
-      ...mapMutations("basket", ['SET_INDEXED_PROD','SET_ADD_PRODUCT']),
       ...mapActions("like", ['ACTION_FOR_LIKE']),
-    
-    closePopUp(){
-      this.closePopUp = false
-    },
+      ...mapMutations("basket", ['SET_INDEXED_PROD','SET_ADD_PRODUCT']),
 
       addToLike(object) {
         if (object.like) {
@@ -184,6 +167,7 @@ $color-red: #d9534f;
   }
   .like {
     @extend .apply;
+    margin-right: 5px;
     width: 31px;
     color: $color-red;
     border: 1px solid $color-red;
@@ -193,6 +177,20 @@ $color-red: #d9534f;
     &:hover{
       background-color: $color-red;
       color:white;
+    }
+  }
+  .like_true {
+    @extend .apply;
+    width: 31px;
+    color: white;
+    background-color: $color-red;
+    border: 1px solid $color-red;
+    i {
+      margin: 0;
+    }
+    &:hover{
+      background-color: white;
+      color: $color-red;
     }
   }
   .eye {
