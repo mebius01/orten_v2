@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card__action" v-if="product.action">Акция до {{product.end_action}}</div>
-    <i class="far fa-heart" @click="addToLike(product)"></i>
+    <!-- <i class="far fa-heart" @click="addToLike(product)"></i> -->
     <nuxt-link class="card__link" :to="'/product/'+product.slug">
       <div class="card__img">
         <img class="card-img-top" :src="product.image" :alt="product.name">
@@ -63,23 +63,23 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
         }
       }
     },
-    data() {
-      return {
-        like: false,
-      }
-    },
+    // data() {
+    //   return {
+    //     // like: false,
+    //   }
+    // },
     methods: {
-      ...mapActions("like", ['ACTION_FOR_LIKE']),
-      addToLike(product) {
-        if (product.like) {
-          product.like = false
-        }
-        else {
-          product.like = true
-          this.ACTION_FOR_LIKE(product)
-        }
-        console.log(product.like);
-      }
+      // ...mapActions("like", ['ACTION_FOR_LIKE']),
+      // addToLike(product) {
+      //   if (product.like) {
+      //     product.like = false
+      //   }
+      //   else {
+      //     product.like = true
+      //     this.ACTION_FOR_LIKE(product)
+      //   }
+      //   console.log(product.like);
+      // }
     },
   }
 </script>

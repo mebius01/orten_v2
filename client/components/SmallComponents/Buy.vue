@@ -1,15 +1,30 @@
 <template>
+<div>
   <form class="space-between buy">
     <div class="form_quantity">
-      <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="quantity"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
+      <!-- <button class="eye" @click.prevent="showPopUp = !showPopUp"><i class="fas fa-eye"></i></button> -->
+      <button class="like" @click.prevent="addToLike(object)"><i class="far fa-heart"></i></button>
     </div>
-    <button class="apply" @click.prevent="putBasket(object)"><i class="fa fa-shopping-cart"></i>Купить</button>
+    <div class="form_quantity">
+      <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="quantity"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
+      <button class="apply" @click.prevent="putBasket(object)"><i class="fa fa-shopping-cart"></i></button>
+    </div>
   </form>
+  <PopUp v-if="showPopUp" @closePopUp='closePopUp'>
+    <div slot="product">
+        <!-- {{object}} -->
+    </div>
+  </PopUp>
+</div>
 </template>
 
 <script>
+import PopUp from "../../components/PopUp"
 import {mapActions, mapGetters, mapMutations} from 'vuex'
   export default {
+    components: {
+      PopUp,
+    },
     props: {
       object: {
         type: Object,
@@ -22,6 +37,8 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
       return {
         quantity: 1,
         total_cost: null,
+        like: false,
+        showPopUp: false,
       }
     },
     computed: {
@@ -30,6 +47,22 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
     methods: {
       ...mapActions("basket", ['SHAKE_FOR_PRODUCTS']),
       ...mapMutations("basket", ['SET_INDEXED_PROD','SET_ADD_PRODUCT']),
+      ...mapActions("like", ['ACTION_FOR_LIKE']),
+    
+    closePopUp(){
+      this.closePopUp = false
+    },
+
+      addToLike(object) {
+        if (object.like) {
+          object.like = false
+        }
+        else {
+          object.like = true
+          this.ACTION_FOR_LIKE(object)
+        }
+        console.log(object.like);
+      },
       minus() {
         if (this.quantity <= 1) {
           this.plas()
@@ -135,16 +168,39 @@ $color-red: #d9534f;
     margin-left: 5px;
     padding: 5px 5px;
     height: 31px;
+    
     background-color: white;
-    color: #5cb85c;
+    color: $global_blue;
     text-decoration: none;
     outline: none;
-    border: 1px solid #5cb85c;
+    border: 1px solid $global_blue;
     i {
       margin-right: 3px;
     }
       &:hover{
-      background-color: #5cb85c;
+      background-color: $global_blue;
+      color:white;
+    }
+  }
+  .like {
+    @extend .apply;
+    width: 31px;
+    color: $color-red;
+    border: 1px solid $color-red;
+    i {
+      margin: 0;
+    }
+    &:hover{
+      background-color: $color-red;
+      color:white;
+    }
+  }
+  .eye {
+    @extend .like;
+    color: #7952B3;
+    border: 1px solid #7952B3;
+    &:hover{
+      background-color: #7952B3;
       color:white;
     }
   }

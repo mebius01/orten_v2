@@ -11,6 +11,7 @@
       <slot name="pay"></slot>
       <slot name="delivery"></slot>
       <slot name="map"></slot>
+      <slot name="product"></slot>
     </div>
   </div>
 </template>
@@ -18,14 +19,6 @@
 <script>
 import Contact from './Contact'
   export default {
-    // https://overcoder.net/q/499771/%D0%B4%D0%BE%D0%B1%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B5-vuejs-%D0%B2-%D0%BE%D0%BA%D0%BD%D0%BEd
-    // created() {
-    //   window.addEventListener('scroll', this.handleScroll);
-    // },
-    
-    // bdestroyed () {
-    //   window.removeEventListener('scroll', this.handleScroll);
-    // },
     data() {
       return {
         animationClass: "zoomIn"
@@ -47,7 +40,6 @@ import Contact from './Contact'
         window.addEventListener('keydown', this.closeEsc);
       }
     },
-    
     destroyed() {
       window.removeEventListener('keydown', this.closeEsc);
     },
