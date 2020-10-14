@@ -12,15 +12,15 @@
         <i v-if="product.available" class="fas fa-check" style="color:green"></i>
         <i v-else class="fas fa-times" style="color:red"></i>
       </span>
-      <span class="content__action" v-if="product.action">
+      <!-- <span class="content__action" v-if="product.action">
         <i class="fas fa-splotch" style="margin-left:10px">
           Aкция до {{product.end_action}}
         </i>
-      </span>
+      </span> -->
     </div>
     <div class="btn-gruop">
       <span class="vendor_code">PN: {{product.vendor_code}}</span>
-      <span class="price" v-if="product.action">{{product.discount}}грн.</span>
+      <span class="price" v-if="product.action" :title="product.end_action">{{product.discount}}грн.</span>
       <span class="price" v-else>{{product.price}}грн.</span>
       <div class="qty">
         <Buy :object="product"></Buy>

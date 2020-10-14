@@ -98,10 +98,10 @@ $color-red: #d9534f;
 }
 
 .buy {
+  margin: 6px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border: 1px solid;
 
   .form_quantity {
     display: flex;
@@ -167,7 +167,7 @@ $color-red: #d9534f;
   }
   .like {
     @extend .apply;
-    margin-right: 5px;
+    margin: 0 5px;
     width: 31px;
     color: $color-red;
     border: 1px solid $color-red;
