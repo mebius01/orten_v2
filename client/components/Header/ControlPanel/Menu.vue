@@ -34,6 +34,7 @@ export default {
         {text: "Дом", link: {class: "", href: "/"}},
         {text: "Категории", link: {class: "", href: "/category"}},
         {text: "Товары", link: {class: "", href: "/product"}},
+        {text: "Сервис", link: {class: "", href: "/service"}},
         {text: "Полиграфия", link: {class: "", href: "/polygraphy"}},
         {text: "Доставка и оплата", link: {class: "", href: "/delivery_payment"}},
         {text: "Кто мы", link: {class: "", href: "/about"}},

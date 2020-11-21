@@ -93,7 +93,7 @@ class ServicesDetail(RetrieveAPIView):
 	lookup_field = 'slug'
 
 class CategoryList(ListAPIView):
-	queryset = Category.objects.all()
+	queryset = Category.objects.root_nodes()
 	serializer_class = CategorySerializer
 
 class CategoryDetail(RetrieveAPIView):

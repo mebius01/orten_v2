@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <Categories />
+    <Aside />
 		<main>
 			<div class="header-for-block"><i class="fas fa-id-card-alt"></i>Контакты</div>
       <template>
@@ -12,11 +12,11 @@
 
 <script>
 import Contact from "../../components/Contact"
-import Categories from "../../components/Categories"
+import Aside from "../../components/Aside"
   export default {
     components: {
       Contact,
-      Categories
+      Aside
     },
     head() {
     return {

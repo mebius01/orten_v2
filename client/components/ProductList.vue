@@ -44,11 +44,6 @@ import Buy from './SmallComponents/Buy'
         }
       }
     },
-    data() {
-      return {
-        
-      }
-    },
     methods: {
       openProduct(product) {
         this.$emit('clossSearch');

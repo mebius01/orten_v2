@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <Categories />
+    <Aside />
 		<main>
 			<div class="header-for-block"><i class="fas fa-truck"></i>Доставка и оплата</div>
       <template>
@@ -14,12 +14,12 @@
 <script>
 import Pay from "../../components/Pay"
 import Delivery from "../../components/Delivery"
-import Categories from "../../components/Categories"
+import Aside from "../../components/Aside"
   export default {
     components: {
       Pay,
       Delivery,
-      Categories
+      Aside
     },
     head() {
     return {

@@ -23,11 +23,7 @@
     </div> -->
     <MainCategory />
     <Nav />
-    <ul class="breadcrumbs">
-      <li>
-        <a href="/"><i class="fas fa-home"></i></a>
-      </li>
-    </ul>
+    <Breadcrumbs />
   </header>
 </template>
 
@@ -36,12 +32,14 @@ import Schedule from './Schedule'
 import Contact from './Contact'
 import MainCategory from './MainCategory'
 import Nav from './ControlPanel/Nav'
+import Breadcrumbs from './Breadcrumbs'
 export default {
   components: {
     Schedule,
     Contact,
     MainCategory,
     Nav,
+    Breadcrumbs,
   }
 }
 </script>

@@ -1,20 +1,20 @@
 <template>
   <div class="b">
-    <h1>Polygraphy</h1>
+    <h1>Service</h1>
   </div>
 </template>
 
 <script>
   export default {
-    layout: "polygraphy",
+    layout: "service",
     head() {
     return {
-      title: "Полиграфия - Ортен",
+      title: "Сервис - Ортен",
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Это описание страницы Полиграфия'
+          content: 'Это описание страницы Сервис'
         }
       ]
     }

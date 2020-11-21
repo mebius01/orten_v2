@@ -41,9 +41,11 @@ class Category(MPTTModel):
 	def get_anc(self):
 		return self.get_ancestors(include_self=True)
 
+	def get_count(self):
+		return self.objects.filter(category=self).count()
+
 	def __str__(self):
 		return self.name
-	objects = models.Manager()
 
 FORMAT_CHOICES = (
 	('A0', 'A0'),

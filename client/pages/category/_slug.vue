@@ -2,10 +2,11 @@
   <div class="main-container">
     <Aside />
 		<main>
-			<div class="header-for-block"><i class="fas fa-th-large"></i>Список Категорий</div>
+			<div class="header-for-block"><i class="fas fa-th-large"></i>{{object.name}}</div>
       <template>
         <div class="card-grid">
-          <CategoryCard v-for="item in OBJECT_LIST"
+          <!-- {{object}} -->
+          <CategoryCard v-for="item in object.children"
             :key="item.id"
             :item="item"
           />
@@ -23,6 +24,13 @@ import CategoryCard from "../../components/CategoryCard"
     components: {
       Aside,
       CategoryCard
+    },
+    validate({ params }) {
+      return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
+    },
+    async asyncData({$axios, params }) {
+      const object = await $axios.$get(`http://127.0.0.1:8000/api/category/${params.slug}`)
+      return {object}
     },
     head() {
     return {

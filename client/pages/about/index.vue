@@ -1,6 +1,6 @@
 <template>
    <div class="main-container">
-    <Categories />
+    <Aside />
 		<main>
 			<div class="header-for-block"><i class="fas fa-exclamation-circle"></i>О нас</div>
         <h1>О нас</h1>
@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import Categories from "../../components/Categories"
+import Aside from "../../components/Aside"
   export default {
     components: {
-      Categories
+      Aside
     },
   head() {
     return {
