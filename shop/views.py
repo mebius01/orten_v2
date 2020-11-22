@@ -107,7 +107,7 @@ class CategoryList(ListAPIView):
 class CategoryDetail(RetrieveAPIView):
 	queryset = Category.objects.all()
 	serializer_class = CategorySerializer
-	lookup_field = 'slug'
+	lookup_field = 'pk'
 
 class SearchList(ObjectMultipleModelAPIView):
 	pagination_class = LimitPagination

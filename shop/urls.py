@@ -26,7 +26,7 @@ urlpatterns = [
     path('service/', ServicesList.as_view(), name ='services_list'),
     path('service/<slug:slug>/', ServicesDetail.as_view(), name = 'services_detail'),
     path('category/', CategoryList.as_view(), name = 'category_list'),
-    path('category/<slug:slug>', CategoryDetail.as_view(), name ='category_detail'),
+    path('category/<int:pk>', CategoryDetail.as_view(), name ='category_detail'),
     path('search/', SearchList.as_view(), name ='serch_list'),
 
 ]

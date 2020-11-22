@@ -156,7 +156,7 @@ export default {
     }
   },
   mounted() {
-    this.breadcrumb = {gategory: this.object.category,
+    this.breadcrumb = {category: this.object.category,
                     name: this.object.name,
                     path: this.$route.path
     }
