@@ -4,8 +4,8 @@
 		<main>
 			<div class="header-for-block"><i class="fas fa-truck"></i>Доставка и оплата</div>
       <template>
-        <Pay />
         <Delivery />
+        <Pay />
       </template>
 		</main>
 	</div>

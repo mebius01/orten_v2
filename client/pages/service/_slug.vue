@@ -1,11 +1,13 @@
 <template>
   <div class="product">
     <div class="product__head">
+      <template v-if="object.end_action">
         <h2>Акция до {{object.end_action}}</h2>
-        <h1>{{ object.name }}</h1>
+      </template>
+      <h1>{{ object.name }}</h1>
     </div>
     <div class="product__img">
-        <img :src="object.image" :alt="object.name" :title="object.name">
+      <img :src="object.image" :alt="object.name" :title="object.name">
     </div>
     <div class="product__feature">
       <div class="specification">
@@ -31,18 +33,11 @@
         
       <ul class="space-between modal">
         <li @click="showPay = true"><i class="far fa-credit-card"></i></li>
-        <li @click="showDelivery = true"><i class="fas fa-truck"></i></li>
         <li @click="showPhone = true"><i class="fas fa-phone"></i></li>
       </ul>
       <PopUp v-if="showPhone" @closePopUp='closePopUp'>
       <div slot="phone">
         <Contact />
-      </div>
-      </PopUp>
-
-      <PopUp v-if="showDelivery" @closePopUp='closePopUp'>
-      <div slot="delivery">
-        <Delivery />
       </div>
       </PopUp>
 
@@ -87,7 +82,6 @@ export default {
     return {
       showPay: false,
       showPhone: false,
-      showDelivery: false,
     }
   },
   methods: {
@@ -97,7 +91,6 @@ export default {
     closePopUp() {
       this.showPhone = false
       this.showPay = false
-      this.showDelivery = false
     }
   },
   async asyncData({$axios, params }) {
@@ -108,14 +101,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$text-color: #2E4053;
-$green-color: #85C987;
-$global_blue: #428bca;
-$color_red: #fc6251;
-
-.padding-12 {
-  padding: 12px 24px;
-}
+@import "../../assets/main.scss";
 
 .product{
   color: $text-color;

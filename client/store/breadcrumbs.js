@@ -1,18 +1,22 @@
 const state = () => ({
-  list: [
-    {name: "Test Link for breadcrumbs", slug: "test-Link-for-breadcrumbs"},
-    {name: "Test Link for breadcrumbs 2", slug: "test-Link-for-breadcrumbs"},
-    {name: "Test Link for breadcrumbs 3", slug: "test-Link-for-breadcrumbs"},
-    {name: "Test Link for breadcrumbs 4", slug: "test-Link-for-breadcrumbs"},
-  ]
+  list: null
 })
 
-const mutations = {}
+const mutations = {
+  SET_ADD_CRUMBS: (state, payload) => {
+    state.list = [payload]
+  },
+}
 
-const actions = {}
+const actions = {
+  SEND_DATA({ commit }, object) {
+    commit('SET_ADD_CRUMBS', object)
+    console.log('breadcrumbs',object);
+  }
+}
 
 const getters = {
-  OBJECT_LIST(state) {
+  GET_OBJECT_LIST(state) {
     return state.list;
   }
 }

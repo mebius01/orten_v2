@@ -3,8 +3,8 @@
     <li>
       <a href="/"><i class="fas fa-home"></i></a>
     </li>
-    <li v-for="(item, index) in OBJECT_LIST" :key="index">
-      <nuxt-link :to="item.slug">{{ item.name }}</nuxt-link>
+    <li v-for="(item, index) in GET_OBJECT_LIST" :key="index">
+      <nuxt-link :to="item.path">{{ item.name }}</nuxt-link>
     </li>
   </ul>
 </template>
@@ -14,7 +14,7 @@ import {mapGetters, mapActions} from 'vuex'
   export default {
     name: "Breadcrumbs",
     computed: {
-      ...mapGetters("breadcrumbs", ['OBJECT_LIST'])
+      ...mapGetters("breadcrumbs", ['GET_OBJECT_LIST']),
     },
   }
 </script>

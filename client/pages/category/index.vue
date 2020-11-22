@@ -42,8 +42,8 @@ import CategoryCard from "../../components/CategoryCard"
     }
   },
   computed: {
-      ...mapGetters("categories", ['OBJECT_LIST'])
-    },
+      ...mapGetters("categories", ['OBJECT_LIST']),
+  },
   methods: {
     ...mapActions("categories", ['GET_OBJECT_LIST']),
   }

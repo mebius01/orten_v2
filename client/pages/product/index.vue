@@ -24,6 +24,7 @@
 </template>
 
 <script>
+// import { mapActions } from 'vuex'
 import ProductList from "~/components/ProductList"
 import Filters from "../../components/Products/Filters"
 import Pagination from "../../components/Products/Pagination"
@@ -34,13 +35,24 @@ import Pagination from "../../components/Products/Pagination"
       Filters,
       Pagination
     },
-    async asyncData({$axios}) {
+    // methods: {
+    //   ...mapActions("breadcrumbs", ['SEND_DATA']),
+    // },
+    // created() {
+    //   this.SEND_DATA({gategory: '',
+    //                 name: '',
+    //                 path: ''
+    // })
+    // },
+    async asyncData({$axios, route}) {
       let response = await $axios.$get("http://127.0.0.1:8000/api/product/")
       let count = response.count
       let next = response.next
       let previous = response.previous
       let products = response.results
 
+      console.log('Print params in produc/index', route.query);
+      
       return {
         count,
         next,

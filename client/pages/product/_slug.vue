@@ -91,6 +91,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Buy from '../../components/SmallComponents/Buy'
 import PopUp from '../../components/PopUp'
 import Contact from '../../components/Contact'
@@ -112,6 +113,7 @@ export default {
       showPay: false,
       showPhone: false,
       showDelivery: false,
+      breadcrumb: null,
       jsonld:
       `{
         "@context": "https://schema.org/",
@@ -143,6 +145,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions("breadcrumbs", ['SEND_DATA']),
     openPopUp() {
       this.showPopUp = true;
     },
@@ -152,9 +155,16 @@ export default {
       this.showDelivery = false
     }
   },
-  async asyncData({$axios, params }) {
+  mounted() {
+    this.breadcrumb = {gategory: this.object.category,
+                    name: this.object.name,
+                    path: this.$route.path
+    }
+    this.SEND_DATA(this.breadcrumb)
+  },
+  async asyncData({$axios, params, route}) {
     const object = await $axios.$get(`http://127.0.0.1:8000/api/product/${params.slug}`)
-      return {object}
+    return {object}
   }
 }
 </script>

@@ -28,7 +28,7 @@ import CategoryCard from "../../components/CategoryCard"
     validate({ params }) {
       return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
     },
-    async asyncData({$axios, params }) {
+    async asyncData({$axios, params, query }) {
       const object = await $axios.$get(`http://127.0.0.1:8000/api/category/${params.slug}`)
       return {object}
     },
