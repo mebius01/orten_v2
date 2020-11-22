@@ -34,6 +34,8 @@ const actions = {
   }
 }
 
+
+
 const getters = {
   GET_OBJECT_LIST(state) {
     return state.list;
