@@ -6,7 +6,7 @@
         :key="item.id"
         @click="showChildList(index)"
         >
-      <i class="fas fa-bars"></i>{{item.name}}
+      <i class="fas fa-stream"></i>{{item.name}}
       <ul class="child" v-if="childList === index">
         <li v-for="i in item.children" :key="i.id">
           <template v-if="i.product_count">

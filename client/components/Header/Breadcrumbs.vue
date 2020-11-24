@@ -3,9 +3,10 @@
     <li>
       <a href="/"><i class="fas fa-home"></i></a>
     </li>
-    <li v-for="(item, index) in GET_OBJECT_LIST" :key="index">
+    {{GET_OBJECT_LIST}}
+    <!-- <li v-for="(item, index) in GET_OBJECT_LIST" :key="index">
       <nuxt-link :to="item.path">{{ item.name }}</nuxt-link>
-    </li>
+    </li> -->
   </ul>
 </template>
 

@@ -3,8 +3,8 @@
     <div class="filters">
       <form method="get">
         <div class="min_max">
-          <input type="text" name="price__gt" placeholder="min 0">
-          <input type="text" name="price__lt" placeholder="max 99999">
+          <input type="text" name="min_price" placeholder="min 0">
+          <input type="text" name="max_price" placeholder="max 99999">
         </div>
         <div>
         <input type="text" name="ordering">                          

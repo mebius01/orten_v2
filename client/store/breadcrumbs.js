@@ -1,14 +1,12 @@
 const state = () => ({
   list: []
 })
-
 const mutations = {
   SET_ADD_CRUMBS: (state, payload) => {
     state.list[payload.index] = payload
-    console.log(state.list);
+    console.log("state list", state.list);
   },
 }
-
 const actions = {
   SEND_DATA({ state, commit }, object) {
     const first = { index: 0, name: "Категории", path: "/category/" }
@@ -31,11 +29,9 @@ const actions = {
             commit('SET_ADD_CRUMBS', object)
           })
       })
-  }
+  },
+  
 }
-
-
-
 const getters = {
   GET_OBJECT_LIST(state) {
     return state.list;

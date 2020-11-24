@@ -3,7 +3,6 @@
     <Aside />
 		<main>
 			<div class="header-for-block"><i class="fas fa-star"></i>Новинки и акции</div>
-			<!-- <Products :products = "products"/> -->
       <template>
         <div class="card-grid">
           <Card v-for="item in products"
@@ -18,13 +17,11 @@
 
 <script>
 import Card from "../components/Card"
-import Products from "~/components/Products"
 import Aside from "~/components/Aside"
   export default {
     name: "Home",
     components: {
       Card,
-      Products,
       Aside
     },
     async asyncData({$axios}) {
