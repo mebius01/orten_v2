@@ -13,8 +13,21 @@
         <div class="header-for-block">
           <span><i class="fab fa-product-hunt"></i>Товары</span>
           <div>
-            <span class="pointer" @click.prevent="listOrgrid">
-              <i class="fas" :class="{'fa-bars': !GET_GRID_OR_LIST, 'fa-th': GET_GRID_OR_LIST}"></i>
+            <span class="ordering"
+              @click="changeOrderingPrice">
+              <i class="fas" :class="{
+                'fa-chevron-down': !GET_GRID_OR_LIST,
+                'fa-chevron-up': GET_GRID_OR_LIST
+                }">
+              </i>
+            </span>
+            <span class="ordering" 
+              @click.prevent="changeListOrGrid">
+              <i class="fas" :class="{
+                'fa-bars': !GET_GRID_OR_LIST,
+                'fa-th': GET_GRID_OR_LIST
+                }">
+              </i>
             </span>
           </div>
         </div>
@@ -54,28 +67,30 @@ import Pagination from "../../components/Products/Pagination"
       Pagination,
       Card,
     },
-    data() {
-      return {
-        list: false,
-      }
-    },
+
     methods: {
-      ...mapActions("products", ['SEND_PRODUCTS']),
+      ...mapActions("products", ['SEND_PRODUCTS', 'SEND_GRID_OR_LIST']),
       ...mapMutations("products", ['SET_GRID_OR_LIST', 'SET_QUERY']),
-      listOrgrid() {
-        this.list = !this.list
-        this.SET_GRID_OR_LIST(this.list)
+
+      changeListOrGrid() {
+        this.SEND_GRID_OR_LIST()
       },
-      getQuery() {
+
+      changeOrderingPrice() {
+        console.log('ordering price');
+      },
+
+      getQuery(ordering) {
         let query = '?'
         // console.log();
         let route = this.$route
         for (let key in route.query) {
           query = query + `${key}=${route.query[key]}&`
           this.SET_QUERY(query)
-          console.log(query);
+          // console.log(query);
         }
       },
+
       init() {
         this.SEND_PRODUCTS()
         this.getQuery()
@@ -87,25 +102,20 @@ import Pagination from "../../components/Products/Pagination"
     created() {
       this.init()
     },
+
     // async asyncData({$axios, route}) {
-    //   this.SEND_PRODUCTS()
-      // let query = '?'
-      // for (let key in route.query) {
-      //   query = query + `${key}=${route.query[key]}&`
-      //   console.log(query);
-      // }
-      // let response = await $axios.$get(`http://127.0.0.1:8000/api/product/${query}`)
-      // let count = response.count
-      // let next = response.next
-      // let previous = response.previous
-      // let products = response.results
+    //   let response = await $axios.$get(`http://127.0.0.1:8000/api/product/`)
+    //   let count = response.count
+    //   let next = response.next
+    //   let previous = response.previous
+    //   let products = response.results
       
-      // return {
-      //   count,
-      //   next,
-      //   previous,
-      //   products
-      // }
+    //   return {
+    //     count,
+    //     next,
+    //     previous,
+    //     products
+    //   }
     // }
   }
 </script>
@@ -117,96 +127,7 @@ import Pagination from "../../components/Products/Pagination"
   justify-content: space-between;
   align-items: center;
 }
-.pointer {
+.ordering {
   cursor: pointer;
 }
-// $text-color: #2E4053;
-// $green-color: #85C987;
-// $global_blue: #428bca;
-// $color-red: #d9534f;
-
-// .padding-12 {
-//   padding: 12px 24px;
-// }
-// .link_style {
-//   text-decoration: none;
-//   color: $text-color;
-//   display: block;
-// }
-// .space-between {
-//   display: flex;
-//   justify-content: space-between;
-// }
-// .header-for-block {
-//   padding-left: 8px;
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: center;
-//   height: 30px;
-//   color: $text-color;
-//   background-color: $green-color;
-
-//   i {
-//     margin-right: 5px;
-//   }
-// }
-
-// .main-container {
-//   @extend .padding-12;
-//   display: grid;
-//   grid-template-columns: 30% auto;
-//   gap: 12px;
-
-//   @media (max-width: 767px) {
-//     grid-template-columns: 40% auto;
-//   }
-//   @media (max-width: 650px) {
-//     grid-template-columns: 1fr 1fr;
-//   }
-//   @media (max-width: 480px) {
-//     grid-template-columns: 1fr;
-//     padding: 0;
-//   }
-// }
-
-// .accordion {
-//   padding-top: 5px;
-//   li {
-//     .node-count {
-//       color: $global_blue;
-//     }
-//     a {
-//       @extend .link_style;
-//       padding: 2px 0 2px 12px;
-//     }
-//   }
-//   .submenu {
-//     padding-left: 24px;
-//     li {
-//       a {
-//         @extend .link_style;
-//       }
-//     }
-//   }
-//   input, select {
-//     // @extend input[name=quantity];
-//     margin-bottom: 24px;
-//     width: 100%;
-//     // height: 32px;
-//   }
-//   .min_max {
-//     @extend .space-between;
-
-//     input {
-//     width: 40%;
-//     height: 32px;
-//     }
-//   }
-//   .form-footer{
-//     input {
-//       width: 40%;
-//       height: 32px;
-//       }
-//   }
-// }
 </style>
