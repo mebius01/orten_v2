@@ -1,13 +1,13 @@
 <template>
   <div class="card">
-    <nuxt-link class="card__link" :to="link">
+    <a class="card__link" :href="link">
       <div class="card__img">
         <img class="card-img-top" :src="item.image" :alt="item.name">
       </div>
       <div class="card__body">
         <h2 class="card__name color--blue">{{item.name}}</h2>
       </div>
-    </nuxt-link>
+    </a>
   </div>
 </template>
 
