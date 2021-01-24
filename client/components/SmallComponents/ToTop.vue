@@ -1,6 +1,5 @@
 <template>
   <div>
-  
     <button
       class="up"
       @click.prevent="toUp"
@@ -17,17 +16,16 @@
       >
       <i class="fas fa-chevron-down"></i>
     </button>
-  
   </div>
 </template>
 
 <script>
   export default {
+    name: 'ToTop',
     data() {
       return {
         visibilityUp: false,
         visibilityDown: false,
-        // height: document.documentElement.scrollHeight - document.documentElement.clientHeight
       }
     },
     methods: {
@@ -56,7 +54,6 @@
         window.addEventListener('scroll', this.handleScroll);
       }
     },
-    
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll);
     },

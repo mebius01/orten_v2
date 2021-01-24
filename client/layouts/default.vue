@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
- @import '../assets/base'
+@import '@/assets/base.scss'
 </style>
 
 

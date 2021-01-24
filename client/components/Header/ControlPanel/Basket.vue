@@ -11,10 +11,10 @@
             <div class="content">
               <img :src="item.image" :alt="item.name">
               <span class="content__vendor">{{item.vendor}}</span>
-              <nuxt-link :to="'/product/'+item.slug"
+              <a :href="'/product/'+item.slug"
                 :title="item.description">
                 <span @click="closePopUp">{{item.name}}</span>
-              </nuxt-link>
+              </a>
               <!-- <span class="content__available">
                 <i v-if="item.available" class="fas fa-check" style="color:green"></i>
                 <i v-else class="fas fa-times" style="color:red"></i>
@@ -46,30 +46,16 @@
           <span class="cost">{{GET_FULL_COST}} грн.</span>
         </div>
         <div class="checkout">
-          <button class="return">Вкрнуться</button>
-          <button class="proceed">Оформить заказ</button>
+          <button class="proceed" @click.prevent="openCart">Оформить заказ</button>
         </div>
-        <!-- <li v-for="(item, index) in GET_PRODUCTS"
-            :key="index">
-            {{item.name}}  {{item.price}}
-            <button @click="minus(item)">---</button>
-            {{item.quantity}}
-            <button @click="plus(item)">+++</button>
-            {{item.total_cost}}
-            <button @click="delProduct(item)">Del</button>
-          </li>
-          <hr>
-          <li>{{GET_FULL_COST}}грн</li>
-        </ul> -->
-          <!-- <button @click="StoragClear">localStorage.clear()</button> -->
       </div>
     </PopUp>
   </div>
 </template>
 
 <script>
-import PopUp from "../../PopUp"
-import ProductList from "../../ProductList"
+import PopUp from "@/components/PopUp"
+import ProductList from "@/components/ProductList"
 import {mapGetters, mapActions, mapMutations} from 'vuex'
 export default {
   name: "Basket",
@@ -87,7 +73,6 @@ export default {
     ...mapMutations("basket", ['SET_ADD_PRODUCT','SET_COUNTER','SET_FULL_COST','DELL_INDEXED_PROD','SET_INDEXED_PROD']),
     closePopUp() {
       this.showPopUp = false
-      // setTimeout(() => document.addEventListener('click',this.hide), 0);
     },
     plus(obj) {
       let arr = this.GET_PRODUCTS
@@ -133,6 +118,10 @@ export default {
     },
     StoragClear() {
       localStorage.clear()
+    },
+    openCart() {
+      this.$router.push('/cart')
+      this.closePopUp()
     }
   },
   computed: {
@@ -159,4 +148,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/icon_header.scss";
+.checkout{
+  display: flex;
+  justify-content: flex-end;
+}
 </style>

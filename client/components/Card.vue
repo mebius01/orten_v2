@@ -1,16 +1,16 @@
 <template>
   <div class="card">
     <div class="card__action" v-if="product.action">Акция до {{product.end_action}}</div>
-    <!-- <i class="far fa-heart" @click="addToLike(product)"></i> -->
-    <nuxt-link class="card__link" :to="'/product/'+product.slug">
+    <a class="card__link" :href="'/product/'+product.slug">
       <div class="card__img">
-        <img class="card-img-top" :src="product.image" :alt="product.name">
+        <img v-if="product.image" class="card-img-top" :src="product.image" :alt="product.name">
+				<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       </div>
-    </nuxt-link>
+    </a>
       <div class="card__body">
-				<nuxt-link class="card__link" :to="'/product/'+product.slug">
+				<a class="card__link" :href="'/product/'+product.slug">
 					<h2 class="card__name color--blue">{{product.name}}</h2>
-				</nuxt-link>
+				</a>
         <p class="card__pn space-between">
           <span>Артикул:</span>
           <span>{{product.vendor_code}}</span>
@@ -65,7 +65,6 @@ import {mapGetters, mapActions, mapMutations} from 'vuex'
     }
   }
 </script>
-
 <style lang="scss" scoped>
 @import '@/assets/card.scss';
 </style>

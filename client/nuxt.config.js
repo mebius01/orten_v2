@@ -24,12 +24,30 @@ module.exports = {
       }
     ]
   },
+  env: {
+    baseUrl: 'http://localhost:3000'
+  },
+  router: {
+    middleware: 'bread'
+  },
   modules: [
     '@nuxtjs/axios',
+    'nuxt-uid-module',
   ],
-  /*
-  ** Customize the progress bar color
-  */
+  'uid-module': {
+    name: 'uid',
+    plugin: false,
+  },
+  axios: {
+    baseURL: 'http://127.0.0.1:8000/api',
+  //   headers: {
+  //     common: {
+  //       'Accept-Language': 'ru',
+  //     }
+  //   }
+  },
+  plugins: ['~/plugins/jsonld'],
+
   loading: {
     color: '#d9534f',
     height: '10px',

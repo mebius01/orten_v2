@@ -13,6 +13,7 @@
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex'
   export default {
+    name: 'Buy',
     props: {
       object: {
         type: Object,
@@ -87,15 +88,8 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-$text-color: #2E4053;
-$green-color: #85C987;
-$global_blue: #428bca;
-$color-red: #d9534f;
-
-.space-between {
-  display: flex;
-  justify-content: space-between;
-}
+@import '@/assets/color.scss';
+@import '@/assets/main.scss';
 
 .buy {
   margin: 6px 0;
@@ -116,20 +110,20 @@ $color-red: #d9534f;
       text-align: center;
     }
     .plas{
-      color: $green-color;
+      color: $green_color;
       background-color: white;
-      border: $green-color 1px solid;
+      border: $green_color 1px solid;
       &:hover{
-        background-color: $green-color;
+        background-color: $green_color;
         color: white;
       }
     }
     .minus{
-      color: $color-red;
+      color: $red_color;
       background-color: white;
-      border: $color-red 1px solid;
+      border: $red_color 1px solid;
       &:hover{
-        background-color: $color-red;
+        background-color: $red_color;
         color: white;
         
       }
@@ -138,7 +132,7 @@ $color-red: #d9534f;
       height: 31px;
       width: 31px;
       background-color: white;
-      color: $text-color;
+      color: $text_color;
       font-weight: 600;
       font-size: 20px;
       text-align: center;
@@ -153,15 +147,15 @@ $color-red: #d9534f;
     height: 31px;
     
     background-color: white;
-    color: $global_blue;
+    color: $blue_color;
     text-decoration: none;
     outline: none;
-    border: 1px solid $global_blue;
+    border: 1px solid $blue_color;
     i {
       margin-right: 3px;
     }
       &:hover{
-      background-color: $global_blue;
+      background-color: $blue_color;
       color:white;
     }
   }
@@ -169,13 +163,13 @@ $color-red: #d9534f;
     @extend .apply;
     margin: 0 5px;
     width: 31px;
-    color: $color-red;
-    border: 1px solid $color-red;
+    color: $red_color;
+    border: 1px solid $red_color;
     i {
       margin: 0;
     }
     &:hover{
-      background-color: $color-red;
+      background-color: $red_color;
       color:white;
     }
   }
@@ -183,14 +177,14 @@ $color-red: #d9534f;
     @extend .apply;
     width: 31px;
     color: white;
-    background-color: $color-red;
-    border: 1px solid $color-red;
+    background-color: $red_color;
+    border: 1px solid $red_color;
     i {
       margin: 0;
     }
     &:hover{
       background-color: white;
-      color: $color-red;
+      color: $red_color;
     }
   }
   .eye {
@@ -203,9 +197,5 @@ $color-red: #d9534f;
     }
   }
 }
-.form_quantity {
-  
-}
-  
 
 </style>

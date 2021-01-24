@@ -1,15 +1,14 @@
 from django.contrib import admin
-from order.models import Order, OrderItem
+from order.models import Order, Product
 
 
-class OrderItemInline(admin.TabularInline):
-	model = OrderItem
-	raw_id_field = ['product']
+class ProductAdmin(admin.TabularInline):
+	model = Product
+	raw_id_field = ['name']
 
 class OrderAdmin(admin.ModelAdmin):
-	list_display = ['id', 'first_name', 'last_name', 'email', 'city', 'paid', 'created', 'updated']
-	list_filter = ['paid', 'created', 'updated']
-	inlines = [OrderItemInline]
+	list_display = ['id', 'name', 'phone', 'email', 'price_order', 'payment']
+	inlines = [ProductAdmin]
 
 admin.site.register(Order, OrderAdmin)
 

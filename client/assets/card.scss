@@ -1,32 +1,15 @@
-$text-color: #2e4053;
-$green-color: #85c987;
-$global_blue: #428bca;
-$color_red: #d9534f;
-$grey: #929292;
+@import '@/assets/color.scss';
+@import '@/assets/main.scss';
+
 .shadow {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
 }
 .shadow-hover {
-  box-shadow: 0px 0px 5px 0px $grey;
-}
-.space-between {
-  display: flex;
-  justify-content: space-between;
-}
-.apply {
-  i {
-    padding-right: 5px;
-  }
-}
-.link_style {
-  text-decoration: none;
-  color: $text-color;
-  display: block;
+  box-shadow: 0px 0px 5px 0px $grey_color;
 }
 
 .card {
   position: relative;
-  // @extend .shadow;
   border: 1px solid rgb(241, 241, 241);
   padding: 5px;
   display: flex;
@@ -36,9 +19,6 @@ $grey: #929292;
     width: 200px;
     height: auto;
     margin: auto;
-    // img {
-
-    // }
   }
   &:hover {
     @extend .shadow-hover;
@@ -64,17 +44,15 @@ $grey: #929292;
   }
   .fa-heart {
     position: absolute;
-    // top: 10px;
     right: 6px;
-    // font-size: 16px;
-    color: $global_blue;
+    color: $blue_color;
     cursor: pointer;
     &:hover {
-      color: $color_red;
+      color: $red_color;
     }
   }
   .activ_like {
-    color: $color_red;
+    color: $red_color;
   }
   &__name {
     margin-top: 12px;
@@ -107,43 +85,4 @@ $grey: #929292;
   font-weight: 700;
   padding: 2px 5px;
   background-color: rgba(252, 99, 91, 0.18);
-}
-.quantity {
-  display: inline-block;
-  margin: 0;
-  height: 31px;
-  width: 35px;
-  background-color: white;
-  color: $text-color;
-  font-weight: 600;
-  font-size: 20px;
-  text-align: center;
-  border: none;
-  outline: none;
-}
-.plas,
-.minus {
-  height: 31px;
-  width: 31px;
-  text-decoration: none;
-  border: none;
-  text-align: center;
-}
-.plas {
-  color: $green-color;
-  background-color: white;
-  border: $green-color 1px solid;
-  &:hover {
-    background-color: $green-color;
-    color: white;
-  }
-}
-.minus {
-  color: $color_red;
-  background-color: white;
-  border: $color_red 1px solid;
-  &:hover {
-    background-color: $color_red;
-    color: white;
-  }
 }

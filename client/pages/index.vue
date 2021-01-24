@@ -4,7 +4,7 @@
 		<main>
 			<div class="header-for-block"><i class="fas fa-star"></i>Новинки и акции</div>
       <template>
-        <div class="card-grid">
+        <div class="card_block">
           <Card v-for="item in products"
             :key="item.id"
             :product="item">
@@ -16,8 +16,11 @@
 </template>
 
 <script>
-import Card from "../components/Card"
-import Aside from "~/components/Aside"
+import Card from "@/components/Card"
+import Aside from "@/components/Aside"
+
+import axios from 'axios'
+
   export default {
     name: "Home",
     components: {
@@ -25,7 +28,7 @@ import Aside from "~/components/Aside"
       Aside
     },
     async asyncData({$axios}) {
-      let response = await $axios.$get("http://127.0.0.1:8000/api/product/")
+      let response = await $axios.$get("/product/")
       let products = response.results
       return {
         products
@@ -35,18 +38,18 @@ import Aside from "~/components/Aside"
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/main.scss';
-// $text-color: #2E4053;
-// $green-color: #85C987;
-// $global_blue: #428bca;
-// $color-red: #d9534f;
+@import '@/assets/main.scss';
+// $text_color: #2E4053;
+// $green_color: #85C987;
+// $blue_color: #428bca;
+// $red_color: #d9534f;
 
 // .padding-12 {
 //   padding: 12px 24px;
 // }
 // .link_style {
 //   text-decoration: none;
-//   color: $text-color;
+//   color: $text_color;
 //   display: block;
 // }
 // .space-between {
@@ -59,8 +62,8 @@ import Aside from "~/components/Aside"
 //   justify-content: flex-start;
 //   align-items: center;
 //   height: 30px;
-//   color: $text-color;
-//   background-color: $green-color;
+//   color: $text_color;
+//   background-color: $green_color;
 
 //   i {
 //     margin-right: 5px;
@@ -70,7 +73,7 @@ import Aside from "~/components/Aside"
 //   padding-top: 5px;
 //   li {
 //     .node-count {
-//       color: $global_blue;
+//       color: $blue_color;
 //     }
 //     a {
 //       @extend .link_style;

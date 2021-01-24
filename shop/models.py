@@ -44,6 +44,9 @@ class Category(MPTTModel):
 	def get_count(self):
 		return self.objects.filter(category=self).count()
 
+	def get_famile(self):
+		return self.get_family()
+
 	def __str__(self):
 		return self.name
 
@@ -124,7 +127,6 @@ class Product(models.Model):
 
 	created			= models.DateTimeField(auto_now_add=True, help_text='дата создания') # дата создания
 	updated			= models.DateTimeField(auto_now=True, help_text='дата обновления') #дата обновления
-	
 
 
 	class Meta:
@@ -184,16 +186,19 @@ QUANTITY_CHOICES = (
 	)
 
 class Polygraphy(models.Model):
-	slug		= models.SlugField(max_length=400, default='True', help_text='')
-	flatpage	= models.OneToOneField(FlatPage, on_delete=models.CASCADE)
-	image		= models.ImageField(upload_to='polygraphy/', blank=True) #картинка
+	category		= models.ForeignKey(Category, related_name='polygraphy', on_delete=models.CASCADE, null=True)
+	name = models.CharField(max_length=250)
+	slug		= models.SlugField(max_length=400, help_text='')
+	image		= models.ImageField(upload_to='polygraphy/', blank=True)
 	description	= models.TextField(blank=True)
 	keywords	= models.TextField(blank=True, help_text='Ключивые слова')
+	body = RichTextField(blank=True, default='')
+	created = models.DateTimeField( blank=True, default=datetime.now)
+	updated = models.DateTimeField( blank=True, default=datetime.now)
 
 	class Meta:
 		verbose_name = 'Полиграфия'
 		verbose_name_plural = 'Полиграфия'
 
 	def __str__(self):
-		return self.flatpage.title
-
+		return self.name

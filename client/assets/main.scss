@@ -1,16 +1,14 @@
-$text-color: #2e4053;
-$green-color: #85c987;
-$global_blue: #428bca;
-$color_red: #d9534f;
-$grey: #929292;
-
+@import "./color.scss";
 .padding-12 {
   padding: 12px 24px;
 }
 .link_style {
   text-decoration: none;
-  color: $text-color;
+  color: $text_color;
   display: block;
+}
+.a-active {
+  border-bottom: $red_color 2px solid;
 }
 .space-between {
   display: flex;
@@ -23,12 +21,19 @@ $grey: #929292;
   justify-content: flex-start;
   align-items: center;
   height: 30px;
-  color: $text-color;
-  background-color: $green-color;
+  color: $text_color;
+  background-color: $green_color;
 
   i {
     margin-right: 5px;
   }
+}
+
+.card_block {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, auto));
+  grid-template-rows: repeat(auto-fit, minmax(auto, auto));
 }
 
 .main-container {

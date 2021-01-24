@@ -52,45 +52,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$text-color: #2E4053;
-$blue-color: #428bca;
-$color-red: #d9534f;
+@import '@/assets/color.scss';
+@import '@/assets/main.scss';
+@import '@/assets/animation.scss';
 
-.align-items {
-  display: flex;
-  align-items: center;
-}
-.padding-5 {
-  padding: 5px 5px;
-}
-.link_style {
-  text-decoration: none;
-  color: $text-color;
-  display: block;
-}
-.nuxt-link-active {
-  border-bottom: $color-red 2px solid;
-}
-.pulse {
-  animation-name: pulse;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-iteration-count: infinite
-  }
-  @keyframes pulse {
-  0% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  50% {
-  -webkit-transform: scale3d(1.5, 1.5, 1.5);
-  transform: scale3d(1.5, 1.5, 1.5);
-  }
-  100% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  } 
 
 ul {
   padding: 40px;
@@ -100,7 +65,6 @@ ul {
 
   li {
     margin: 10px 0;
-    // border: 1px solid;
     text-align: center;
 
     a {
@@ -112,7 +76,7 @@ ul {
       @extend .link_style;
 
       &:hover {
-          border-bottom: $text-color 2px solid;
+          border-bottom: $text_color 2px solid;
           transition: border-bottom 1s;
         }
     }

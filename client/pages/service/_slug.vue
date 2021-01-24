@@ -104,7 +104,7 @@ export default {
 @import "../../assets/main.scss";
 
 .product{
-  color: $text-color;
+  color: $text_color;
   @extend .padding-12;
   display: grid;
   gap:30px;
@@ -128,14 +128,14 @@ export default {
   }
 
   .border-product {
-    border-bottom: 1px solid $green-color;
+    border-bottom: 1px solid $green_color;
   }
   &__head{
     grid-area: head;
     text-align: center;
-    color: $global_blue;
+    color: $blue_color;
     h2 {
-      color: $color_red;
+      color: $red_color;
     }
   }
   &__img {
@@ -153,7 +153,7 @@ export default {
       padding: 12px 0;
       @extend .border-product;
       i {
-        color: $global_blue;
+        color: $blue_color;
         cursor: pointer;
         font-size: 32px;
       }

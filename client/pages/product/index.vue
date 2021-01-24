@@ -2,12 +2,7 @@
   <div>
     <div class="main-container">
       <aside>
-        <div class="header-for-block">
-          <span>
-            <i class="fas fa-filter"></i>Фильтры
-          </span>
-        </div>
-          <Filters />
+        <Filters />
       </aside>
       <main>
         <div class="header-for-block">
@@ -16,32 +11,32 @@
             <span class="ordering"
               @click="changeOrderingPrice">
               <i class="fas" :class="{
-                'fa-chevron-down': !GET_GRID_OR_LIST,
-                'fa-chevron-up': GET_GRID_OR_LIST
+                'fa-chevron-down': !GET_GRID,
+                'fa-chevron-up': GET_GRID
                 }">
               </i>
             </span>
             <span class="ordering" 
-              @click.prevent="changeListOrGrid">
+              @click.prevent="changeGrid">
               <i class="fas" :class="{
-                'fa-bars': !GET_GRID_OR_LIST,
-                'fa-th': GET_GRID_OR_LIST
+                'fa-bars': !GET_GRID,
+                'fa-th': GET_GRID
                 }">
               </i>
             </span>
           </div>
         </div>
-        <template v-if="GET_GRID_OR_LIST">
+        <template v-if="GET_GRID">
           <div>
-            <ProductList v-for="item in GET_PRODUCTS"
+            <ProductList v-for="item in GET_RESULTS"
               :key="item.id"
               :product="item">
             </ProductList>
           </div>
         </template>
         <template v-else>
-          <div class="card-grid">
-            <Card v-for="item in GET_PRODUCTS"
+          <div class="card_block">
+            <Card v-for="item in GET_RESULTS"
               :key="item.id"
               :product="item">
             </Card>
@@ -54,11 +49,11 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import ProductList from "~/components/ProductList"
 import Card from '../../components/Card.vue'
-import Filters from "../../components/Products/Filters"
-import Pagination from "../../components/Products/Pagination"
+import Filters from "@/components/Filters"
+import Pagination from "@/components/Pagination"
   export default {
     name: "Products",
     components: {
@@ -67,56 +62,47 @@ import Pagination from "../../components/Products/Pagination"
       Pagination,
       Card,
     },
-
     methods: {
-      ...mapActions("products", ['SEND_PRODUCTS', 'SEND_GRID_OR_LIST']),
-      ...mapMutations("products", ['SET_GRID_OR_LIST', 'SET_QUERY']),
-
-      changeListOrGrid() {
-        this.SEND_GRID_OR_LIST()
+      changeGrid() {
+        this.SEND_GRID()
       },
-
       changeOrderingPrice() {
         console.log('ordering price');
       },
-
-      getQuery(ordering) {
-        let query = '?'
-        // console.log();
-        let route = this.$route
-        for (let key in route.query) {
-          query = query + `${key}=${route.query[key]}&`
-          this.SET_QUERY(query)
-          // console.log(query);
-        }
-      },
-
-      init() {
-        this.SEND_PRODUCTS()
-        this.getQuery()
-      }
-    },
+		  ...mapActions("commodity", [
+        "SEND_DATA",
+        "SEND_QUERY",
+        "SEND_URL",
+        "SEND_PAGE_NUMBER_CURRENT",
+        "SEND_GRID"
+		  ]),
+	},
     computed: {
-      ...mapGetters("products", ['GET_PRODUCTS', 'GET_GRID_OR_LIST']),
+      ...mapGetters("commodity", [
+        "GET_RESULTS",
+        "GET_COUNT",
+        "GET_NEXT",
+        "GET_PREVIOUS",
+        "GET_PAGE_NUMBER_NEXT",
+        "GET_PAGE_NUMBER_PREV",
+        "GET_PAGE_NUMBER_CURRENT",
+        "GET_GRID",
+      ]),
     },
     created() {
-      this.init()
-    },
-
-    // async asyncData({$axios, route}) {
-    //   let response = await $axios.$get(`http://127.0.0.1:8000/api/product/`)
-    //   let count = response.count
-    //   let next = response.next
-    //   let previous = response.previous
-    //   let products = response.results
+      const query = this.$route.query
+      const url = "/product/"
+      this.SEND_QUERY(query)
+      this.SEND_URL(url)
+      this.SEND_DATA()
       
-    //   return {
-    //     count,
-    //     next,
-    //     previous,
-    //     products
-    //   }
-    // }
+      if (!query.page){
+        query.page = "1"
+        this.SEND_PAGE_NUMBER_CURRENT(query.page)
+      } else {
+        this.SEND_PAGE_NUMBER_CURRENT(query.page)
+      }
+    }
   }
 </script>
 

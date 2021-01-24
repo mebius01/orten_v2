@@ -25,8 +25,11 @@ urlpatterns = [
     path('product/<slug:slug>/', ProductDetail.as_view(), name='product_detail'),
     path('service/', ServicesList.as_view(), name ='services_list'),
     path('service/<slug:slug>/', ServicesDetail.as_view(), name = 'services_detail'),
+    path('polygraphy/', PolygraphyList.as_view(), name ='polygraphy_list'),
+    path('polygraphy/<slug:slug>/', PolygraphyDetail.as_view(), name='polygraphy_detail'),
     path('category/', CategoryList.as_view(), name = 'category_list'),
     path('category/<slug:slug>', CategoryDetail.as_view(), name ='category_detail'),
+    path('category_id/<int:pk>', CategoryDetailById.as_view(), name ='category_detail_by_id'),
     path('search/', SearchList.as_view(), name ='serch_list'),
 
 ]

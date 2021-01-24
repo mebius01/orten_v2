@@ -18,25 +18,16 @@ const mutations = {
     state.full_cost = payload
   },
   SET_INDEXED_PROD: (state, payload) => {
-    /**
-     * payload = {
-     * index,
-     * quantity,
-     * total_cost
-     * }
-     */
     state.products[payload.index].quantity = payload.quantity
     state.products[payload.index].total_cost = payload.total_cost
   },
   DELL_INDEXED_PROD: (state, payload) => {
-    /**
-     * payload = {
-     * index,
-     * quantity,
-     * total_cost
-     * }
-     */
     state.products.splice(payload,1)
+  },
+  SET_CLEAR_BASKET: (state) => {
+    state.products = []
+    state.counter = null
+    state.full_cost = null
   }
 }  // synchronous
 
@@ -54,7 +45,10 @@ const mutations = {
       }, 0);
       commit('SET_COUNTER', counter)
     },
-}     // asynchronous
+    CLEAR_BASKET({ commit }) {
+      commit('SET_CLEAR_BASKET')
+    }
+  }
 
 const getters = {
   GET_PRODUCTS(state) {

@@ -10,14 +10,14 @@
       <ul class="child" v-if="childList === index">
         <li v-for="i in item.children" :key="i.id">
           <template v-if="i.product_count">
-            <nuxt-link :to="'/product/?category='+i.id">
+            <a :href="'/product/?category='+i.id">
               {{i.name}}  <span class="count">{{i.product_count}}</span>
-            </nuxt-link>          
+            </a>          
           </template>
           <template v-else>
-            <nuxt-link :to="'/service/?category='+i.id">
+            <a :href="'/service/?category='+i.id">
               {{i.name}}  <span class="count">{{i.service_count}}</span>
-            </nuxt-link>          
+            </a>          
           </template>
         </li>
       </ul>
@@ -52,7 +52,9 @@ import {mapGetters, mapActions} from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/main.scss';
+@import '@/assets/main.scss';
+@import '@/assets/color.scss';
+
 .hidden {
   display: none;
 }
@@ -64,8 +66,8 @@ import {mapGetters, mapActions} from 'vuex'
   padding-top: 5px;
   .root {
     border-bottom: white 1px solid;
-    color: $text-color;
-    background-color: $green-color;
+    color: $text_color;
+    background-color: $green_color;
     cursor: pointer;
 
     i {
@@ -78,16 +80,16 @@ import {mapGetters, mapActions} from 'vuex'
   }
   li {
     .node-count {
-      color: $global_blue;
+      color: $blue_color;
     }
     a {
       @extend .link_style;
       display: flex;
       justify-content: space-between;
       padding: 3px 12px;
-      border-bottom: $green-color 1px solid;
+      border-bottom: $green_color 1px solid;
       .count {
-        color: $global_blue;
+        color: $blue_color;
       }
     }
   }

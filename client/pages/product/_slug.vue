@@ -5,7 +5,8 @@
       <h1>{{ object.name }}</h1>
   </div>
   <div class="product__img">
-      <img :src="object.image" :alt="object.name" :title="object.name">
+    <img v-if="object.image" :src="object.image" :alt="object.name" :title="object.name">
+    <img v-else src="/default-img.png" alt="default img">
   </div>
   <div class="product__feature">
       <div class="specification">
@@ -85,7 +86,6 @@
     </div>
     </PopUp>
   <div>
-    <script v-html="jsonld" type="application/ld+json"></script>
   </div>
   </div>
 </template>
@@ -98,6 +98,7 @@ import Contact from '../../components/Contact'
 import Delivery from '../../components/Delivery'
 import Pay from '../../components/Pay'
 export default {
+  name: "ProductSlug",
   components: {
     Buy,
     PopUp,
@@ -114,36 +115,30 @@ export default {
       showPhone: false,
       showDelivery: false,
       breadcrumb: null,
-      jsonld:
-      `{
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": "{{object.name}}",
-        "image": "{{ object.image.url }}",
-        "description": "{{object.description}}",
-        "brand": "{{ object.vendor }}",
-        "sku": "{{ object.vendor_code }}",
-        "mpn": "{{ object.vendor_code }}",
-        "offers": {
-            "@type": "Offer",
-            "url": "{% url 'shop:product_detail' object.slug %}",
-            "priceCurrency": "UAH",
-            {% if object.action %}
-            "price": "{{object.discount}}",
-            "priceValidUntil": "{{object.end_action|date:"Y-m-d"}}",
-            {% else %}
-            "price": "{{object.price}}",
-            {% endif %}
-            {% if object.available %}
-            "availability": "https://schema.org/InStock",
-            {% else %}
-            "availability": "https://schema.org/OutOfStock",
-            {% endif %}
-            "itemCondition": "https://schema.org/NewCondition"
-            }
-        }`
+      baseUrl: null,
     }
   },
+  jsonld() {
+      return {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": this.object.name,
+        "image": this.object.image,
+        "description": this.object.description,
+        "brand": this.object.vendor ,
+        "sku": this.object.vendor_code ,
+        "mpn": this.object.vendor_code ,
+        "offers": {
+        "@type": "Offer",
+        "url": this.env.baseUrl+this.$route.path,
+        "priceCurrency": "UAH",
+        "price": this.object.discount || this.object.price,
+        "priceValidUntil": this.object.discount || this.object.price,
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
+        }
+      }
+    },
   methods: {
     ...mapActions("breadcrumbs", ['SEND_DATA']),
     openPopUp() {
@@ -155,32 +150,25 @@ export default {
       this.showDelivery = false
     }
   },
-  mounted() {
-    this.breadcrumb = {category: this.object.category,
-                    name: this.object.name,
-                    path: this.$route.path
-    }
-    this.SEND_DATA(this.breadcrumb)
-  },
-  async asyncData({$axios, params, route}) {
+  async asyncData({$axios, params, route, env}) {
     const object = await $axios.$get(`http://127.0.0.1:8000/api/product/${params.slug}`)
-    return {object}
+    return {env, object}
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$text-color: #2E4053;
-$green-color: #85C987;
-$global_blue: #428bca;
-$color_red: #fc6251;
+$text_color: #2E4053;
+$green_color: #85C987;
+$blue_color: #428bca;
+$red_color: #fc6251;
 
 .padding-12 {
   padding: 12px 24px;
 }
 
 .product{
-  color: $text-color;
+  color: $text_color;
   @extend .padding-12;
   display: grid;
   gap:30px;
@@ -204,14 +192,14 @@ $color_red: #fc6251;
   }
 
   .border-product {
-    border-bottom: 1px solid $green-color;
+    border-bottom: 1px solid $green_color;
   }
   &__head{
     grid-area: head;
     text-align: center;
-    color: $global_blue;
+    color: $blue_color;
     h2 {
-      color: $color_red;
+      color: $red_color;
     }
   }
   &__img {
@@ -229,7 +217,7 @@ $color_red: #fc6251;
       padding: 12px 0;
       @extend .border-product;
       i {
-        color: $global_blue;
+        color: $blue_color;
         cursor: pointer;
         font-size: 32px;
       }

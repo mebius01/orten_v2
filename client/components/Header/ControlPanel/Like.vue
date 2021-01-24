@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import PopUp from "../../PopUp"
-import Buy from '../../SmallComponents/Buy'
+import PopUp from "@/components/PopUp"
+import Buy from '@/components/SmallComponents/Buy'
 import {mapGetters, mapActions, mapMutations} from 'vuex'
 export default {
   name: "Like",
@@ -67,7 +67,6 @@ export default {
       let arr = this.GET_LIKE
       let index = arr.indexOf(obj)
       this.DELL_INDEXED_LIKE(index)
-      // this.SHAKE_FOR_PRODUCTS()
       console.log(index);
     },
   },

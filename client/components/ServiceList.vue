@@ -1,11 +1,12 @@
 <template>
   <li>
     <div class="content">
-      <img :src="service.image" alt="">
+      <img v-if="service.image" class="card-img-top" :src="service.image" :alt="service.name">
+      <img v-else class="card-img-top" src="/default-img.png" alt="default img">
+      <span class="content__vendor">{{service.vendor}}</span>
       <a :href="'/service/'+service.slug" @click.prevent="openService(service)">{{service.name}}</a>
     </div>
     <div class="btn-gruop">
-      <span class="vendor_code">PN: {{service.vendor_code}}</span>
       <span class="price">{{service.price}}грн.</span>
     </div>
   </li>
@@ -37,8 +38,8 @@
 </script>
 
 <style lang="scss" scoped>
-$text-color: #2E4053;
-$blue-color: #428bca;
+@import '@/assets/color.scss';
+@import '@/assets/main.scss';
 
 .align-items {
   display: flex;
@@ -47,11 +48,11 @@ $blue-color: #428bca;
 .padding-5 {
   padding: 5px;
 }
-.link_style {
-  text-decoration: none;
-  color: $text-color;
-  display: block;
-}
+// .link_style {
+//   text-decoration: none;
+//   color: $text_color;
+//   display: block;
+// }
 
   li {
     @extend .align-items;
@@ -60,42 +61,30 @@ $blue-color: #428bca;
     border-bottom: #85C987 1px solid;
 
     .content {
-      @extend .align-items;
-      justify-content: flex-start;
-      width: 70%;
-
-      img {
-        @extend .padding-5;
-        width: 56px;
-        height: 100%;
-      }
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+      align-items: center;
+      grid-template-columns: 100px 100px auto 100px;
 
       a {
-        display: flex;
-        @extend .padding-5;
         @extend .link_style;
         color: $blue-color;
 
       }
       .available {
-        @extend .padding-5;
         font-size: 16px;
         font-weight: 600;
       }
     }
     .btn-gruop {
       @extend .align-items;
-      justify-content: flex-end;
 
       .price {
         @extend .padding-5;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
         background-color: rgba(252, 99, 91, 0.18);
-      }
-      .vendor_code {
-        @extend .padding-5;
-        font-size: 12px;
       }
     }
     

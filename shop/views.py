@@ -1,6 +1,7 @@
 # basic import
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from shop.serializers import *
+from rest_framework import viewsets
 
 # pagination
 from rest_framework.pagination import PageNumberPagination
@@ -56,17 +57,32 @@ class ProductFilter(FilterSet):
 
 class ProductList(ListAPIView):
 	queryset = Product.objects.all().order_by('-action', '-image',)
-	serializer_class = ProductSerializer
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
 	filterset_class = ProductFilter
 	search_fields = ['name', 'description', 'vendor_code', 'specifications']
 	ordering_fields = ['vendor', 'name', 'price', 'available']
+	serializer_class = ProductSerializer
+	# def get_serializer_class(self):
+	# 	if 'uk' in self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
+	# 		return ProductSerializerUk
+	# 	return ProductSerializerRu
+
+# class ProductDetail(RetrieveAPIView):
+# 	queryset = Product.objects.all()
+# 	serializer_class = ProductSerializer
+# 	lookup_field = 'slug'
+
+## langauge
 
 class ProductDetail(RetrieveAPIView):
 	queryset = Product.objects.all()
-	serializer_class = ProductSerializer
 	lookup_field = 'slug'
+	serializer_class = ProductSerializer
+	# def get_serializer_class(self):
+	# 	if 'uk' in self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
+	# 		return ProductSerializerUk
+	# 	return ProductSerializerRu
 
 class ServicesFilter(ProductFilter):
 	min_price = NumberFilter(field_name="price", lookup_expr='gte')
@@ -83,7 +99,7 @@ class ServicesFilter(ProductFilter):
 		]
 
 class ServicesList(ListAPIView):
-	queryset = Services.objects.all().order_by('-price', '-image',)
+	queryset = Services.objects.all().order_by('-image', '-price',)
 	serializer_class = ServicesSerializer
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
@@ -100,23 +116,46 @@ class CategoryList(ListAPIView):
 	queryset = Category.objects.root_nodes()
 	serializer_class = CategorySerializer
 
-	@method_decorator(cache_page(settings.CACHE_TTL))
-	def dispatch(self, *args, **kwargs):
-		return super(CategoryList, self).dispatch(*args, **kwargs)
+	# @method_decorator(cache_page(settings.CACHE_TTL))
+	# def dispatch(self, *args, **kwargs):
+	# 	return super(CategoryList, self).dispatch(*args, **kwargs)
 
 class CategoryDetail(RetrieveAPIView):
 	queryset = Category.objects.all()
 	serializer_class = CategorySerializer
 	lookup_field = 'slug'
 
+class CategoryDetailById(RetrieveAPIView):
+	queryset = Category.objects.all()
+	serializer_class = CategoryByIdSerializer
+	lookup_field = 'pk'
+
+class PolygraphyList(ListAPIView):
+	queryset = Polygraphy.objects.all()
+	pagination_class = LargeResultsSetPagination
+	filter_backends = [filters.SearchFilter]
+	search_fields = ['name', 'description', 'body', ]
+	# ordering_fields = ['vendor', 'name', 'price', 'available']
+	serializer_class = PolygraphySerializer
+
+class PolygraphyDetail(RetrieveAPIView):
+	queryset = Polygraphy.objects.all()
+	lookup_field = 'slug'
+	serializer_class = PolygraphySerializer
+	# def get_serializer_class(self):
+	# 	if 'uk' in self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
+	# 		return ProductSerializerUk
+	# 	return ProductSerializerRu
+
 class SearchList(ObjectMultipleModelAPIView):
 	pagination_class = LimitPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter,]
 	search_fields = ['name', 'description',]
-	ordering_fields = ['vendor', 'name', 'price',]
+	ordering_fields = ['vendor', 'name',]
 	querylist = [
 			{'queryset': Product.objects.all().order_by('-available', '-action', '-image',),'serializer_class': ProductSerializer,'label':'product'},
-			{'queryset': Services.objects.all().order_by('-price', '-image',),'serializer_class': ServicesSerializer,'label':'service'}
+			{'queryset': Services.objects.all().order_by('-price', '-image',),'serializer_class': ServicesSerializer,'label':'service'},
+			{'queryset': Polygraphy.objects.all(), 'serializer_class': PolygraphySerializer,'label':'polygraphy'}
 	]
 
 

@@ -1,8 +1,8 @@
-import axios from "axios";
+
 const state = () => ({
   grid_or_list: true,
   ordering_price: true,
-  url: "http://127.0.0.1:8000/api/product/",
+  url: "/product/",
   status: null,
   query: '',
   products: [],
@@ -40,8 +40,9 @@ const mutations = {
 }
 
 const actions = {
-  SEND_PRODUCTS({state, commit}, response) {
-    axios.get(state.url + state.query)
+  SEND_PRODUCTS({ route, state, commit }, response) {
+    console.log(this.route);
+    this.$axios.get(state.url + state.query)
     .then(response => {
       commit('SET_PRODUCTS', response.data.results)
       commit('SET_COUNT', response.data.count)

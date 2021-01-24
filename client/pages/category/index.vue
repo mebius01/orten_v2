@@ -4,7 +4,7 @@
 		<main>
 			<div class="header-for-block"><i class="fas fa-th-large"></i>Список Категорий</div>
       <template>
-        <div class="card-grid">
+        <div class="card_block">
           <CategoryCard v-for="item in OBJECT_LIST"
             :key="item.id"
             :item="item"
@@ -17,8 +17,8 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
-import Aside from "../../components/Aside"
-import CategoryCard from "../../components/CategoryCard"
+import Aside from "@/components/Aside"
+import CategoryCard from "@/components/CategoryCard"
   export default {
     components: {
       Aside,

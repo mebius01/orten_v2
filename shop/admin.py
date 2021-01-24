@@ -43,20 +43,12 @@ class ServicesAdmin(ImportExportModelAdmin):
 	prepopulated_fields = {'slug': ('name', 'vendor_code')}
 	resource_class = ServicesResource
 
-class NewFlatpageInline(admin.StackedInline):
-	model = Polygraphy
-	verbose_name = "Содержание"
+class PolygraphyAdmin(admin.ModelAdmin):
+	list_display = ('name', 'id', 'slug', )
+	prepopulated_fields = {'slug': ('name',)}
 
-class FlatPageNewAdmin(FlatPageAdmin):
-	inlines = [NewFlatpageInline]
-	fieldsets = ((None, {'fields': ('url', 'title', 'sites', 'content',)}),(('Advanced options'), {'fields': ('template_name',),}),)
-	list_display = ('url', 'title',)
-	list_filter = ('sites', 'registration_required')
-	search_fields = ('url', 'title')
-
+admin.site.register(Polygraphy, PolygraphyAdmin)
 admin.site.register(Rates, RatesAdmin)
 admin.site.register(Category, CategoryAdmin,)
 admin.site.register(Product, ProductAdmin,)
 admin.site.register(Services, ServicesAdmin,)
-admin.site.unregister(FlatPage)
-admin.site.register(FlatPage, FlatPageNewAdmin)

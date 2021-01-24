@@ -1,7 +1,8 @@
 <template>
   <li>
     <div class="content">
-      <img :src="product.image" :alt="product.name">
+      <img v-if="product.image" class="card-img-top" :src="product.image" :alt="product.name">
+			<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       <span class="content__vendor">{{product.vendor}}</span>
       <a :href="'/product/'+product.slug" 
         @click.prevent="openProduct(product)"
@@ -19,7 +20,7 @@
       </span> -->
     </div>
     <div class="btn-gruop">
-      <span class="vendor_code">PN: {{product.vendor_code}}</span>
+      <!-- <span class="vendor_code">PN: {{product.vendor_code}}</span> -->
       <span class="price" v-if="product.action" :title="product.end_action">{{product.discount}}грн.</span>
       <span class="price" v-else>{{product.price}}грн.</span>
       <div class="qty">
@@ -54,9 +55,8 @@ import Buy from './SmallComponents/Buy'
 </script>
 
 <style lang="scss" scoped>
-$text-color: #2E4053;
-$blue-color: #428bca;
-$color-red: #d9534f;
+@import '@/assets/color.scss';
+@import '@/assets/main.scss';
 
 .align-items {
   display: flex;
@@ -67,7 +67,7 @@ $color-red: #d9534f;
 }
 .link_style {
   text-decoration: none;
-  color: $text-color;
+  color: $text_color;
   display: block;
 }
 
@@ -78,55 +78,32 @@ $color-red: #d9534f;
     border-bottom: #85C987 1px solid;
 
     .content {
-      @extend .align-items;
-      justify-content: flex-start;
-      width: 65%;
+      display: grid;
+      gap: 5px;
+      align-items: center;
+      grid-template-columns: 70px 100px 540px 32px;
       &__vendor {
+        justify-self: center;
         font-size: 12px;
         font-weight: 600;
-        @extend .padding-5;
       }
-      &__available {
-        @extend .padding-5;
-      }
-      &__action {
-        font-size: 12px;
-        font-weight: 400;
-        color: $color-red;
-        @extend .padding-5;
-      }
-      img {
-        @extend .padding-5;
-        width: 56px;
-        height: 100%;
-      }
-
       a {
-        display: flex;
-        padding: 0 5px;
         @extend .link_style;
         color: $blue-color;
-
       }
-      // .available {
-      //   @extend .padding-5;
-      //   font-size: 16px;
-      //   font-weight: 600;
-      // }
+      &__available {
+        justify-self: center;
+        display: inline-block;
+      }
     }
     .btn-gruop {
       @extend .align-items;
       justify-content: flex-end;
-
       .price {
         @extend .padding-5;
         font-size: 16px;
         font-weight: 600;
         background-color: rgba(252, 99, 91, 0.18);
-      }
-      .vendor_code {
-        @extend .padding-5;
-        font-size: 12px;
       }
       .qty {
         margin-left: 5px;

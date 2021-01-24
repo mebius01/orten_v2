@@ -1,11 +1,6 @@
-
-@import "animation.scss";
-
-$text_color: #2E4053;
-$green_color: #85C987;
-$global_blue: #428bca;
-$color_red: #d9534f;
-
+@import "@/assets/color.scss";
+@import "@/assets/animation.scss";
+@import "@/assets/main.scss";
 
 .icon {
   position: relative;
@@ -25,36 +20,11 @@ $color_red: #d9534f;
     right: -5px;
     border-radius: 5px;
     padding: 0 5px;
-    // font-size: 12px;
     color: white;
     background: #F68A8A;
   }
 }
 
-// item
-$text-color: #2E4053;
-$blue-color: #428bca;
-$color-red: #d9534f;
-.pulse {
-  animation-name: pulse;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-iteration-count: infinite
-  }
-  @keyframes pulse {
-  0% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  50% {
-  -webkit-transform: scale3d(1.5, 1.5, 1.5);
-  transform: scale3d(1.5, 1.5, 1.5);
-  }
-  100% {
-  -webkit-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-  }
-  } 
 .align-items {
   display: flex;
   align-items: center;
@@ -62,11 +32,7 @@ $color-red: #d9534f;
 .padding-5 {
   padding: 5px 5px;
 }
-.link_style {
-  text-decoration: none;
-  color: $text-color;
-  display: block;
-}
+
   ul {
     padding: 20px;
     overflow: auto;
@@ -93,7 +59,7 @@ $color-red: #d9534f;
       &__action {
         font-size: 12px;
         font-weight: 400;
-        color: $color-red;
+        color: $red_color;
         @extend .padding-5;
       }
       img {
@@ -154,20 +120,20 @@ $color-red: #d9534f;
       text-align: center;
     }
     .plas{
-      color: $green-color;
+      color: $green_color;
       background-color: white;
-      border: $green-color 1px solid;
+      border: $green_color 1px solid;
       &:hover{
-        background-color: $green-color;
+        background-color: $green_color;
         color: white;
       }
     }
     .minus{
-      color: $color-red;
+      color: $red_color;
       background-color: white;
-      border: $color-red 1px solid;
+      border: $red_color 1px solid;
       &:hover{
-        background-color: $color-red;
+        background-color: $red_color;
         color: white;
         
       }
@@ -176,7 +142,7 @@ $color-red: #d9534f;
       height: 31px;
       width: 31px;
       background-color: white;
-      color: $text-color;
+      color: $text_color;
       font-weight: 600;
       font-size: 20px;
       text-align: center;
@@ -188,7 +154,7 @@ $color-red: #d9534f;
     margin-left: 5px;
     width: 100px;
     background-color: white;
-    color: $text-color;
+    color: $text_color;
     font-weight: 600;
     // font-size: 20px;
     text-align: center;
@@ -202,11 +168,11 @@ $color-red: #d9534f;
     text-decoration: none;
     border: none;
     text-align: center;
-    color: $color-red;
+    color: $red_color;
       background-color: white;
-      border: $color-red 1px solid;
+      border: $red_color 1px solid;
       &:hover{
-        background-color: $color-red;
+        background-color: $red_color;
         color: white;
         
       }
@@ -217,7 +183,7 @@ $color-red: #d9534f;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: $text-color;
+  color: $text_color;
   font-weight: 600;
   font-size: 20px;
   
