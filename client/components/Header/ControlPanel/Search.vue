@@ -63,7 +63,6 @@ export default {
           this.$axios.get('/search/?search='+this.search)
           .then(response => {
             let data = response.data
-            console.log(data);
             this.products = data.results.product
             this.services = data.results.service
             this.polygraphy = data.results.polygraphy

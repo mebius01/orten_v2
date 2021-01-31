@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import Map from "../../components/SmallComponents/Map"
-import Contact from "../../components/Header/Contact"
-import Schedule from "../../components/Header/Schedule"
+import Map from "@/components/SmallComponents/Map"
+import Contact from "@/components/Header/Contact"
+import Schedule from "@/components/Header/Schedule"
 export default {
   components: {
     Map,

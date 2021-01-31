@@ -6,7 +6,7 @@
 				<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       </div>
       <a class="card__link" :href="'/polygraphy/'+item.slug">
-			  <h2 class="card__name color--blue">{{item.name}}</h2>
+			<h2 class="card__name color--blue">{{item.name}}</h2>
 			</a>
     </a>
   </div>

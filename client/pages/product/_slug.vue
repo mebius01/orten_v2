@@ -99,6 +99,7 @@ import Delivery from '../../components/Delivery'
 import Pay from '../../components/Pay'
 export default {
   name: "ProductSlug",
+  scrollToTop: false,
   components: {
     Buy,
     PopUp,
@@ -150,8 +151,10 @@ export default {
       this.showDelivery = false
     }
   },
-  async asyncData({$axios, params, route, env}) {
-    const object = await $axios.$get(`http://127.0.0.1:8000/api/product/${params.slug}`)
+  async asyncData({$axios, params, route, env, app}) {
+    const locale = app.i18n.locale
+    const apiUrl = env.apiUrl
+    const object = await $axios.$get(`${apiUrl}/${locale}/api/product/${params.slug}`)
     return {env, object}
   }
 }

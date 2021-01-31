@@ -24,93 +24,305 @@
       </tr>
     </tbody>
   </table>
-  <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #dddddd; border-left: 1px solid #dddddd; margin-bottom: 20px;">
-    <thead>
-      <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: left; padding: 7px; color: #222222;">Детали заказа</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: left; padding: 7px; color: #222222;">Клиент</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: left; padding: 7px;">
-          <b>№ заказа:</b> {{order.id}}
-          <br>
-          <b>Способ доставки:</b> {{order.delivery_method}}
-          <br>
-          <b>Город:</b> {{order.city}}
-          <br>
-          <b>Спопсоб оплаты:</b> {{order.pay_method}}
-          </td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: left; padding: 7px;">
-            <b>Клиент:</b> {{order.last_name}} {{order.first_name}} {{order.sur_name}}
-            <br>
-            <b>Телефон:</b> {{order.mobile_phone}}
-            <br>
-            <b>EMail:</b> {{order.email}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #dddddd; border-left: 1px solid #dddddd; margin-bottom: 20px;">
-    <thead>
-      <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: left; padding: 7px; color: #222222;">Примечание</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: left; padding: 7px;">
-        {{order.note_text}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <table style="border-collapse: collapse; width: 100%; border-top: 1px solid #dddddd; border-left: 1px solid #dddddd; margin-bottom: 20px;">
-    <thead>
-      <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: left; padding: 7px; color: #222222;">Товар</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: left; padding: 7px; color: #222222;">Модель</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: right; padding: 7px; color: #222222;">Количество</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: right; padding: 7px; color: #222222;">Цена</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; background-color: #85c987; font-weight: bold; text-align: right; padding: 7px; color: #222222;">Итого:</td>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in order.items.all %}
-      <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: left; padding: 7px;">
-          <a href="http://orten.in.ua{% url 'shop:product_detail' item.product.slug %}">{{ item.product.name }}</a></td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: left; padding: 7px;">
-        {{ item.product.vendor_code }}</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;">
-        {{item.quantity }}шт.</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;">
-        {{ item.price }}грн.</td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;">{{ item.get_cost }}грн.</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;" colspan="4">
-          <b>Сумма:</b></td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;">{{ order.get_total_cost }}грн.</td>
-      </tr>
-{% comment %}
-         <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;" colspan="4"><b>Доставка в отделение:</b></td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;">0.00грн.</td>
-      </tr>
-            <tr>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;" colspan="4"><b>Итого:</b></td>
-        <td style="font-size: 12px; border-right: 1px solid #dddddd; border-bottom: 1px solid #dddddd; text-align: right; padding: 7px;">{{ order.get_total_cost }}грн.</td>
-      </tr>
-{% endcomment %}
-    </tfoot>
-  </table>
-{% comment %}
-   <p style="margin-top: 0px; margin-bottom: 20px;">Если у Вас есть какие-либо вопросы, ответьте на это сообщение.</p>
-{% endcomment %}
+   <div>
+      <table
+        style="
+          border-collapse: collapse;
+          width: 100%;
+          border-top: 1px solid #dddddd;
+          border-left: 1px solid #dddddd;
+          margin-bottom: 20px;
+        "
+      >
+        <thead>
+          <tr>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: left;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Детали заказа
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: left;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Клиент
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: left;
+                padding: 7px;
+              "
+            >
+              <b>№ заказа:</b> {{order.id}}
+              <br />
+              <b>Спопсоб доставки:</b> {{order.delivery_method}}
+              <br />
+              <b>Спопсоб оплаты:</b> {{order.pay_method}}
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: left;
+                padding: 7px;
+              "
+            >
+              <b>Клиент:</b> {{order.name}}
+              {{order.sur_name}}
+              <br />
+              <b>Телефон:</b> {{order.phone}}
+              <br />
+              <b>EMail:</b> {{order.email}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table
+        style="
+          border-collapse: collapse;
+          width: 100%;
+          border-top: 1px solid #dddddd;
+          border-left: 1px solid #dddddd;
+          margin-bottom: 20px;
+        "
+      >
+      {% if order.note %}
+        <thead>
+          <tr>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: left;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Примечание
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: left;
+                padding: 7px;
+              "
+            >
+              {{order.note}}
+            </td>
+          </tr>
+        </tbody>
+        {% endif %}
+      </table>
+      <table
+        style="
+          border-collapse: collapse;
+          width: 100%;
+          border-top: 1px solid #dddddd;
+          border-left: 1px solid #dddddd;
+          margin-bottom: 20px;
+        "
+      >
+        <thead>
+          <tr>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: left;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Товар
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: left;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Модель
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: right;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Количество
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: right;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Цена
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                background-color: #85c987;
+                font-weight: bold;
+                text-align: right;
+                padding: 7px;
+                color: #222222;
+              "
+            >
+              Итого:
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in product %}
+          <tr>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: left;
+                padding: 7px;
+              "
+            >
+              <a
+                href="http://orten.in.ua" {% comment "" %} !FIX! {% endcomment %}
+                >{{ item.name }}</a
+              >
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: left;
+                padding: 7px;
+              "
+            >
+              {{ item.vendor_code }}
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: right;
+                padding: 7px;
+              "
+            >
+              {{item.quantity }} шт.
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: right;
+                padding: 7px;
+              "
+            >
+              {{ item.price }} грн.
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: right;
+                padding: 7px;
+              "
+            >
+              {{ item.price_total }} грн.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: right;
+                padding: 7px;
+              "
+              colspan="4"
+            >
+              <b>Сумма:</b>
+            </td>
+            <td
+              style="
+                font-size: 12px;
+                border-right: 1px solid #dddddd;
+                border-bottom: 1px solid #dddddd;
+                text-align: right;
+                padding: 7px;
+              "
+            >
+              {{ order.price_order }} грн.
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
 </div>
 </body>
 </html>

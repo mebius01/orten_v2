@@ -28,8 +28,10 @@ import CategoryCard from "../../components/CategoryCard"
     validate({ params }) {
       return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
     },
-    async asyncData({$axios, params, query }) {
-      const object = await $axios.$get(`http://127.0.0.1:8000/api/category/${params.slug}`)
+    async asyncData({$axios, params, query, app, env }) {
+      const locale = app.i18n.locale
+      const apiUrl = env.apiUrl
+      const object = await $axios.$get(`${apiUrl}/${locale}/api/category/${params.slug}`)
       return {object}
     },
     head() {

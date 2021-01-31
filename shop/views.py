@@ -78,11 +78,11 @@ class ProductList(ListAPIView):
 class ProductDetail(RetrieveAPIView):
 	queryset = Product.objects.all()
 	lookup_field = 'slug'
-	serializer_class = ProductSerializer
-	# def get_serializer_class(self):
-	# 	if 'uk' in self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
-	# 		return ProductSerializerUk
-	# 	return ProductSerializerRu
+	# serializer_class = ProductSerializer
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return ProductSerializerUk
+		return ProductSerializerRu
 
 class ServicesFilter(ProductFilter):
 	min_price = NumberFilter(field_name="price", lookup_expr='gte')

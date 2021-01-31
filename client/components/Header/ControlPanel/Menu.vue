@@ -6,7 +6,7 @@
     <PopUp v-if="showPopUp" @closePopUp='closePopUp'>
       <div slot="menu">
         <ul>
-          <li v-for="(item, index) in data" :key="index" @click="closePopUp">
+          <li v-for="(item, index) in $t('menu.data')" :key="index" @click="closePopUp">
             <template v-if="item.link">
               <a :href="item.link.href" exact>
                 {{item.text}}
@@ -30,16 +30,6 @@ export default {
   },
   data() {
     return {
-      data: [
-        {text: "Дом", link: {class: "", href: "/"}},
-        {text: "Категории", link: {class: "", href: "/category"}},
-        {text: "Товары", link: {class: "", href: "/product"}},
-        {text: "Сервис", link: {class: "", href: "/service"}},
-        {text: "Полиграфия", link: {class: "", href: "/polygraphy"}},
-        {text: "Доставка и оплата", link: {class: "", href: "/delivery_payment"}},
-        {text: "Кто мы", link: {class: "", href: "/about"}},
-        {text: "Контакты", link: {class: "", href: "/contact"}},
-      ],
       showPopUp: false,
     }
   },

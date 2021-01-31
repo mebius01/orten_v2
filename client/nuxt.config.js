@@ -1,3 +1,5 @@
+// const { default: uk } = require("./lang/uk");
+
 module.exports = {
   /*
   ** Headers of the page
@@ -25,21 +27,53 @@ module.exports = {
     ]
   },
   env: {
-    baseUrl: 'http://localhost:3000'
+    baseUrl: 'http://localhost:3000',
+    apiUrl: 'http://127.0.0.1:8000'
   },
   router: {
     middleware: 'bread'
   },
   modules: [
-    '@nuxtjs/axios',
     'nuxt-uid-module',
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          {
+            code: 'ru',
+            iso: 'ru-Ru',
+            name: 'Росія',
+            file: 'ru.js'
+          },
+          {
+            code: 'uk',
+            iso: 'uk-UA',
+            name: 'Україна',
+            file: 'uk.js'
+          },
+        ],
+        lazy: true,
+        langDir: 'lang/',
+        defaultLocale: 'ru',
+        noPrefixDefaultLocale: true,
+        strategy: 'no_prefix',
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected',
+          onlyOnRoot: true,
+          alwaysRedirect: true
+        },
+        vuex: { moduleName: 'i18n', syncLocale: true, syncMessages: true, syncRouteParams: true }
+      }
+    ],
+    '@nuxtjs/axios',
   ],
   'uid-module': {
     name: 'uid',
     plugin: false,
   },
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api',
+    baseURL: `http://127.0.0.1:8000/api`,
   //   headers: {
   //     common: {
   //       'Accept-Language': 'ru',

@@ -23,12 +23,13 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin_tools/', include('admin_tools.urls')),
     path('admin/', admin.site.urls),
+    path('api/', include('order.urls')), # ! fix this
 ]
 
 urlpatterns += i18n_patterns(
     path('api/', include('shop.urls')),
-    path('api/', include('order.urls')),
-    prefix_default_language=False,) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    prefix_default_language=True,) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 if settings.DEBUG:
