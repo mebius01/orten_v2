@@ -19,6 +19,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.conf import settings
 
+from django.utils.translation import get_language
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
 	default_limit = 24
@@ -28,16 +29,37 @@ class LargeResultsSetPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 10
 
+# Seaech
+class SearchList(ObjectMultipleModelAPIView):
+	pagination_class = LimitPagination
+	filter_backends = [filters.SearchFilter, filters.OrderingFilter,]
+	search_fields = ['name', 'description',]
+	ordering_fields = ['vendor', 'name',]
+	def get_querylist(self, *args, **kwargs):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			querylist = [
+				{'queryset': Product.objects.all().order_by('-available', '-action', '-image',),'serializer_class': ProductSerializerUk,'label':'product'},
+				{'queryset': Services.objects.all().order_by('-price', '-image',),'serializer_class': ServicesSerializerUk,'label':'service'},
+				{'queryset': Polygraphy.objects.all(), 'serializer_class': PolygraphySerializerUk,'label':'polygraphy'}
+			]
+			return querylist
+		else:
+			querylist = [
+				{'queryset': Product.objects.all().order_by('-available', '-action', '-image',),'serializer_class': ProductSerializerRu,'label':'product'},
+				{'queryset': Services.objects.all().order_by('-price', '-image',),'serializer_class': ServicesSerializerRu,'label':'service'},
+				{'queryset': Polygraphy.objects.all(), 'serializer_class': PolygraphySerializerRu,'label':'polygraphy'}
+			]
+			return querylist
+
+# Home
 class Home(ListAPIView):
 	queryset = Product.objects.all().order_by('-available', '-action', '-image',)[:24];
-	# qset_action = qset.order_by('-action', '-image',)[:12];
-	# qset_all = qset.order_by('-action', '-image',)
-	# if len(qset_all) >= len(qset_action):
-	# 	queryset = qset_all
-	# else:
-	# 	queryset = Product.objects.all().order_by('-action', '-image',)[:12]
-	serializer_class = ProductSerializer
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return ProductSerializerUk
+		return ProductSerializerRu
 
+# Products
 class ProductFilter(FilterSet):
 	min_price = NumberFilter(field_name="price", lookup_expr='gte')
 	max_price = NumberFilter(field_name="price", lookup_expr='lte')
@@ -62,28 +84,20 @@ class ProductList(ListAPIView):
 	filterset_class = ProductFilter
 	search_fields = ['name', 'description', 'vendor_code', 'specifications']
 	ordering_fields = ['vendor', 'name', 'price', 'available']
-	serializer_class = ProductSerializer
-	# def get_serializer_class(self):
-	# 	if 'uk' in self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
-	# 		return ProductSerializerUk
-	# 	return ProductSerializerRu
-
-# class ProductDetail(RetrieveAPIView):
-# 	queryset = Product.objects.all()
-# 	serializer_class = ProductSerializer
-# 	lookup_field = 'slug'
-
-## langauge
-
-class ProductDetail(RetrieveAPIView):
-	queryset = Product.objects.all()
-	lookup_field = 'slug'
-	# serializer_class = ProductSerializer
 	def get_serializer_class(self):
 		if 'uk' == self.request.LANGUAGE_CODE:
 			return ProductSerializerUk
 		return ProductSerializerRu
 
+class ProductDetail(RetrieveAPIView):
+	queryset = Product.objects.all()
+	lookup_field = 'slug'
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return ProductSerializerUk
+		return ProductSerializerRu
+
+# Services
 class ServicesFilter(ProductFilter):
 	min_price = NumberFilter(field_name="price", lookup_expr='gte')
 	max_price = NumberFilter(field_name="price", lookup_expr='lte')
@@ -100,21 +114,32 @@ class ServicesFilter(ProductFilter):
 
 class ServicesList(ListAPIView):
 	queryset = Services.objects.all().order_by('-image', '-price',)
-	serializer_class = ServicesSerializer
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
 	filterset_class = ServicesFilter
 	search_fields = ['name', 'description', 'vendor',]
 	ordering_fields = ['vendor', 'name', 'price',]
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return ServicesSerializerUk
+		return ServicesSerializerRu
 
 class ServicesDetail(RetrieveAPIView):
 	queryset = Services.objects.all()
-	serializer_class = ServicesSerializer
 	lookup_field = 'slug'
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return ServicesSerializerUk
+		return ServicesSerializerRu
 
+# Categories
 class CategoryList(ListAPIView):
 	queryset = Category.objects.root_nodes()
-	serializer_class = CategorySerializer
+	# serializer_class = CategorySerializer
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return CategorySerializerUk
+		return CategorySerializerRu
 
 	# @method_decorator(cache_page(settings.CACHE_TTL))
 	# def dispatch(self, *args, **kwargs):
@@ -122,40 +147,38 @@ class CategoryList(ListAPIView):
 
 class CategoryDetail(RetrieveAPIView):
 	queryset = Category.objects.all()
-	serializer_class = CategorySerializer
 	lookup_field = 'slug'
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return CategorySerializerUk
+		return CategorySerializerRu
 
 class CategoryDetailById(RetrieveAPIView):
 	queryset = Category.objects.all()
-	serializer_class = CategoryByIdSerializer
 	lookup_field = 'pk'
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return CategoryByIdSerializerUk
+		return CategoryByIdSerializerRu
 
+# Polygraphy
 class PolygraphyList(ListAPIView):
 	queryset = Polygraphy.objects.all()
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter]
-	search_fields = ['name', 'description', 'body', ]
-	# ordering_fields = ['vendor', 'name', 'price', 'available']
-	serializer_class = PolygraphySerializer
+	search_fields = ['name', 'description', 'keywords', 'body', ]
+
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return PolygraphySerializerUk
+		return PolygraphySerializerRu
 
 class PolygraphyDetail(RetrieveAPIView):
 	queryset = Polygraphy.objects.all()
 	lookup_field = 'slug'
-	serializer_class = PolygraphySerializer
-	# def get_serializer_class(self):
-	# 	if 'uk' in self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
-	# 		return ProductSerializerUk
-	# 	return ProductSerializerRu
-
-class SearchList(ObjectMultipleModelAPIView):
-	pagination_class = LimitPagination
-	filter_backends = [filters.SearchFilter, filters.OrderingFilter,]
-	search_fields = ['name', 'description',]
-	ordering_fields = ['vendor', 'name',]
-	querylist = [
-			{'queryset': Product.objects.all().order_by('-available', '-action', '-image',),'serializer_class': ProductSerializer,'label':'product'},
-			{'queryset': Services.objects.all().order_by('-price', '-image',),'serializer_class': ServicesSerializer,'label':'service'},
-			{'queryset': Polygraphy.objects.all(), 'serializer_class': PolygraphySerializer,'label':'polygraphy'}
-	]
+	def get_serializer_class(self):
+		if 'uk' == self.request.LANGUAGE_CODE:
+			return PolygraphySerializerUk
+		return PolygraphySerializerRu
 
 

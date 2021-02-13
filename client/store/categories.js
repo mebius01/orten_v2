@@ -1,6 +1,6 @@
 import axios from "axios";
 const state = () => ({
-    url: "http://127.0.0.1:8000/api/category/",
+    url: "/category/",
     status: null,
     query: [],
     object_list: []
@@ -12,7 +12,9 @@ const mutations = {
   }  // synchronous
 const actions = {
   GET_OBJECT_LIST({state, commit}) {
-    axios.get(state.url)
+    const locale = this.app.i18n.locale
+    const apiUrl = process.env.apiUrl
+		this.$axios.get(`${apiUrl}/${locale}/api` + state.url)
       .then(response => {
         commit('SET_OBJECT_LIST', response.data)
       })

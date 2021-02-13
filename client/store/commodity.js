@@ -75,8 +75,10 @@ const actions = {
 	SET_PAGE_LAST({ commit }, page) {
 		console.log(page)
 	},
-	SEND_DATA({ $axios, state, commit }) {
-		this.$axios.get(state.url + state.query)
+	SEND_DATA({ state, commit }) {
+		const locale = this.app.i18n.locale
+    const apiUrl = process.env.apiUrl
+		this.$axios.get(`${apiUrl}/${locale}/api` + state.url + state.query)
 			.then(res => { 
 				const data = res.data
 				const next = data.next

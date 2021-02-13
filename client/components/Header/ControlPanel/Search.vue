@@ -58,9 +58,17 @@ export default {
       };
     },
     methods: {
+  //     async asyncData({$axios, params, route, env, app}) {
+  //   const locale = app.i18n.locale
+  //   const apiUrl = env.apiUrl
+  //   const object = await $axios.$get(`${apiUrl}/${locale}/api/product/${params.slug}`)
+  //   return {env, object}
+  // }
       Query() {
         if (this.search.length > 3 ) {
-          this.$axios.get('/search/?search='+this.search)
+          const locale = this.$i18n.locale
+          const apiUrl = process.env.apiUrl
+          this.$axios.get(`${apiUrl}/${locale}/api` + '/search/?search=' + this.search)
           .then(response => {
             let data = response.data
             this.products = data.results.product

@@ -29,8 +29,11 @@ import axios from 'axios'
       Aside,
       Notification
     },
-    async asyncData({$axios}) {
-      let response = await $axios.$get("/product/")
+    async asyncData({$axios, env, app}) {
+      const locale = app.i18n.locale
+      const apiUrl = env.apiUrl
+      let response = await $axios.$get(`${apiUrl}/${locale}/api/product/`)
+      console.log(`${apiUrl}/${locale}/api/product/`);
       let products = response.results
       return {
         products
