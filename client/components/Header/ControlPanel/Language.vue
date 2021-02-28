@@ -25,8 +25,9 @@ export default {
   methods: {
     changeLocale() {
       this.$i18n.setLocale(this.$i18n.locale === 'ru' ? 'uk' : 'ru')
+      location.reload()
       // this.$nuxt.refresh()
-      window.location.reload(true)
+      // window.location.reload(true)
     }
   },
   computed: {

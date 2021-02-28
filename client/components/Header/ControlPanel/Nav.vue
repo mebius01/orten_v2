@@ -35,6 +35,5 @@ nav {
   background-color: $green_color;
   @extend .space-between;
   @extend .padding-12;
-
 }
 </style>

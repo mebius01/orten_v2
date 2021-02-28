@@ -38,6 +38,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/color.scss';
 @import '../../assets/main.scss';
+
 .header {
   display: flex;
   flex-direction: column;
@@ -58,5 +59,43 @@ export default {
       }
     }
   }
+}
+@media (min-width: 1200px){
+  .header {
+    grid-template-columns: auto 195px 230px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px){
+    .header {
+        grid-template-columns:auto 195px 230px;
+    }
+
+}
+@media (min-width: 768px) and (max-width: 991px){
+    .header {
+        grid-template-columns: auto 195px 230px;
+    }
+
+}
+@media (max-width: 767px){
+    .header {
+        grid-template-columns: auto 195px 230px;
+    }
+
+}
+@media (max-width: 650px){
+  .header {
+    grid-template-columns: auto auto;
+  }
+  .column {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 480px){
+    .header {
+        grid-template-columns: auto;
+    }
 }
 </style>

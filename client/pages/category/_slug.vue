@@ -21,6 +21,7 @@ import {mapGetters, mapActions} from 'vuex'
 import Aside from "../../components/Aside"
 import CategoryCard from "../../components/CategoryCard"
   export default {
+    name: "CategorySlug",
     components: {
       Aside,
       CategoryCard

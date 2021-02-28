@@ -67,7 +67,6 @@ import Pagination from "@/components/Pagination"
           this.SEND_GRID()
         },
         changeOrderingPrice() {
-          console.log('ordering price');
         },
       ...mapActions("commodity", [
         "SEND_DATA",
@@ -90,24 +89,14 @@ import Pagination from "@/components/Pagination"
       ]),
   },
 	created() {
-		const query = this.$route.query
 		const url = "/service/"
-		this.SEND_QUERY(query)
-		this.SEND_URL(url)
-		this.SEND_DATA()
-    
-    if (!query.page){
-      query.page = "1"
-      this.SEND_PAGE_NUMBER_CURRENT(query.page)
-    } else {
-      this.SEND_PAGE_NUMBER_CURRENT(query.page)
-    }
+    this.SEND_URL(url)
+    this.SEND_DATA()
 	}
-  }
+}
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/main.scss';
 .header-for-block {
   display: flex;
   justify-content: space-between;

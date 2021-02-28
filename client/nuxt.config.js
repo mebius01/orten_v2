@@ -31,9 +31,13 @@ module.exports = {
     apiUrl: 'http://127.0.0.1:8000'
   },
   router: {
-    middleware: 'bread'
+    // trailingSlash: true,
+    // middleware: 'getQuery'
   },
   modules: [
+    '@nuxtjs/gtm',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
     'nuxt-uid-module',
     [
       'nuxt-i18n',
@@ -68,17 +72,43 @@ module.exports = {
     ],
     '@nuxtjs/axios',
   ],
+  gtm: {
+    id: 'GTM-XXXXXXX',
+  },
+  sitemap: {
+    hostname: 'http://localhost:3000/',
+    gzip: true,
+    routes: [
+      '/product/_slug.vue',
+      'service/_slug.vue',
+      'polygraphy/_slug.vue'
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    }
+  },
+  robots: [
+    {
+      UserAgent: 'Googlebot',
+      Disallow: ['/order', '/cart', '/admin'],
+    },
+    {
+      UserAgent: 'Yandex',
+      Disallow: ['/order', '/cart', '/admin'],
+    },
+    {
+      UserAgent: '*',
+      Disallow: ['/order', '/cart', '/admin'],
+    },
+  ],
   'uid-module': {
     name: 'uid',
     plugin: false,
   },
   axios: {
     baseURL: `http://127.0.0.1:8000/api`,
-  //   headers: {
-  //     common: {
-  //       'Accept-Language': 'ru',
-  //     }
-  //   }
   },
   plugins: ['~/plugins/jsonld'],
 

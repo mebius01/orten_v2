@@ -8,9 +8,9 @@
         <ul>
           <li v-for="(item, index) in $t('menu.data')" :key="index" @click="closePopUp">
             <template v-if="item.link">
-              <a :href="item.link.href" exact>
+              <nuxt-link :to="item.link.href" exact>
                 {{item.text}}
-              </a>
+              </nuxt-link>
             </template>
             <template v-else>
               {{item.text}}
@@ -42,10 +42,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/color.scss';
 @import '@/assets/main.scss';
-@import '@/assets/animation.scss';
-
+@import '@/assets/icon_header.scss';
 
 ul {
   padding: 40px;
@@ -69,16 +67,11 @@ ul {
           border-bottom: $text_color 2px solid;
           transition: border-bottom 1s;
         }
+      
+      .nuxt-link-active {
+        border-bottom: $red_color 2px solid;
+      }
     }
-  }
-}
-i {
-  cursor: pointer;
-  padding: 0;
-  font-size: 26px;
-  margin: 0 10px;
-  &:hover {
-    @extend .pulse;
   }
 }
 </style>

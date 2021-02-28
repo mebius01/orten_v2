@@ -1,13 +1,21 @@
 @import "./color.scss";
+
 .padding-12 {
   padding: 12px 24px;
+}
+.padding-5 {
+  padding: 5px 5px;
+}
+.align-items {
+  display: flex;
+  align-items: center;
 }
 .link_style {
   text-decoration: none;
   color: $text_color;
   display: block;
 }
-.a-active {
+.nuxt-link-active {
   border-bottom: $red_color 2px solid;
 }
 .space-between {
@@ -42,14 +50,19 @@
   grid-template-columns: 30% auto;
   gap: 12px;
 
-  @media (max-width: 767px) {
+  @media (min-width:768px) and (max-width: 1023px) {
     grid-template-columns: 40% auto;
   }
-  @media (max-width: 650px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media (max-width: 480px) {
+  @media (min-width:425px) and (max-width: 767px) {
     grid-template-columns: 1fr;
-    padding: 0;
+    padding: 10px;
+  }
+  @media (min-width:375px) and (max-width: 424px) {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+  @media (min-width: 320px) and (max-width: 374px) {
+    grid-template-columns: 1fr;
+    padding: 10px;
   }
 }

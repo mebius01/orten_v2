@@ -1,42 +1,64 @@
 <template>
-  <div class="pagination">
-		<a href="" v-if="GET_PAGE_NUMBER_CURRENT != 1">First</a>
-    <a
-			v-if="GET_PREVIOUS && GET_PAGE_NUMBER_PREV"
-			:href="GET_PREVIOUS"
-			>
-			{{GET_PAGE_NUMBER_PREV}}
-		</a>
-    <a
-			v-if="GET_PAGE_NUMBER_CURRENT"
-			class="active"
-			href='' >
-			{{GET_PAGE_NUMBER_CURRENT}}
-		</a>
-		<a
-			v-if="GET_NEXT && GET_PAGE_NUMBER_NEXT"
-			:href="GET_NEXT"
-			>
-			{{GET_PAGE_NUMBER_NEXT}}
-		</a>
-		<a href="" v-if="GET_NEXT">{{GET_COUNT}}</a>
-  </div>
+  <div>
+		<ul class="pagination" v-if="GET_COUNT > 2">
+      <template v-if="this.GET_PAG > 1">
+        <li><a href="" @click.prevent="getFirst">First</a></li>
+        <li><a href="" @click.prevent="getPrevious">&laquo;</a></li>
+        <li><a href="" @click.prevent="getPrevious">{{ this.GET_PAG - 1 }}</a></li>
+      </template>
+      <li><a :href="'?page='+this.GET_PAG" class="active" @click.prevent>{{GET_PAG}}</a></li>
+      <template v-if="this.GET_PAG !== this.GET_COUNT">
+        <li><a href="" @click.prevent="getNext">{{ this.GET_PAG + 1 }}</a></li>
+        <li><a href="" @click.prevent="getNext">&raquo;</a></li>
+        <li><a href="" :title="GET_COUNT" @click.prevent="getLast">Last</a></li>
+      </template>
+    </ul>
+	</div>
 </template>
 
 <script>
-import { mapGetters, } from 'vuex'
+import { mapGetters, mapActions} from 'vuex'
   export default {
 		name: "Pagination",
     computed: {
-			...mapGetters("commodity", [
-				"GET_COUNT",
-				"GET_NEXT",
-				"GET_PREVIOUS",
-				"GET_PAGE_NUMBER_NEXT",
-				"GET_PAGE_NUMBER_PREV",
-				"GET_PAGE_NUMBER_CURRENT"
-			]),
+			...mapGetters("commodity", ["GET_COUNT", "GET_PAG", "GET_ALL_QUERY"]),
 		},
+    methods: {
+      ...mapActions("commodity", ["SEND_PAGE", "SEND_DATA"]),
+      clearQuery(object){
+        for (let key in object) {
+          if (object[key] === null || object[key] === "" || object[key] === undefined) {
+            delete object[key];
+          }
+        }
+        return object;
+      },
+      getFirst(){
+        this.SEND_PAGE(1)
+        this.SEND_DATA()
+        this.$router.push({path: this.$route.path, query: this.GET_ALL_QUERY})
+      },
+      getLast(){
+        this.SEND_PAGE(this.GET_COUNT)
+        this.SEND_DATA()
+        this.$router.push({path: this.$route.path, query: this.GET_ALL_QUERY})
+      },
+      getPrevious() {
+        if (this.GET_PAG > 1) {
+          this.SEND_PAGE(Number(this.GET_PAG) - 1)
+          this.SEND_DATA()
+          this.$router.push({path: this.$route.path, query: this.GET_ALL_QUERY})
+        }
+      },
+      getNext() {
+        if (this.GET_PAG !== this.GET_COUNT) {
+          this.SEND_PAGE(Number(this.GET_PAG) + 1)
+          this.SEND_DATA()
+          this.$router.push({path: this.$route.path, query: this.GET_ALL_QUERY})
+        }
+      }
+    },
+  
   }
 </script>
 
@@ -52,6 +74,8 @@ import { mapGetters, } from 'vuex'
 		border-bottom: $text_color 2px solid;
 	}
   a {
+    margin: 0 3px;
+    background-color: rgb(243, 243, 243);
     color: $text_color;
     float: center;
     padding: 8px 16px;
@@ -63,3 +87,4 @@ import { mapGetters, } from 'vuex'
   }
 }
 </style>
+

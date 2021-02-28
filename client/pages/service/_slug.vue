@@ -63,12 +63,12 @@
 </template>
 
 <script>
-import axios from 'axios'
 import PopUp from '../../components/PopUp'
 import Contact from '../../components/Contact'
 import Delivery from '../../components/Delivery'
 import Pay from '../../components/Pay'
 export default {
+  name: "ServiceSlug",
   components: {
     PopUp,
     Contact,
@@ -82,6 +82,40 @@ export default {
     return {
       showPay: false,
       showPhone: false,
+      baseUrl: null,
+    }
+  },
+  head() {
+    return {
+      title: this.object.name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.object.description
+        }
+      ]
+    }
+  },
+  jsonld() {
+    return {
+      "@context": "https://schema.org/",
+      "@type": "Service",
+      "name": this.object.name,
+      "image": this.object.image,
+      "description": this.object.description,
+      "brand": this.object.vendor,
+      "sku": this.object.vendor_code,
+      "mpn": this.object.vendor_code,
+      "offers": {
+      "@type": "Offer",
+      // "url": this.env.apiUrl+this.$route.path,
+      "priceCurrency": "UAH",
+      "price": this.object.discount || this.object.price,
+      "priceValidUntil": this.object.discount || this.object.price,
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition"
+      }
     }
   },
   methods: {
@@ -93,15 +127,17 @@ export default {
       this.showPay = false
     }
   },
-  async asyncData({$axios, params }) {
-    const object = await $axios.$get(`http://127.0.0.1:8000/api/service/${params.slug}`)
-      return {object}
+  async asyncData({$axios, params, env, app}) {
+    const locale = app.i18n.locale
+    const apiUrl = env.apiUrl
+    const object = await $axios.$get(`${apiUrl}/${locale}/api/service/${params.slug}`)
+    return {object}
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/main.scss";
+@import "@/assets/main.scss";
 
 .product{
   color: $text_color;

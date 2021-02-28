@@ -8,14 +8,6 @@
         <div class="header-for-block">
           <span><i class="fab fa-product-hunt"></i>Товары</span>
           <div>
-            <span class="ordering"
-              @click="changeOrderingPrice">
-              <i class="fas" :class="{
-                'fa-chevron-down': !GET_GRID,
-                'fa-chevron-up': GET_GRID
-                }">
-              </i>
-            </span>
             <span class="ordering" 
               @click.prevent="changeGrid">
               <i class="fas" :class="{
@@ -27,12 +19,12 @@
           </div>
         </div>
         <template v-if="GET_GRID">
-          <div>
+          <ul>
             <ProductList v-for="item in GET_RESULTS"
               :key="item.id"
               :product="item">
             </ProductList>
-          </div>
+          </ul>
         </template>
         <template v-else>
           <div class="card_block">
@@ -67,15 +59,14 @@ import Pagination from "@/components/Pagination"
         this.SEND_GRID()
       },
       changeOrderingPrice() {
-        console.log('ordering price');
       },
-		  ...mapActions("commodity", [
+      ...mapActions("commodity", [
         "SEND_DATA",
         "SEND_QUERY",
         "SEND_URL",
         "SEND_PAGE_NUMBER_CURRENT",
         "SEND_GRID"
-		  ]),
+		]),
 	},
     computed: {
       ...mapGetters("commodity", [
@@ -90,18 +81,9 @@ import Pagination from "@/components/Pagination"
       ]),
     },
     created() {
-      const query = this.$route.query
       const url = "/product/"
-      this.SEND_QUERY(query)
       this.SEND_URL(url)
       this.SEND_DATA()
-      
-      if (!query.page){
-        query.page = "1"
-        this.SEND_PAGE_NUMBER_CURRENT(query.page)
-      } else {
-        this.SEND_PAGE_NUMBER_CURRENT(query.page)
-      }
     }
   }
 </script>

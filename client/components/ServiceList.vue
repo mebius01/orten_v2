@@ -7,7 +7,7 @@
       <a :href="'/service/'+service.slug" @click.prevent="openService(service)">{{service.name}}</a>
     </div>
     <div class="btn-gruop">
-      <span class="price">{{service.price}}грн.</span>
+      <span>{{service.price}}грн.</span>
     </div>
   </li>
 </template>
@@ -48,11 +48,7 @@
 .padding-5 {
   padding: 5px;
 }
-// .link_style {
-//   text-decoration: none;
-//   color: $text_color;
-//   display: block;
-// }
+
 
   li {
     @extend .align-items;
@@ -63,10 +59,18 @@
     .content {
       display: grid;
       gap: 10px;
-      justify-items: center;
+      // justify-items: center;
       align-items: center;
       grid-template-columns: 100px 100px auto 100px;
-
+      @media (min-width:320px) and (max-width: 767px) {
+        .card-img-top {
+          width: 100px;
+          height: auto;
+        }
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        justify-content: start
+      }
       a {
         @extend .link_style;
         color: $blue-color;
@@ -78,15 +82,20 @@
       }
     }
     .btn-gruop {
-      @extend .align-items;
-
-      .price {
-        @extend .padding-5;
-        font-size: 18px;
-        font-weight: 600;
-        background-color: rgba(252, 99, 91, 0.18);
-      }
+      margin-left: 10px;
+      justify-content: flex-start;
+      @extend .padding-5;
+      font-size: 18px;
+      font-weight: 600;
+      background-color: rgba(252, 99, 91, 0.18);
     }
+      width: 100%;
+      @media (min-width:320px) and (max-width: 767px) {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+      
     
   }
 </style>

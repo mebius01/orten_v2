@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import Header from "~/components/Header/Header.vue"
-import Footer from "~/components/Footer/Footer.vue"
-import ToTop from "~/components/SmallComponents/ToTop"
+import Header from "@/components/Header/Header.vue"
+import Footer from "@/components/Footer/Footer.vue"
+import ToTop from "@/components/SmallComponents/ToTop"
 export default {
   components: {
     Header,
@@ -21,7 +21,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/base.scss'
+@import "@/assets/base.scss";
+@import '@/assets/main.scss';
 </style>
 
 

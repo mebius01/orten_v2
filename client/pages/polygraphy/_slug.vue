@@ -24,17 +24,10 @@ import Aside from '../../components/Aside'
 		components: {
 			Aside
 		},
-  jsonld() {
-    return {
-      '@context': 'http://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: this.object.name,
-    };
-  },
 		validate({ params }) {
 			return /^[a-z0-9-]+$/.test(params.slug) // если params валидно
 		},
-		head() {
+    head() {
       return {
         title: this.object.name,
         meta: [
@@ -42,18 +35,25 @@ import Aside from '../../components/Aside'
             hid: 'description',
             name: 'description',
             content: this.object.description
-					}
+          }
         ]
       }
     },
-		mounted() {
-			console.log(this.object);
-			
-		},
-		async asyncData({$axios, params, route}) {
-    	const object = await $axios.$get(`/polygraphy/${params.slug}`)
-    	return {object}
-  	}
+    jsonld() {
+      return {
+        "@context": "https://schema.org/",
+        "@type": "Service",
+        "name": this.object.name,
+        "image": this.object.image,
+        "description": this.object.description,
+      }
+    },
+		async asyncData({$axios, params, env, app}) {
+      const locale = app.i18n.locale
+      const apiUrl = env.apiUrl
+      const object = await $axios.$get(`${apiUrl}/${locale}/api/polygraphy/${params.slug}`)
+      return {object}
+    }
 	}
 </script>
 

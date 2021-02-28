@@ -50,7 +50,7 @@ import Aside from '../../components/Aside'
     created() {
       const query = this.$route.query
       const url = "/polygraphy/"
-      this.SEND_QUERY(query)
+      // this.SEND_QUERY(query)
       this.SEND_URL(url)
       this.SEND_DATA()
     }

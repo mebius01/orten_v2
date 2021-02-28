@@ -45,7 +45,6 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
           object.like = true
           this.ACTION_FOR_LIKE(object)
         }
-        console.log(object.like);
       },
       minus() {
         if (this.quantity <= 1) {
@@ -77,7 +76,6 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
           object.quantity = this.quantity
           object.total_cost = this.quantity * object.price
           this.SET_ADD_PRODUCT(object)
-          console.log("Add to Cart", object.id);
           this.quantity = 1
           this.SHAKE_FOR_PRODUCTS()
         }
@@ -96,7 +94,6 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   .form_quantity {
     display: flex;
     justify-content: space-between;

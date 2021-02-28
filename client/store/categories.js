@@ -19,7 +19,7 @@ const actions = {
         commit('SET_OBJECT_LIST', response.data)
       })
       .catch(error => {
-        console.log(error);
+        console.error(error);
       })
   }
 }     // asynchronous

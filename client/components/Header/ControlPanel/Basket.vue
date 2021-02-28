@@ -114,7 +114,6 @@ export default {
       let index = arr.indexOf(obj)
       this.DELL_INDEXED_PROD(index)
       this.SHAKE_FOR_PRODUCTS()
-      console.log(index);
     },
     StoragClear() {
       localStorage.clear()
@@ -148,6 +147,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/icon_header.scss";
+@import "@/assets/list.scss";
 .checkout{
   display: flex;
   justify-content: flex-end;

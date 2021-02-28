@@ -141,9 +141,9 @@ class CategoryList(ListAPIView):
 			return CategorySerializerUk
 		return CategorySerializerRu
 
-	# @method_decorator(cache_page(settings.CACHE_TTL))
-	# def dispatch(self, *args, **kwargs):
-	# 	return super(CategoryList, self).dispatch(*args, **kwargs)
+	@method_decorator(cache_page(settings.CACHE_TTL))
+	def dispatch(self, *args, **kwargs):
+		return super(CategoryList, self).dispatch(*args, **kwargs)
 
 class CategoryDetail(RetrieveAPIView):
 	queryset = Category.objects.all()

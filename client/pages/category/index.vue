@@ -20,6 +20,7 @@ import {mapGetters, mapActions} from 'vuex'
 import Aside from "@/components/Aside"
 import CategoryCard from "@/components/CategoryCard"
   export default {
+    name: "Category",
     components: {
       Aside,
       CategoryCard
@@ -51,6 +52,5 @@ import CategoryCard from "@/components/CategoryCard"
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/main.scss";
 @import "@/assets/card.scss";
 </style>

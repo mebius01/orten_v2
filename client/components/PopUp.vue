@@ -47,8 +47,8 @@
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/color.scss';
-@import '../assets/animation.scss';
+@import '@/assets/main.scss';
+@import '@/assets/animation.scss';
 
 .popup {
   height: 100%;
@@ -89,4 +89,29 @@
       }
   }
 }
+// ul {
+//   padding: 40px;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+
+//   li {
+//     margin: 10px 0;
+//     text-align: center;
+
+//     a {
+//       width: 300px;
+//       font-size: 20px;
+//       line-height: 40px;
+//       display: inline-block;
+//       border-bottom: white 2px solid;
+//       @extend .link_style;
+
+//       &:hover {
+//           border-bottom: $text_color 2px solid;
+//           transition: border-bottom 1s;
+//         }
+//     }
+//   }
+// }
 </style>

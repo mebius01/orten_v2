@@ -26,12 +26,6 @@
   data() {
     return {}
   },
-  methods: {},
-  mounted() {
-    const r = this.$route.params
-    console.log(this.item);
-    console.log(r);
-  }
 }
 </script>
 

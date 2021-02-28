@@ -9,14 +9,9 @@
       <i class="fas fa-stream"></i>{{item.name}}
       <ul class="child" v-if="childList === index">
         <li v-for="i in item.children" :key="i.id">
-          <template v-if="i.product_count">
-            <a :href="'/product/?category='+i.id">
-              {{i.name}}  <span class="count">{{i.product_count}}</span>
-            </a>          
-          </template>
-          <template v-else>
-            <a :href="'/service/?category='+i.id">
-              {{i.name}}  <span class="count">{{i.service_count}}</span>
+          <template>
+            <a :href="'/?category='+i.id" @click.prevent="clickCategory(i)">
+              {{i.name}}  <span class="count">{{i.product_count || i.service_count}}</span>
             </a>          
           </template>
         </li>
@@ -41,8 +36,23 @@ import {mapGetters, mapActions} from 'vuex'
     },
     methods: {
       ...mapActions("categories", ['GET_OBJECT_LIST']),
+      ...mapActions("commodity", ["SEND_CATEGORY", "SEND_DATA", "SEND_URL"]),
       showChildList(index) {
         this.childList = (this.childList === index) ? null : index;
+      },
+      clickCategory(i){
+        if (i.product_count) {
+          const url = "/product/"
+          this.SEND_URL(url)
+          this.$router.push({path: url, query: {category: i.id}})
+        }
+        if (i.service_count) {
+          const url = "/service/"
+          this.SEND_URL(url)
+          this.$router.push({path: "/service/", query: {category: i.id}})
+        }
+        this.SEND_CATEGORY(i.id)
+        this.SEND_DATA()
       }
     },
     mounted() {
@@ -54,13 +64,6 @@ import {mapGetters, mapActions} from 'vuex'
 <style lang="scss" scoped>
 @import '@/assets/main.scss';
 @import '@/assets/color.scss';
-
-.hidden {
-  display: none;
-}
-.initial {
-  display: block;
-}
 
 .accordion {
   padding-top: 5px;

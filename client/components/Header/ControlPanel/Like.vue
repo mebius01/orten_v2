@@ -67,7 +67,6 @@ export default {
       let arr = this.GET_LIKE
       let index = arr.indexOf(obj)
       this.DELL_INDEXED_LIKE(index)
-      console.log(index);
     },
   },
   computed: {
@@ -89,4 +88,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/icon_header.scss";
+@import "@/assets/list.scss";
 </style>

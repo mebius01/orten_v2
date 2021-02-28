@@ -123,10 +123,8 @@ import { v4 as uuidv4 } from 'uuid'
 					price_order: this.GET_FULL_COST,
 					order: product
 				}
-				console.log(formData);
 				this.$axios.$post("/order/", formData)
 					.then(data => {
-						console.log(data)
 						this.showPopUp = true
 						setTimeout(() => {
 							this.showPopUp = false

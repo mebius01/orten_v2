@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Contact from "../../components/Contact"
-import Aside from "../../components/Aside"
+import Contact from "@/components/Contact"
+import Aside from "@/components/Aside"
   export default {
     components: {
       Contact,
@@ -39,5 +39,5 @@ import Aside from "../../components/Aside"
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/main.scss";
+@import "@/assets/main.scss";
 </style>

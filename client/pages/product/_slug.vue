@@ -119,27 +119,39 @@ export default {
       baseUrl: null,
     }
   },
-  jsonld() {
-      return {
-        "@context": "https://schema.org/",
-        "@type": "Product",
-        "name": this.object.name,
-        "image": this.object.image,
-        "description": this.object.description,
-        "brand": this.object.vendor ,
-        "sku": this.object.vendor_code ,
-        "mpn": this.object.vendor_code ,
-        "offers": {
-        "@type": "Offer",
-        "url": this.env.baseUrl+this.$route.path,
-        "priceCurrency": "UAH",
-        "price": this.object.discount || this.object.price,
-        "priceValidUntil": this.object.discount || this.object.price,
-        "availability": "https://schema.org/InStock",
-        "itemCondition": "https://schema.org/NewCondition"
+  head() {
+    return {
+      title: this.object.name,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.object.description
         }
+      ]
+    }
+  },
+  jsonld() {
+    return {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": this.object.name,
+      "image": this.object.image,
+      "description": this.object.description,
+      "brand": this.object.vendor ,
+      "sku": this.object.vendor_code,
+      "mpn": this.object.vendor_code,
+      "offers": {
+      "@type": "Offer",
+      "url": this.env.baseUrl+this.$route.path,
+      "priceCurrency": "UAH",
+      "price": this.object.discount || this.object.price,
+      "priceValidUntil": this.object.discount || this.object.price,
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition"
       }
-    },
+    }
+  },
   methods: {
     ...mapActions("breadcrumbs", ['SEND_DATA']),
     openPopUp() {
@@ -161,13 +173,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$text_color: #2E4053;
-$green_color: #85C987;
-$blue_color: #428bca;
-$red_color: #fc6251;
-
-.padding-12 {
-  padding: 12px 24px;
+@import "../../assets/main.scss";
+.card--left-right {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  margin-bottom: 3px;
+}
+.card--text-crossed {
+  text-decoration: line-through;
+  font-size: 13px;
+  font-weight: 700;
+}
+.card--red-text {
+  color: rgb(252, 98, 91);
+  font-size: 16px;
+  font-weight: 700;
+}
+.card__price--text {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 2px 5px;
+  background-color: rgba(252, 99, 91, 0.18);
 }
 
 .product{

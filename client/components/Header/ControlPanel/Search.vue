@@ -88,9 +88,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/color.scss';
 @import '@/assets/main.scss';
 @import '@/assets/animation.scss';
+
 
 .search {
   width: 80vw;
@@ -129,4 +129,56 @@ export default {
   background: rgb(255, 255, 255);
   z-index: 9;
 }
+@media (min-width:1440px) and (max-width: 2560px) {
+  .search {
+    width: 80vw;
+  }
+  .result {
+    width: 80vw;
+  }
+}
+@media (min-width:1024px) and (max-width: 1439px) {
+  .search {
+    width: 70vw;
+  }
+  .result {
+    width: 70vw;
+  }
+}
+@media (min-width:768px) and (max-width: 1023px) {
+  .search {
+    width: 70vw;
+  }
+  .result {
+    width: 70vw;
+  }
+}
+@media (min-width:425px) and (max-width: 767px) {
+  .search {
+    width: 50vw;
+  }
+  .result {
+    width: 80vw;
+    height: 70vh;
+  }
+}
+@media (min-width:375px) and (max-width: 424px) {
+  .search {
+    width: 40vw;
+  }
+  .result {
+    width: 80vw;
+    height: 70vh;
+  }
+}
+@media (min-width: 320px) and (max-width: 374px) {
+  .search {
+    width: 35vw;
+  }
+  .result {
+    width: 80vw;
+    height: 70vh;
+  }
+}
+
 </style>

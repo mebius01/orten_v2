@@ -22,11 +22,12 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin_tools/', include('admin_tools.urls')),
-    path('admin/', admin.site.urls),
-    path('api/', include('order.urls')), # ! fix this
+    path('api/', include('order.urls')),
 ]
 
 urlpatterns += i18n_patterns(
+    path('admin/', admin.site.urls),
+    # path('api/', include('order.urls')), # ! fix this
     path('api/', include('shop.urls')),
     
     prefix_default_language=True,) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

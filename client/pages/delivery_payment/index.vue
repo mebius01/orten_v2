@@ -42,5 +42,5 @@ import Aside from "../../components/Aside"
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/main.scss"
+  @import "@/assets/main.scss"
 </style>

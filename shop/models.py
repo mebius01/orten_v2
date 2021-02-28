@@ -8,15 +8,6 @@ from datetime import datetime
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
-class Rates(models.Model):
-	created	= models.DateTimeField(auto_now_add=True, help_text='дата создания')
-	usd		= models.DecimalField(max_digits=4, decimal_places=2, blank=True, help_text='Курс USD')
-	eur		= models.DecimalField(max_digits=4, decimal_places=2, blank=True, help_text='Курс EUR')
-
-	class Meta:
-		verbose_name = 'Курс валют'
-		verbose_name_plural = 'Курсы валют'
-
 class Category(MPTTModel):
 	name		= models.CharField(max_length=200, db_index=True, unique=True)
 	slug		= models.SlugField(max_length=200, db_index=True, unique=True)
@@ -24,7 +15,6 @@ class Category(MPTTModel):
 	description	= models.TextField(blank=True)
 	parent		= TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
-	# objects = models.Manager()
 
 	class MPTTMeta:
 		order_insertion_by = ['name']
@@ -170,25 +160,11 @@ class Services(models.Model):
 	def get_absolute_url(self):
 		return ('service/'+self.slug)
 
-QUANTITY_CHOICES = (
-	('100', '100'),
-	('200', '200'),
-	('300', '300'),
-	('400', '400'),
-	('500', '500'),
-	('600', '600'),
-	('700', '700'),
-	('800', '800'),
-	('900', '900'),
-	('1000', '1000'),
-	('1200', '1200'),
-	('1300', '1300'),
-	)
-
 class Polygraphy(models.Model):
 	category		= models.ForeignKey(Category, related_name='polygraphy', on_delete=models.CASCADE, null=True)
 	name = models.CharField(max_length=250)
 	slug		= models.SlugField(max_length=400, help_text='')
+	image_icon		= models.ImageField(upload_to='polygraphy/icon/', blank=True)
 	image		= models.ImageField(upload_to='polygraphy/', blank=True)
 	description	= models.TextField(blank=True)
 	keywords	= models.TextField(blank=True, help_text='Ключивые слова')
