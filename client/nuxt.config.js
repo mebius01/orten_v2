@@ -33,8 +33,8 @@ module.exports = {
     ],
   },
   env: {
-    baseUrl: "https://orten.in.ua/",
-    apiUrl: "https://orten.in.ua/",
+    baseUrl: "https://orten.in.ua",
+    apiUrl: "https://orten.in.ua",
   },
   router: {
     // trailingSlash: true,
