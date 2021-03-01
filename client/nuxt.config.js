@@ -82,9 +82,9 @@ module.exports = {
     id: "GTM-56KXN4",
   },
   sitemap: {
-    hostname: "http://localhost:3000/",
+    hostname: "https://orten.in.ua",
     gzip: true,
-    routes: ["/product/_slug.vue", "service/_slug.vue", "polygraphy/_slug.vue"],
+    routes: ["/product/:slug.vue", "service/:slug.vue", "polygraphy/:slug.vue"],
     defaults: {
       changefreq: "daily",
       priority: 1,
