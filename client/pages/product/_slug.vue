@@ -163,11 +163,16 @@ export default {
       this.showDelivery = false
     }
   },
-  async asyncData({$axios, params, route, env, app}) {
+  async asyncData({$axios, params, route, env, app, redirect}) {
     const locale = app.i18n.locale
     const apiUrl = env.apiUrl
-    const object = await $axios.$get(`${apiUrl}/${locale}/api/product/${params.slug}`)
-    return {env, object}
+    try {
+      const object = await $axios.$get(`${apiUrl}/${locale}/api/product/${params.slug}`)
+      return {env, object}
+    } catch (error) {
+      return redirect("/error");
+    }
+    
   }
 }
 </script>
