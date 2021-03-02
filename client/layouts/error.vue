@@ -39,7 +39,7 @@
       padding: 0 10px;
       a {
         @extend .link_style;
-        border-bottom: white 2px solid;
+        border-bottom: rgb(243, 243, 243) 2px solid;
         display: inline-block;
         &:hover {
           border-bottom: $text_color 2px solid;
@@ -48,7 +48,17 @@
       }
     }
   }
-  
+  @media (max-width: 650px) and (min-width: 200px){
+    .code {
+      font-size: 8em;
+    }
+    h1 {
+      font-size: 20px;
+    }
+      ul {
+        flex-direction: column;
+      }
+}
 }
 
 </style>
