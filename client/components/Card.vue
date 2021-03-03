@@ -22,12 +22,12 @@
         <div class="card__price">
           <template v-if="product.action">
             <p class="space-between">
-              <span>Цена:</span>
+              <span class="card--text-crossed">Цена:</span>
               <span class="card--text-crossed">{{product.price}}</span>
             </p>
             <p class="space-between">
               <span>Цена:</span>
-              <span class="card--red-text">{{product.discount}}</span>
+              <span class="price">{{product.discount}}</span>
             </p>
           </template>
           <template v-else>

@@ -15,7 +15,10 @@
       </span>
     </div>
     <div class="btn-gruop">
-      <span class="price" v-if="product.action" :title="product.end_action">{{product.discount}}грн.</span>
+      <div v-if="product.action" class="price-block">
+        <span class="text-crossed">{{product.price}}грн.</span>
+        <span class="price" :title="'Акция до ' + product.end_action">{{product.discount}}грн.</span>
+      </div>
       <span class="price" v-else>{{product.price}}грн.</span>
       <div class="qty">
         <Buy :object="product"></Buy>
@@ -110,7 +113,17 @@ li {
     @media (min-width:320px) and (max-width: 1024px) {
       width: 100%;
     }
-        
+    .price-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+    .text-crossed {
+      text-decoration: line-through;
+      font-size: 13px;
+      font-weight: 700;
+    }   
     .price {
       @extend .padding-5;
       font-size: 16px;

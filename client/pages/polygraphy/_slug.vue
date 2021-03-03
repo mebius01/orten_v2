@@ -8,7 +8,7 @@
         <div class="header-for-block">
           <span><i class="fas fa-braille"></i>{{ object.name }}</span>
         </div>
-        <img v-if="object.image" :src="object.image" :alt="object.name">
+        <img v-if="object.baner" :src="object.baner" :alt="object.name">
 				<div class="body">
 					<div v-html="object.body"></div>
 				</div>
@@ -44,7 +44,7 @@ import Aside from '../../components/Aside'
         "@context": "https://schema.org/",
         "@type": "Service",
         "name": this.object.name,
-        "image": this.object.image,
+        "baner": this.object.baner,
         "description": this.object.description,
       }
     },
@@ -58,7 +58,20 @@ import Aside from '../../components/Aside'
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/main.scss";
 // Table
+img {
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #ddd;
+  border-radius: 2%;
+  padding: 5px;
+}
+.body {
+  padding: 20px 0;
+}
 table {
   margin-top: 12px;
   margin-bottom: 12px;

@@ -1,9 +1,10 @@
 <template>
   <div class="product">
-  <div class="product__head">
-      <h2>Акция до {{object.end_action}}</h2>
+    <div class="product__head">
+      <h2 style="color:#fc6251" v-if="object.action">Акция до {{object.end_action}}</h2>
+      <br>
       <h1>{{ object.name }}</h1>
-  </div>
+    </div>
   <div class="product__img">
     <img v-if="object.image" :src="object.image" :alt="object.name" :title="object.name">
     <img v-else src="/default-img.png" alt="default img">
@@ -25,7 +26,7 @@
           <div class="card__price">
             <template v-if="object.action">
               <p class="card--left-right">
-                <span>Цена:</span>
+                <span class="card--text-crossed">Цена:</span>
                 <span class="card--text-crossed">{{object.price}}</span>
               </p>
               <p class="card--left-right">
