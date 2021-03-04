@@ -55,11 +55,11 @@
   width: 100%;
   padding: 50px;
   display: flex;
-  background-color: hsla(0, 0%, 100%, 0.699);
+  background-color: hsla(0, 0%, 77%, 0.699);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 999;
 
   &__header {
     i {
@@ -67,26 +67,38 @@
       font-size: 38px;
       position: absolute;
       color: $red_color;
-      top: 10px;
-      right: 20px;
+      top: 60px;
+      right: 60px;
     }
   }
 
   &__content {
-    // @extend .shadow;
-    border: 1px $green_color solid;
     width: 100%;
     background: white;
     overflow: auto;
-    padding: 0 20px;
-    display: grid;
-    grid-column: 1fr;
-    align-self: center;
+    padding: 20px;
+    display: flex;
     align-items: center;
+    justify-content: center;
       h1 {
-        text-align: center;
         font-size: 65px;
       }
+  }
+  @media (min-width: 320px) and (max-width: 680px) {
+    padding: 0;
+    margin: auto;
+    &__header {
+      i {
+        top: 10px;
+        right: 15px;
+      }
+    }
+    &__content {
+      padding: 20;
+      h1 {
+        font-size: 20px;
+      }
+    }
   }
 }
 // ul {

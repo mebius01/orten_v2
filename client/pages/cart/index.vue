@@ -70,8 +70,6 @@
 <script>
 import PopUp from "@/components/PopUp"
 import {mapGetters, mapActions} from 'vuex'
-import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
 
   export default {
     name: "Cart",
@@ -123,7 +121,7 @@ import { v4 as uuidv4 } from 'uuid'
 					price_order: this.GET_FULL_COST,
 					order: product
 				}
-				this.$axios.$post("/order/", formData)
+				this.$axios.$post(`${process.env.apiUrl}/api/order/`, formData)
 					.then(data => {
 						this.showPopUp = true
 						setTimeout(() => {

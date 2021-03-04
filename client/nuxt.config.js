@@ -33,8 +33,8 @@ module.exports = {
     ],
   },
   env: {
-    baseUrl: "https://orten.in.ua",
-    apiUrl: "https://orten.in.ua",
+    baseUrl: process.env.BASE_URL, //|| "http://localhost:3000",
+    apiUrl: process.env.API_URL, //|| "http://localhost:8000",
   },
   router: {
     // trailingSlash: true,
@@ -82,7 +82,7 @@ module.exports = {
     id: "GTM-56KXN4",
   },
   sitemap: {
-    hostname: "https://orten.in.ua",
+    hostname: process.env.BASE_URL,
     gzip: true,
     routes: ["/product/:slug.vue", "service/:slug.vue", "polygraphy/:slug.vue"],
     defaults: {
@@ -108,9 +108,6 @@ module.exports = {
   "uid-module": {
     name: "uid",
     plugin: false,
-  },
-  axios: {
-    baseURL: `http://127.0.0.1:8000/api`,
   },
   plugins: ["~/plugins/jsonld"],
 
