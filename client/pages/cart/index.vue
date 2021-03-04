@@ -121,6 +121,8 @@ import {mapGetters, mapActions} from 'vuex'
 					price_order: this.GET_FULL_COST,
 					order: product
 				}
+				this.$axios.defaults.xsrfCookieName = 'csrftoken'
+        this.$axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 				this.$axios.$post(`${process.env.apiUrl}/api/order/`, formData)
 					.then(data => {
 						this.showPopUp = true
