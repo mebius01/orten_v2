@@ -9,27 +9,20 @@
         <ul>
           <li v-for="(item, index) in GET_PRODUCTS" :key="index" >
             <div class="content">
-              <img :src="item.image" :alt="item.name">
+              <img v-if="item.image" class="card-img-top" :src="item.image" :alt="item.name">
+			<img v-else class="card-img-top" src="/default-img.png" alt="default img">
               <span class="content__vendor">{{item.vendor}}</span>
               <a :href="'/product/'+item.slug"
                 :title="item.description">
                 <span @click="closePopUp">{{item.name}}</span>
               </a>
-              <!-- <span class="content__available">
-                <i v-if="item.available" class="fas fa-check" style="color:green"></i>
-                <i v-else class="fas fa-times" style="color:red"></i>
-              </span> -->
-              <!-- <span class="content__action" v-if="item.action">
-                <i class="fas fa-splotch" style="margin-left:10px">
-                  Aкция до {{item.end_action}}
-                </i>
-              </span> -->
             </div>
             <div class="btn-gruop">
-              <span class="vendor_code">PN: {{item.vendor_code}}</span>
-              <!-- <span class="price" v-if="item.action">{{item.discount}}грн.</span> -->
-              <span class="price">{{item.price}} грн.</span>
-              <form class="space-between buy">
+              <div v-if="item.action" class="price-block">
+                <span class="text-crossed">{{item.price}}грн.</span>
+                <span class="price" :title="'Акция до ' + item.end_action">{{item.discount}}грн.</span>
+              </div>
+              <form class="space-between qty">
                 <div class="form_quantity">
                   <button @click.prevent="plus(item)" class="plas"><i class="fas fa-plus"></i></button>
                   <input class="quantity" :value="item.quantity">
@@ -148,8 +141,99 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/icon_header.scss";
 @import "@/assets/list.scss";
-.checkout{
+// @import "../../../assets/form.scss";
+  .form_quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .plas, .minus{
+      margin: 0;
+      height: 31px;
+      width: 31px;
+      text-decoration: none;
+      border: none;
+      text-align: center;
+    }
+    .plas{
+      color: $green_color;
+      background-color: white;
+      border: $green_color 1px solid;
+      &:hover{
+        background-color: $green_color;
+        color: white;
+      }
+    }
+    .minus{
+      color: $red_color;
+      background-color: white;
+      border: $red_color 1px solid;
+      &:hover{
+        background-color: $red_color;
+        color: white;
+        
+      }
+    }
+    .quantity{
+      height: 31px;
+      width: 31px;
+      background-color: white;
+      color: $text_color;
+      font-weight: 600;
+      font-size: 20px;
+      text-align: center;
+      border: none;
+      outline: none;
+    }
+  }
+  .full_cost {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $text_color;
+    font-weight: 600;
+    font-size: 20px;
+
+    .cost {
+      padding: 5px 0;
+      border-bottom: $green_color 1px solid;
+    }
+  }
+  .checkout {
+  padding: 20px;
   display: flex;
   justify-content: flex-end;
-}
+
+  button {
+    width: 30vw;
+  }
+  .proceed {
+    margin-left: 5px;
+    height: 31px;
+    text-decoration: none;
+    border: none;
+    text-align: center;
+    color: $green_color;
+    background-color: white;
+    border: $green_color 1px solid;
+    &:hover {
+      background-color: $green_color;
+      color: white;
+    }
+  }
+  .return {
+    margin-left: 5px;
+    height: 31px;
+    text-decoration: none;
+    border: none;
+    text-align: center;
+    color: $blue-color;
+    background-color: white;
+    border: $blue-color 1px solid;
+    &:hover {
+      background-color: $blue-color;
+      color: white;
+    }
+  }
+  }
 </style>

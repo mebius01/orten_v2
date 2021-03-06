@@ -58,12 +58,6 @@ export default {
       };
     },
     methods: {
-  //     async asyncData({$axios, params, route, env, app}) {
-  //   const locale = app.i18n.locale
-  //   const apiUrl = env.apiUrl
-  //   const object = await $axios.$get(`${apiUrl}/${locale}/api/product/${params.slug}`)
-  //   return {env, object}
-  // }
       Query() {
         if (this.search.length > 3 ) {
           const locale = this.$i18n.locale
@@ -105,22 +99,22 @@ export default {
   }
 }
 .btn_closse, .overall_total {
+  text-align: center;
   position: absolute;
-  right: 10px;
+  right: 5px;
   top: 16px;
   cursor: pointer;
   color: $red_color;
   line-height: 0;
   letter-spacing: 0;
-  font-size: 16px;
   }
 .overall_total {
-  right: 50px;
+  right: 20px;
   color: $blue_color;
 }
 .result {
   position: absolute;
-  top: 40px;
+  top: 45px;
   height: 40vh;
   width: 80vw;
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
@@ -158,7 +152,8 @@ export default {
     width: 50vw;
   }
   .result {
-    width: 80vw;
+    width: 97vw;
+    left: -66px;
     height: 70vh;
   }
 }
@@ -167,7 +162,8 @@ export default {
     width: 40vw;
   }
   .result {
-    width: 80vw;
+    width: 97vw;
+    left: -66px;
     height: 70vh;
   }
 }
@@ -176,7 +172,8 @@ export default {
     width: 35vw;
   }
   .result {
-    width: 80vw;
+    width: 97vw;
+    left: -66px;
     height: 70vh;
   }
 }

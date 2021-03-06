@@ -1,5 +1,5 @@
 <template>
-	<main>
+	<main class="main-container">
 		<div>
 			<div class="header-for-block">
 				<span><i class="fas fa-user-tie"></i>Форма</span>
@@ -39,15 +39,13 @@
 							</a>
 						</div>
 						<div class="btn-gruop">
-							<span class="vendor_code">PN: {{item.vendor_code}}</span>
-							<span class="price">{{item.price}} грн.</span>
-							<form class="space-between buy">
-								<div class="form_quantity">
-									<input class="quantity" :value="item.quantity">шт.
-								</div>
+							<span class="price">{{item.price}}грн.</span>
+							<div class="btn-gruop">
+								<span class="quantity">{{item.quantity}}шт.</span>
 								<span class="total_cost">{{item.total_cost}} грн.</span>
-							</form>
 						</div>
+						</div>
+						
 					</li>
 				</ul>
 				<div class="full_cost">
@@ -144,7 +142,22 @@ import {mapGetters, mapActions} from 'vuex'
 <style lang="scss" scoped>
 @import '@/assets/main.scss';
 @import  "@/assets/icon_header.scss";
+@import  "@/assets/list.scss";
 @import '@/assets/form.scss';
+.full_cost {
+	padding: 20px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: $text_color;
+	font-weight: 600;
+	font-size: 20px;
+
+	.cost {
+		padding: 5px 0;
+		border-bottom: $green_color 1px solid;
+	}
+}
 main {
 	.apply {
 		width: 100%
