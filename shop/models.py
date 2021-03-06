@@ -3,7 +3,6 @@ from decimal import *
 from mptt.models import MPTTModel, TreeForeignKey
 from taggit.managers import TaggableManager
 from ckeditor.fields import RichTextField
-from django.contrib.flatpages.models import FlatPage
 from datetime import datetime
 from django.utils import timezone
 from django.utils.translation import gettext as _
