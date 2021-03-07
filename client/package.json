@@ -18,6 +18,7 @@
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/sitemap": "^2.4.0",
+    "cookie-universal-nuxt": "^2.1.4",
     "node-sass": "^4.14.1",
     "nuxt": "^2.15.2",
     "nuxt-i18n": "^6.18.0",

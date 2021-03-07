@@ -41,6 +41,7 @@ module.exports = {
     middleware: "redirect",
   },
   modules: [
+    "cookie-universal-nuxt",
     "@nuxtjs/gtm",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
@@ -109,9 +110,9 @@ module.exports = {
     name: "uid",
     plugin: false,
   },
-  axios: {
-    baseURL: `http://127.0.0.1:8000/api`,
-  },
+  // axios: {
+  //   baseURL: `http://127.0.0.1:8000/api`,
+  // },
   plugins: ["~/plugins/jsonld"],
 
   loading: {

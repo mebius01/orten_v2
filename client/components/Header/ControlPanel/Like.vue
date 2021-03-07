@@ -7,35 +7,10 @@
     <PopUp v-if="showPopUp && GET_LIKE.length" @closePopUp='closePopUp'>
       <div slot="like">
         <ul>
-          <li v-for="(item, index) in GET_LIKE" :key="index" >
-            <div class="content">
-              <img :src="item.image" :alt="item.name">
-              <span class="content__vendor">{{item.vendor}}</span>
-              <a :href="'/product/'+item.slug" 
-                @click.prevent="openProduct(product)"
-                :title="item.description">
-                {{item.name}}
-              </a>
-              <span class="content__available">
-                <i v-if="item.available" class="fas fa-check" style="color:green"></i>
-                <i v-else class="fas fa-times" style="color:red"></i>
-              </span>
-              <span class="content__action" v-if="item.action">
-                <i class="fas fa-splotch" style="margin-left:10px">
-                  Aкция до {{item.end_action}}
-                </i>
-              </span>
-            </div>
-            <div class="btn-gruop">
-              <span class="vendor_code">PN: {{item.vendor_code}}</span>
-              <span class="price" v-if="item.action">{{item.discount}}грн.</span>
-              <span class="price" v-else>{{item.price}}грн.</span>
-              <div class="buy">
-                <Buy :object="item"></Buy>
-                <button class="reset" @click.prevent="delLine(item)"><i class="fas fa-trash-alt"></i></button>
-              </div>
-            </div>
-          </li>
+          <ProductList v-for="item in GET_LIKE"
+            :key="item.id"
+            :product="item">
+          </ProductList>
         </ul>
       </div>
     </PopUp>
@@ -44,13 +19,13 @@
 
 <script>
 import PopUp from "@/components/PopUp"
-import Buy from '@/components/SmallComponents/Buy'
+import ProductList from "@/components/ProductList"
 import {mapGetters, mapActions, mapMutations} from 'vuex'
 export default {
   name: "Like",
   components: {
     PopUp,
-    Buy
+    ProductList
   },
   data() {
     return {

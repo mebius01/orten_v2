@@ -83,7 +83,9 @@ import {mapGetters, mapActions} from 'vuex'
 				phone: null,
 				email: null,
 				note: '',
-				paid: false
+				paid: false,
+				csrftoken: null,
+				hostname: "localhost"
 			}
 		},
 		methods: {
@@ -97,7 +99,22 @@ import {mapGetters, mapActions} from 'vuex'
 				this.note = ''
 				this.CLEAR_BASKET()
 			},
-			postOrder() {
+			sendData(data, headers){
+				// this.$axios.defaults.xsrfCookieName = 'csrftoken'
+        // this.$axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+				this.$axios.$post(`${process.env.apiUrl}/api/order/`, data, headers)
+					.then(data => {
+						this.showPopUp = true
+						setTimeout(() => {
+							this.showPopUp = false
+							this.clearOrder()
+							this.$router.replace({ path: '/' })
+						}, 3000)
+					})
+					.catch(error => { console.error(error) })
+				
+			},
+			createDate(){
 				const product = this.GET_PRODUCTS.reduce((arr, item) => {
 					const data = {
 						"name": item.name,
@@ -109,7 +126,7 @@ import {mapGetters, mapActions} from 'vuex'
 					arr.push(data)
 					return arr
 				}, [])
-				const formData = {
+				return {
 					delivery_method: this.delivery_method,
 					pay_method: this.pay_method,
 					name: this.name,
@@ -119,22 +136,19 @@ import {mapGetters, mapActions} from 'vuex'
 					price_order: this.GET_FULL_COST,
 					order: product
 				}
-				this.$axios.defaults.xsrfCookieName = 'csrftoken'
-        this.$axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-				this.$axios.$post(`${process.env.apiUrl}/api/order/`, formData)
-					.then(data => {
-						this.showPopUp = true
-						setTimeout(() => {
-							this.showPopUp = false
-							this.clearOrder()
-							this.$router.replace({ path: '/' })
-						}, 3000)
-					})
-					.catch(error => { console.error(error) })
+			},
+			postOrder() {
+				const data = this.createDate()
+				this.sendData(data, {headers: {'X-CSRFToken': this.csrftoken}})
 			}
 		},
 		computed: {
     ...mapGetters("basket", ['GET_PRODUCTS', 'GET_FULL_COST', 'GET_COUNTER'])
+		},
+		mounted() {
+			this.csrftoken = this.$cookies.get("csrftoken")
+			this.hostname = window.location.hostname
+			console.log(this.hostname);
 		},
 	}
 </script>
