@@ -44,6 +44,9 @@ X_FRAME_OPTIONS = config('X_FRAME_OPTIONS')
 DEBUG = config("DEBUG", default=True, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = config('CORS_ORIGIN_WHITELIST', cast=Csv())
+
 SITE_ID = 1
 APPEND_SLASH = True
 
@@ -62,9 +65,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.sites',
-    # 'django.contrib.redirects',
-    # 'django.contrib.sitemaps',
-    # 'django.contrib.flatpages',
     'django_filters',
     'taggit',
     'mptt',
