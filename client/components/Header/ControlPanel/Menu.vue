@@ -8,9 +8,9 @@
         <ul>
           <li v-for="(item, index) in $t('menu.data')" :key="index" @click="closePopUp">
             <template v-if="item.link">
-              <nuxt-link :to="item.link.href" exact>
+              <a :href="item.link.href" exact>
                 {{item.text}}
-              </nuxt-link>
+              </a>
             </template>
             <template v-else>
               {{item.text}}

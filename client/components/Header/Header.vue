@@ -36,8 +36,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/color.scss';
-@import '../../assets/main.scss';
+@import '@/assets/color.scss';
+@import '@/assets/main.scss';
 
 .header {
   display: flex;

@@ -21,7 +21,12 @@
       </div>
       <span class="price" v-else>{{product.price}}грн.</span>
       <div class="qty">
-        <Buy :object="product"></Buy>
+        <!-- <template v-if="product.available"> -->
+          <Buy :object="product"></Buy>
+        <!-- </template>
+        <template v-else>
+          <span style="color:#d9534f; white-space:nowrap">{{$t('product.no_product_list')}}</span>
+        </template> -->
       </div>
     </div>
   </li>

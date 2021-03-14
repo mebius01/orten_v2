@@ -45,19 +45,20 @@
 }
 
 .main-container {
+  min-height: 40vh;
   @extend .padding-12;
   display: grid;
   grid-template-columns: 30% auto;
   gap: 12px;
 
-  @media (min-width:768px) and (max-width: 1023px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     grid-template-columns: 40% auto;
   }
-  @media (min-width:425px) and (max-width: 767px) {
+  @media (min-width: 425px) and (max-width: 767px) {
     grid-template-columns: 1fr;
     padding: 10px;
   }
-  @media (min-width:375px) and (max-width: 424px) {
+  @media (min-width: 375px) and (max-width: 424px) {
     grid-template-columns: 1fr;
     padding: 10px;
   }

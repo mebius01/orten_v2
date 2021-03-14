@@ -7,10 +7,29 @@
     <PopUp v-if="showPopUp && GET_LIKE.length" @closePopUp='closePopUp'>
       <div slot="like">
         <ul>
-          <ProductList v-for="item in GET_LIKE"
-            :key="item.id"
-            :product="item">
-          </ProductList>
+          <li v-for="(item, index) in GET_LIKE" :key="index" >
+            <div class="content">
+              <img :src="item.image" :alt="item.name">
+              <span class="content__vendor">{{item.vendor}}</span>
+              <a :href="'/product/'+item.slug" 
+                @click.prevent="openProduct(product)"
+                :title="item.description">
+                {{item.name}}
+              </a>
+              <span class="content__available">
+                <i v-if="item.available" class="fas fa-check" style="color:green"></i>
+                <i v-else class="fas fa-times" style="color:red"></i>
+              </span>
+            </div>
+            <div class="btn-gruop">
+              <span class="price" v-if="item.action">{{item.discount}}грн.</span>
+              <span class="price" v-else>{{item.price}}грн.</span>
+              <div class="qty">
+                <Buy :object="item"></Buy>
+              </div>
+              <button class="reset" @click.prevent="delLine(item)"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </li>
         </ul>
       </div>
     </PopUp>
@@ -19,13 +38,15 @@
 
 <script>
 import PopUp from "@/components/PopUp"
-import ProductList from "@/components/ProductList"
+// import ProductList from "@/components/ProductList"
+import Buy from "@/components/SmallComponents/Buy"
 import {mapGetters, mapActions, mapMutations} from 'vuex'
 export default {
   name: "Like",
   components: {
     PopUp,
-    ProductList
+    Buy
+    // ProductList
   },
   data() {
     return {

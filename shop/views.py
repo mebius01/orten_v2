@@ -33,7 +33,7 @@ class LargeResultsSetPagination(PageNumberPagination):
 class SearchList(ObjectMultipleModelAPIView):
 	pagination_class = LimitPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter,]
-	search_fields = ['name', 'description',]
+	search_fields = ['name', 'description']
 	ordering_fields = ['vendor', 'name',]
 	def get_querylist(self, *args, **kwargs):
 		if 'uk' == self.request.LANGUAGE_CODE:
@@ -82,7 +82,7 @@ class ProductList(ListAPIView):
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
 	filterset_class = ProductFilter
-	search_fields = ['name', 'description', 'vendor_code', 'specifications']
+	search_fields = ['name', 'vendor_code', 'description', 'specifications']
 	ordering_fields = ['vendor', 'name', 'price', 'available']
 	def get_serializer_class(self):
 		if 'uk' == self.request.LANGUAGE_CODE:

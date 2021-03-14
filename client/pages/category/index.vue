@@ -2,7 +2,7 @@
   <div class="main-container">
     <Aside />
 		<main>
-			<div class="header-for-block"><i class="fas fa-th-large"></i>Список Категорий</div>
+			<div class="header-for-block"><i class="fas fa-th-large"></i>{{$t('dom.categories_list')}}</div>
       <template>
         <div class="card_block">
           <CategoryCard v-for="item in OBJECT_LIST"

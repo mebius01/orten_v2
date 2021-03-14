@@ -1,25 +1,22 @@
 <template>
-  <div>
-    <footer class="footer">
-      <Map />
+    <div>
+      <footer class="footer">
+      <div class="header-row">
+      <div>
+        <Map />
+      </div>
       <div class="menu-sched-contact">
         <Schedule />
         <Contact />
       </div>
+      </div>
     </footer>
     <div class="copyright">
       <p class="copyright__item" style="color: #e74c3c;">
-        orten.in.ua <span style="color: white;">© 2020</span>
+        orten.in.ua <span style="color: white;">© 2008 - 2021</span>
       </p>
-      <a style="text-decoration: none; color: #e74c3c;"
-        href="mailto:8th.port@gmail.com"
-        class="copyright__link">
-        <span style="color: #3498db;">created 😄</span>
-        <span style="color: white;">:</span>
-        <span style="color: #e74c3c;"></span> 8-th Port</a
-      >
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -40,26 +37,56 @@ export default {
 @import '@/assets/main.scss';
 
 .footer {
-  @extend .padding-12;
-  @extend .space-between;
-  justify-content: flex-start;
+  // background-color: green;
   background-color: $green_color;
   display: flex;
-  justify-content: space-between;
-  color: $text_color;
-  @media (max-width: 850px) {
-    display: none;
+  flex-direction: column;
+  @media (max-width: 800px) {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
   }
-  .menu-sched-contact {
+  .header-row {
+    @extend .padding-12;
     @extend .space-between;
     @media (max-width: 650px) {
-      padding: 12px 0;
-    }
-    @media (max-width: 480px) {
       flex-direction: column;
     }
+    .menu-sched-contact {
+      @extend .space-between;
+    }
+  }
+}
+@media (min-width: 1200px){
+  .footer {
+    grid-template-columns: auto 195px 230px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px){
+    .footer {
+        grid-template-columns:auto 195px 230px;
+    }
+
+}
+@media (min-width: 749px) and (max-width: 991px){
+  .footer {
+    grid-template-columns: auto auto;
+  }
+  .column {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
   }
 
+}
+
+@media (min-width: 300px) and (max-width: 750px){
+  .menu-sched-contact {
+    display: none;
+  }
+  .footer {
+      grid-template-columns: auto;
+  }
 }
 .copyright {
   @extend .padding-12;
@@ -70,17 +97,5 @@ export default {
   font-size: 12px;
   background-color: $text_color;
   color: white;
-}
-.header-for-block {
-  padding-left: 8px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 30px;
-  color: $text_color;
-  background-color: $green_color;
-  i {
-    margin-right: 5px;
-  }
 }
 </style>

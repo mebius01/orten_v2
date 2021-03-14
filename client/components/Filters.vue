@@ -1,15 +1,15 @@
 <template>
   <div class="accordion">
-    <div class="header-for-block"><i class="fas fa-filter"></i>Фильтры</div>
+    <div class="header-for-block"><i class="fas fa-filter"></i>{{$t('dom.filter')}}</div>
     <div class="filters">
       <form method="get">
         <div class="flex-row">
-          <input type="text" name="min_price" placeholder="min 0" v-model="min_price">
-          <input type="text" name="max_price" placeholder="max 99999" v-model="max_price">
+          <input type="text" name="min_price" :placeholder="$t('dom.min')" v-model="min_price">
+          <input type="text" name="max_price" :placeholder="$t('dom.max')" v-model="max_price">
         </div>
         <!-- <input type="hidden" name="category" v-if="pageProduct" v-model="category"> -->
         <select name="format_fild" v-if="pageProduct" v-model="format_fild">
-          <option value="" selected>Формат A0-A10</option>
+          <option value="" selected>{{$t('dom.format')}}</option>
           <option value="A0">A0</option>
           <option value="A1">A1</option>
           <option value="A2">A2</option>
@@ -19,22 +19,22 @@
           <option value="A6">A6</option>
           <option value="A7">A7</option>
           <option value="A8">A8</option>
-          <option value="A9">A9</option>
-          <option value="A10">A10</option>
         </select>
         <select name="color_fild" id="id_color_fild" v-if="pageProduct"  v-model="color_fild">
-          <option value="" selected>BW/Color</option>
-          <option value="BW">BW</option>
-          <option value="Color">Color</option>
+          <option value="" selected>{{ $t('dom.color.name') }}</option>
+          <option value="BW">{{ $t('dom.color.bw') }}</option>
+          <option value="Color">{{ $t('dom.color.color') }}</option>
         </select>
-        <input type="text" name="search" class="search" placeholder="Search.."  v-model="search">
-        <div class="flex-row">
-          <input class="apply" type="submit" @click.prevent="submitForm">
-          <input class="reset" type="reset" @click.prevent="resetForm">
+        <input type="text" name="search" class="search" :placeholder="$t('dom.search')" v-model="search">
+        <div class="space-between">
+          <span style="color:#85c987" >{{$t('dom.available')}}</span>
+          <input type="checkbox" class="check-box" name="available" value="True" v-if="pageProduct"  v-model="available">
         </div>
-        <label for="available">
-          Наличие <input type="checkbox" class="check-box" name="available" value="True" v-if="pageProduct"  v-model="available">
-        </label>
+        <div class="flex-row">
+          <button class="apply" type="submit" @click.prevent="submitForm">{{ $t('dom.btn.send') }}</button>
+          <button class="reset" type="reset" @click.prevent="resetForm">{{ $t('dom.btn.reset') }}</button>
+        </div>
+        
       </form>
       
     </div>
@@ -122,7 +122,7 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
 <style lang="scss" scoped>
 @import '@/assets/color.scss';
 @import '@/assets/main.scss';
-  input, select {
+  input, select, button {
     color: $text_color;
     margin-bottom: 4px;
     width: 100%;
@@ -135,7 +135,7 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
     display: flex;
     justify-content: space-between;
     align-items: center;
-    input {
+    button, input {
       width: 49%;
       cursor: pointer;
     }
@@ -162,6 +162,8 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
     width: 22px;
     height: 22px;
     cursor: pointer;
+    opacity: 1;
+    border: 1px solid $green_color;
 
   }
   select { 

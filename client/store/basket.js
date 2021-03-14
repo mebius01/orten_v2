@@ -1,3 +1,36 @@
+/**
+ * Преобразовывает объект в строку для локального хранилища
+ * @param {Object} object
+ */
+const stringifyJson = (object) => {
+  return String(JSON.stringify(object));
+};
+
+/**
+ * Преобразовывает строку из локального хранилища в Объект
+ * @param {String} string
+ */
+const parseJson = (string) => {
+  return JSON.parse(string);
+};
+
+/**
+ * Суммирует общее количество товаров в корзине
+ * @param {Object} ob1
+ * @param {Object} ob2
+ */
+const sumQuantity = (ob1, ob2) => {
+  return ob1.quantity + ob2.quantity;
+};
+
+/**
+ * Отнимает общее количество товаров в корзине
+ * @param {Object} obj
+ */
+const minusQuantity = (obj) => {
+  return obj.quantity - 1;
+};
+
 const state = () => ({
   products: [],
   counter: null,
@@ -5,6 +38,9 @@ const state = () => ({
 }); // state
 
 const mutations = {
+  SET_PRODUCTS: (state, payload) => {
+    state.products = payload;
+  },
   SET_ADD_PRODUCT: (state, payload) => {
     state.products.push(payload);
   },
@@ -32,9 +68,56 @@ const mutations = {
 }; // synchronous
 
 const actions = {
+  // ! new
+  ADD_TO_CART({ state, commit }, object) {
+    const arr = state.products;
+    if (!arr.includes(object)) {
+      arr.push(object);
+    }
+    arr.filter((el) => {
+      if (el.id === object.id) {
+        el.quantity = sumQuantity(el, object);
+      }
+    });
+    // arr.filter((el) => {
+    //   if (el.id === object.id) {
+    //     el.quantity = sumQuantity(el, object);
+    //   } else {
+    //     arr.push(object);
+    //   }
+    // });
+    const count = arr.reduce((sum, current) => {
+      return sum + current.quantity;
+    }, 0);
+    // const totalPrice = arr.reduce((sum, current) => {
+    //   return sum + current;
+    // }, 0);
+    commit("SET_COUNTER", count);
+    commit("SET_PRODUCTS", arr);
+  },
+  // ! new
+  DEL_FROM_CART({ state, commit }, object) {
+    const arr = state.products;
+    arr.filter((el) => {
+      if (el.id === object.id && el.quantity > 1) {
+        el.quantity = minusQuantity(el, object);
+      }
+      if (el.id === object.id && el.quantity === 1) {
+        const i = arr.indexOf(el);
+        arr.splice(i, 1);
+      }
+    });
+    const count = arr.reduce((sum, current) => {
+      return sum + current.quantity;
+    }, 0);
+    const totalPrice = arr.reduce((sum, current) => {
+      return sum + current;
+    }, 0);
+    commit("SET_COUNTER", count);
+    commit("SET_PRODUCTS", arr);
+  },
   SHAKE_FOR_PRODUCTS({ state, commit }) {
     let arr = state.products;
-    console.log(arr); //!;
     let full_cost = arr.reduce((sum, current) => {
       return sum + current.total_cost;
     }, 0);

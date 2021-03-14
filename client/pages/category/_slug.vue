@@ -37,7 +37,7 @@ import CategoryCard from "../../components/CategoryCard"
     },
     head() {
     return {
-      title: "Ортен - Все категории",
+      title: `Ортен - ${this.object.name}`,
       meta: [
         {
           hid: 'description',

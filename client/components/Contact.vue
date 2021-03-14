@@ -1,7 +1,7 @@
 <template>
 	<div class="flat_block">
 		<p class="space-between">
-			<span><i class="fas fa-clock"></i>График:</span>
+			<span><i class="fas fa-clock"></i>{{ $t('contact.general.schedule') }}:</span>
 			<span>
 				Пн-Пт: 9:00-18:00
 				<br>
@@ -10,12 +10,12 @@
 		</p>
 		<div class="bord"></div>
 		<p class="space-between">
-			<span><i class="fa fa-home"></i>Адрес:</span>
-			<span>г. Николаев пр. Мира, 5</span>
+			<span><i class="fa fa-home"></i>{{ $t('contact.general.address') }}:</span>
+			<span>{{ $t('contact.data[0].text') }}</span>
 		</p>
 		<div class="bord"></div>
 		<p class="space-between">
-			<span><i class="fas fa-phone"></i>Продажи:</span>
+			<span><i class="fas fa-phone"></i>{{ $t('contact.general.sales') }}:</span>
 			<span>
 				(0512) 56-65-39
 				<br>
@@ -25,21 +25,21 @@
 			</span>
 		</p>
 		<p class="space-between">
-			<span><i class="fas fa-envelope"></i>Мылко:</span>
+			<span><i class="fas fa-envelope"></i>Email:</span>
 			<a class="link_style" href="mailto:orten_office@ukr.net">orten_office@ukr.net</a>
 		</p>
 		<div class="bord"></div>
 		<p class="space-between">
-			<span><i class="fas fa-phone"></i>Сервис:</span>
+			<span><i class="fas fa-phone"></i>{{ $t('contact.general.service') }}:</span>
 			<span>(0512) 56-65-51</span>
 		</p>
 		<p class="space-between">
-			<span><i class="fas fa-envelope"></i>Мылко:</span>
+			<span><i class="fas fa-envelope"></i>Email:</span>
 			<a class="link_style" href="mailto:orten_office@ukr.net">orten_office@ukr.net</a>
 		</p>
 		<div class="bord"></div>
 		<p class="space-between">
-			<span><i class="fas fa-phone"></i>Полиграфия:</span>
+			<span><i class="fas fa-phone"></i>{{ $t('contact.general.print') }}:</span>
 			<sapn>
 				(0512) 56-64-98
 				<br>
@@ -47,7 +47,7 @@
 			</sapn>
 		</p>
 		<p class="space-between">
-			<span><i class="fas fa-envelope"></i>Мылко:</span>
+			<span><i class="fas fa-envelope"></i>Email:</span>
 			<a class="link_style" href="mailto:orten_poligraf@ukr.net">orten_poligraf@ukr.net</a>
 		</p>
 	</div>
@@ -67,6 +67,9 @@
 }
 .bord {
 	border-bottom: 1px solid $green_color;
+}
+.flat_block {
+	min-width: 60vw;
 }
 
 </style>

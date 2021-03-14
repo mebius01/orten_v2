@@ -4,8 +4,18 @@
       <button class="like" @click.prevent="addToLike(object)"><i class="far fa-heart"></i></button>
     </div>
     <div class="form_quantity">
-      <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button><input class="quantity" name="quantity" min="1" v-model="quantity"><button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
-      <button class="apply" @click.prevent="putBasket(object)"><i class="fa fa-shopping-cart"></i></button>
+      <template  v-if="object.available">
+        <button @click.prevent="plas" class="plas"><i class="fas fa-plus"></i></button>
+        <input class="quantity" name="quantity" min="1" v-model="quantity">
+        <button @click.prevent="minus" class="minus"><i class="fas fa-minus"></i></button>
+        <button class="apply" @click.prevent="putBasket(object)"><i class="fa fa-shopping-cart"></i></button>
+      </template>
+      <template v-else>
+        <button disabled class="plas disabled"><i class="fas fa-plus"></i></button>
+        <input disabled class="quantity" name="quantity" min="1" value="1">
+        <button disabled class="minus disabled"><i class="fas fa-minus"></i></button>
+        <button disabled class="apply disabled"><i class="fa fa-shopping-cart"></i></button>
+      </template>
     </div>
   </div>
 </template>
@@ -136,6 +146,15 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
       border: none;
       outline: none;
     }
+    .disabled {
+      color: rgb(66, 66, 66);
+      background-color: gray;
+      border: gray 1px solid;
+      &:hover{
+        background-color: gray;
+        color: rgb(66, 66, 66);
+      }
+    }
   }
   
   .apply {
@@ -194,5 +213,6 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
     }
   }
 }
+
 
 </style>

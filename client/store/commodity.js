@@ -16,7 +16,7 @@ const createQuery = (object) => {
 };
 
 const state = () => ({
-  url: '',
+  url: "",
   count: null,
   next: null,
   previous: null,
@@ -144,7 +144,6 @@ const actions = {
     const apiUrl = process.env.apiUrl;
     const q = createQuery(state.query);
     this.$axios.get(`${apiUrl}/${locale}/api` + state.url + q).then((res) => {
-      console.log(res.data);
       const data = res.data;
       const results = data.results;
       const count = data.count;
@@ -154,9 +153,9 @@ const actions = {
       commit("SET_RESULTS", results);
     });
   },
-		SEND_QUERY({ commit }, query) {
-		commit("SET_QUERY", query)
-	}
+  SEND_QUERY({ commit }, query) {
+    commit("SET_QUERY", query);
+  },
 };
 
 const getters = {
@@ -191,9 +190,9 @@ const getters = {
     return state.grid;
   },
   // query
-	GET_ALL_QUERY(state) {
-		return state.query
-	},
+  GET_ALL_QUERY(state) {
+    return state.query;
+  },
   GET_MIN(state) {
     return state.query.min_price;
   },

@@ -3,17 +3,20 @@
 }
 ul {
   width: 230px;
-    li {
-      padding: 2px;
-      i {
-        margin-right: 5px;
-      }
+  @media (max-width: 800px) {
+    display: none;
+  }
+  li {
+    padding: 2px;
+    i {
+      margin-right: 5px;
     }
-    a {
-      @extend .link_style;
-      display: inline-block;
-      &:hover {
-        transition: border-bottom 1s;
-      }
+  }
+  a {
+    @extend .link_style;
+    display: inline-block;
+    &:hover {
+      transition: border-bottom 1s;
     }
+  }
 }

@@ -2,7 +2,7 @@
   <div>
     <div class="search">
       <form role="search">
-        <input type="text" placeholder="Search..." 
+        <input type="text" :placeholder="$t('dom.search')" 
           v-model="search"
           @input="Query"
           />
@@ -59,7 +59,7 @@ export default {
     },
     methods: {
       Query() {
-        if (this.search.length > 3 ) {
+        if (this.search.length > 0 ) {
           const locale = this.$i18n.locale
           const apiUrl = process.env.apiUrl
           this.$axios.get(`${apiUrl}/${locale}/api` + '/search/?search=' + this.search)

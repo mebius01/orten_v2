@@ -1,13 +1,13 @@
 <template>
 <div class="logo">
-	<a class="logo__link" href="/">
+	<nuxt-link class="logo__link" to="/">
 		<img
 			class="logo__img"
 			src="/logo.png"
 			:alt="$t('logo.alt')"
 			:title="$t('logo.title')"
 		/>
-	</a>
+	</nuxt-link>
 </div>
 </template>
 

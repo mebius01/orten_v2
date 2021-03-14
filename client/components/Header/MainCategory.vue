@@ -1,6 +1,6 @@
 <template>
   <ul class="main_categories">
-    <li v-for="(item, index) in $t('mainCategory.data')" :key="index">
+    <li v-for="(item, index) in $t('main_category.data')" :key="index">
       <nuxt-link :to="item.href" :title="item.title" exact>{{item.text}}</nuxt-link>
     </li>
   </ul>

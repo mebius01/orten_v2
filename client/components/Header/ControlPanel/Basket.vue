@@ -10,7 +10,7 @@
           <li v-for="(item, index) in GET_PRODUCTS" :key="index" >
             <div class="content">
               <img v-if="item.image" class="card-img-top" :src="item.image" :alt="item.name">
-			<img v-else class="card-img-top" src="/default-img.png" alt="default img">
+			        <img v-else class="card-img-top" src="/default-img.png" alt="default img">
               <span class="content__vendor">{{item.vendor}}</span>
               <a :href="'/product/'+item.slug"
                 :title="item.description">
@@ -21,6 +21,9 @@
               <div v-if="item.action" class="price-block">
                 <span class="text-crossed">{{item.price}}грн.</span>
                 <span class="price" :title="'Акция до ' + item.end_action">{{item.discount}}грн.</span>
+              </div>
+              <div v-else class="price-block">
+                <span class="price">{{item.price}}грн.</span>
               </div>
               <form class="space-between qty">
                 <div class="form_quantity">
@@ -63,7 +66,7 @@ export default {
   },
   methods: {
     ...mapActions("basket", ['SHAKE_FOR_PRODUCTS']),
-    ...mapMutations("basket", ['SET_ADD_PRODUCT','SET_COUNTER','SET_FULL_COST','DELL_INDEXED_PROD','SET_INDEXED_PROD']),
+    ...mapMutations("basket", ['SET_ADD_PRODUCT','SET_COUNTER','SET_FULL_COST','DELL_INDEXED_PROD','SET_INDEXED_PROD', 'SET_PRODUCTS']),
     closePopUp() {
       this.showPopUp = false
     },
@@ -121,10 +124,14 @@ export default {
   },
 
   mounted() {
-    if (localStorage.basket_products) {
-      for (const iterator of JSON.parse(localStorage.getItem("basket_products"))) {
-        this.SET_ADD_PRODUCT(iterator)
-        this.SHAKE_FOR_PRODUCTS()
+    if(process.browser){
+      const c = localStorage.getItem("basket_counter")
+      const p = localStorage.getItem("basket_products")
+      const f = localStorage.getItem("basket_full_cost")
+      if (JSON.parse(p).length > 0) {
+        this.SET_PRODUCTS(JSON.parse(p))
+        this.SET_COUNTER(JSON.parse(c))
+        this.SET_FULL_COST(JSON.parse(f))
       }
     }
   },

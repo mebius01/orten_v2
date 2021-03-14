@@ -3,7 +3,7 @@
     <Notification />
     <Aside />
 		<main>
-			<div class="header-for-block"><i class="fas fa-star"></i>Новинки и акции</div>
+			<div class="header-for-block"><i class="fas fa-star"></i>{{$t('dom.actions')}}</div>
       <template>
         <div class="card_block">
           <Card v-for="item in products"

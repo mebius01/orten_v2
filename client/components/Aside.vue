@@ -1,12 +1,13 @@
 <template>
   <aside>
-    <div class="header-for-block" id="categories"><i class="fas fa-th-list"></i>Категории</div>
+    <div class="header-for-block" id="categories"><i class="fas fa-th-list"></i>{{$t('dom.categories')}}</div>
     <ul class="accordion">
       <li class="root" v-for="(item, index) in OBJECT_LIST"
         :key="item.id"
         @click="showChildList(index)"
         >
-      <i class="fas fa-stream"></i>{{item.name}}
+      <template v-if="item.id !== 182">
+        <i class="fas fa-stream"></i>{{item.name}}
       <ul class="child" v-if="childList === index">
         <li v-for="i in item.children" :key="i.id">
           <template>
@@ -16,6 +17,7 @@
           </template>
         </li>
       </ul>
+      </template>
       </li>
     </ul>
   </aside>

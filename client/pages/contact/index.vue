@@ -2,7 +2,7 @@
   <div class="main-container">
     <Aside />
 		<main>
-			<div class="header-for-block"><i class="fas fa-id-card-alt"></i>Контакты</div>
+			<div class="header-for-block"><i class="fas fa-id-card-alt"></i>{{$t('dom.contacts')}}</div>
       <template>
         <Contact />
       </template>

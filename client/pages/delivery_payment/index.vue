@@ -1,7 +1,7 @@
 <template>
   <div class="main-container">
     <Aside />
-		<main>
+		<main class="card_block">
 			<div class="header-for-block"><i class="fas fa-truck"></i>Доставка и оплата</div>
       <template>
         <Delivery />
@@ -42,5 +42,28 @@ import Aside from "../../components/Aside"
 </script>
 
 <style lang="scss" scoped>
-  @import "@/assets/main.scss"
+@import "@/assets/main.scss";
+.card_block {
+  gap: 5px;
+  grid-template-columns: repeat(1, 1fr);
+  // grid-auto-rows: 5px;
+  // grid-auto-flow: row dense;
+}
+.card {
+  h4 {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    // text-align: center;
+    text-transform: uppercase;
+  }
+  ul {
+    display: inline-block;
+    margin-top: 8px;
+    li {
+      padding: 5px;
+      margin-left: 15px;
+      border-bottom: 1px solid $green_color;
+    }
+  }
+}
 </style>

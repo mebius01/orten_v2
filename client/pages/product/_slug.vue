@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <div class="product__head">
-      <h2 style="color:#fc6251" v-if="object.action">Акция до {{object.end_action}}</h2>
+      <h2 style="color:#fc6251" v-if="object.action">{{ $t('product.action') }} {{object.end_action}}</h2>
       <br>
       <h1>{{ object.name }}</h1>
     </div>
@@ -12,31 +12,31 @@
   <div class="product__feature">
       <div class="specification">
           <p class="space-between">
-              <span>Артикул:</span>
+              <span>{{ $t('product.vendor_code') }}:</span>
               <span>{{ object.vendor_code }}</span>
           </p>
           <p class="space-between">
-              <span>Производитель:</span>
+              <span>{{ $t('product.vendor') }}:</span>
               <span>{{object.vendor}}</span>
           </p>
           <p class="space-between">
-              <span>Тип товара:</span>
+              <span>{{ $t('product.type_product') }}:</span>
               <span>{{object.type_product}}</span>
           </p>
           <div class="card__price">
             <template v-if="object.action">
               <p class="card--left-right">
-                <span class="card--text-crossed">Цена:</span>
+                <span class="card--text-crossed">{{ $t('product.price') }}:</span>
                 <span class="card--text-crossed">{{object.price}}</span>
               </p>
               <p class="card--left-right">
-                <span>Цена:</span>
+                <span>{{ $t('product.price') }}:</span>
                 <span class="card__price--text">{{object.discount}}</span>
               </p>
             </template>
             <template v-else>
               <p class="card--left-right">
-                <span>Цена:</span>
+                <span>{{ $t('product.price') }}:</span>
                 <span class="card__price--text">{{object.price}}</span>
               </p>
             </template>
@@ -51,11 +51,7 @@
         <Buy :object="object"></Buy>
       </template>
       <p style="color:red; text-align: center" v-else>
-        <span>
-          В данный момент этот товар отсутствует,
-          но Вы можете сделать заказ и
-          получить детальную информацию о возможности поставки.
-        </span>
+        <span>{{$t('product.no_product')}}</span>
       </p>
   </div>
     <div class="product__description" v-if="object.description || object.specifications">
@@ -93,11 +89,11 @@
 
 <script>
 import { mapActions } from 'vuex'
-import Buy from '../../components/SmallComponents/Buy'
-import PopUp from '../../components/PopUp'
-import Contact from '../../components/Contact'
-import Delivery from '../../components/Delivery'
-import Pay from '../../components/Pay'
+import Buy from '@/components/SmallComponents/Buy'
+import PopUp from '@/components/PopUp'
+import Contact from '@/components/Contact'
+import Delivery from '@/components/Delivery'
+import Pay from '@/components/Pay'
 export default {
   name: "ProductSlug",
   scrollToTop: false,
@@ -180,6 +176,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/main.scss";
+.spec {
+  margin-top: 20px;
+}
 .card--left-right {
   display: flex;
   justify-content: space-between;

@@ -37,9 +37,12 @@ import PopUp from '@/components/PopUp'
   image {
     max-width: 100%;
   }
+  @media (max-width: 798px) {
+    width: 100%;
+  }
 }
 iframe {
-    width: 100%;
-    height: 86vh;
+    width: 86vw;
+    height: 80vh;
 }
 </style>

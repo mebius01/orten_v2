@@ -63,9 +63,11 @@ module.exports = {
             file: "uk.js",
           },
         ],
+        baseUrl: process.env.BASE_URL,
+        seo: true,
         lazy: true,
         langDir: "lang/",
-        defaultLocale: "ru",
+        defaultLocale: "uk",
         noPrefixDefaultLocale: true,
         strategy: "no_prefix",
         detectBrowserLanguage: {

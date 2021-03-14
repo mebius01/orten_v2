@@ -6,7 +6,7 @@
       </aside>
       <main>
         <div class="header-for-block">
-          <span><i class="fab fa-product-hunt"></i>Товары</span>
+          <span><i class="fab fa-product-hunt"></i>{{$t('dom.products')}}</span>
           <div>
             <span class="ordering" 
               @click.prevent="changeGrid">
@@ -65,7 +65,7 @@ import Pagination from "@/components/Pagination"
         "SEND_QUERY",
         "SEND_URL",
         "SEND_PAGE_NUMBER_CURRENT",
-        "SEND_GRID"
+        "SEND_GRID",
 		]),
 	},
     computed: {
@@ -80,11 +80,17 @@ import Pagination from "@/components/Pagination"
         "GET_GRID",
       ]),
     },
-    created() {
+    mounted() {
       const url = "/product/"
       this.SEND_URL(url)
       this.SEND_DATA()
-    }
+    },
+    // created() {
+    //   const url = "/product/"
+    //   this.SEND_URL(url)
+    //   this.SEND_DATA()
+    //   console.log(93, url)
+    // }
   }
 </script>
 
