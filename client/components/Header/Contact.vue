@@ -15,17 +15,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      toggleClass: "fadeInDown",
-      chevron:  "fas fa-chevron-down",
-      toggle: false
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
 @import "@/assets/color.scss";

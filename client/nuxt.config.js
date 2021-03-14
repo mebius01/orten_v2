@@ -53,13 +53,13 @@ module.exports = {
           {
             code: "ru",
             iso: "ru-Ru",
-            name: "Росія",
+            name: "Російська",
             file: "ru.js",
           },
           {
             code: "uk",
             iso: "uk-UA",
-            name: "Україна",
+            name: "Українська",
             file: "uk.js",
           },
         ],

@@ -95,6 +95,7 @@ export default {
   contact: {
     general: {
       schedule: "График",
+      output: "Сб-Вс: Выходной",
       address: "Адрес",
       sales: "Продажи",
       service: "Сервис",

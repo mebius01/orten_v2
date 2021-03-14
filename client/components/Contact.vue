@@ -5,13 +5,13 @@
 			<span>
 				Пн-Пт: 9:00-18:00
 				<br>
-				Сб-Вс: Выходной
+				{{ $t('contact.general.output') }}
 				</span>
 		</p>
 		<div class="bord"></div>
 		<p class="space-between">
 			<span><i class="fa fa-home"></i>{{ $t('contact.general.address') }}:</span>
-			<span>{{ $t('contact.data[0].text') }}</span>
+			<a class="link_style" :href="$t('contact.data[0].link.href')">{{ $t('contact.data[0].text') }}</a>
 		</p>
 		<div class="bord"></div>
 		<p class="space-between">
