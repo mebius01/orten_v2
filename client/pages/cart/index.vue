@@ -83,8 +83,8 @@ import {mapGetters, mapActions} from 'vuex'
 		data() {
 			return {
 				showPopUp: false,
-				delivery_method: 'Самовывоз',
-				pay_method: 'Наличные',
+				delivery_method: this.$t('dom.export.pickup'),
+				pay_method: this.$t('dom.payment.cash'),
 				name: null,
 				phone: null,
 				email: null,
