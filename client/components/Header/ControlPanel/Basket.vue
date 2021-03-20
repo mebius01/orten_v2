@@ -38,11 +38,11 @@
           </li>
         </ul>
         <div class="full_cost">
-          <span>Общая стоимость:</span>
+          <span>{{ $t('dom.total_cost') }}:</span>
           <span class="cost">{{GET_FULL_COST}} грн.</span>
         </div>
         <div class="checkout">
-          <button class="proceed" @click.prevent="openCart">Оформить заказ</button>
+          <button class="proceed" @click.prevent="openCart">{{$t('dom.btn.send_cart')}}</button>
         </div>
       </div>
     </PopUp>
@@ -70,6 +70,13 @@ export default {
     closePopUp() {
       this.showPopUp = false
     },
+    getDiscount(object){
+        if (object.action) {
+          return object.discount
+        } else {
+          return object.price
+        }
+      },
     plus(obj) {
       let arr = this.GET_PRODUCTS
       let index = arr.indexOf(obj)
@@ -80,7 +87,7 @@ export default {
           {
           index: index,
           quantity: obj.quantity+1,
-          total_cost: (obj.quantity+1) * obj.price
+          total_cost: (obj.quantity+1) * this.getDiscount(obj)
           }
         )
         this.SHAKE_FOR_PRODUCTS()
@@ -96,7 +103,7 @@ export default {
           {
           index: index,
           quantity: obj.quantity-1,
-          total_cost: (obj.quantity-1) * obj.price
+          total_cost: (obj.quantity-1) * this.getDiscount(obj)
           }
         )
         this.SHAKE_FOR_PRODUCTS()

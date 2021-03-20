@@ -1,6 +1,6 @@
 <template>
   <div>
-		<ul class="pagination" v-if="GET_COUNT > 2">
+		<ul class="pagination" v-if="GET_COUNT > 1">
       <template v-if="this.GET_PAG > 1">
         <li><a href="" @click.prevent="getFirst">First</a></li>
         <li><a href="" @click.prevent="getPrevious">&laquo;</a></li>

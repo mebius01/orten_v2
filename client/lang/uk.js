@@ -35,20 +35,6 @@ export default {
         href: "/category/kyocera",
       },
       {
-        text: "Цифрові дуплікатори",
-        class: "",
-        title:
-          "Цифрові дуплікатори, чорнило і майстер-плівки від японської компанії Duplo та інших виробників",
-        href: "/category/cifrovye-duplikatory",
-      },
-      {
-        text: "ColorWay",
-        class: "",
-        title:
-          "ColorWay, ліцензійні витратні матеріали для лазерного та струменевого друку, фотопапір, СБПЧ і КПК",
-        href: "/category/colorway",
-      },
-      {
         text: "Сервісний Центр",
         class: "",
         title:
@@ -226,8 +212,12 @@ export default {
     type_product: "Тип товару",
     action: "Акція до",
     price: "Ціна",
+    manufacturer: "Виробник",
+    type_service: "Тип сервісу",
     description: "Короткий опис",
+    short_description: "Короткий опис",
     specification: "Характеристика",
+    service: "Сервіс",
   },
   dom: {
     categories: "Категорії",
@@ -236,10 +226,25 @@ export default {
     categories_list: "Список Категорій",
     products: "Товари",
     filter: "Фільтри",
+    cart_title: "Корзина товаров", //! start
+    name: "Ім'я",
+    phone: "Телефон",
+    email: "EMail",
+    note: "Доповнення, Відділення Нової Пошти...",
+    thank: "Дякуємо за ваше замовлення!", //! end
+    total_cost: "Загальна вартість",
     search: "Пошук",
     min: "Ціна від",
     max: "Ціна до",
-    format: "Формат А0-А8",
+    format: "Формат А0-А8", //! start
+    export: {
+      pickup: "Самовивіз",
+      np: "Новою Поштою",
+    },
+    payment: {
+      cash: "Готівка",
+      no_cash: "Безготівковий розрахунок",
+    },
     color: {
       name: "Монохромний/Кольоровий",
       bw: "Монохромний",
@@ -248,6 +253,7 @@ export default {
     btn: {
       send: "Показати",
       reset: "Скинути",
+      send_cart: "Оформити замовлення",
     },
     available: "Наявність",
   },

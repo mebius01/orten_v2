@@ -1,6 +1,7 @@
 input,
 select,
-textarea {
+textarea,
+button {
   color: $text_color;
   margin-bottom: 4px;
   width: 100%;
@@ -13,7 +14,8 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  input {
+  input,
+  button {
     width: 49%;
     cursor: pointer;
   }

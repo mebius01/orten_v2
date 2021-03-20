@@ -13,7 +13,7 @@ def send_email(id):
 	order = Order.objects.get(id=id)
 	email_office = settings.DEFAULT_FROM_EMAIL
 	email_customer = order.email
-	subject = 'ЗАКАЗ НА САЙТЕ ID {}'.format(id)
+	subject = 'Замовлення на сайті orten.in.ua ID {}'.format(id)
 
 	# For Customer
 	message = render_to_string('email/order_client.html', { 'order': order, 'product': product })

@@ -65,6 +65,13 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
       plas() {
         this.quantity++
       },
+      getDiscount(object){
+        if (object.action) {
+          return object.discount
+        } else {
+          return object.price
+        }
+      },
       putBasket(object) {
         let id = object.id
         let arr = this.GET_PRODUCTS
@@ -76,7 +83,7 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
             {
             index: index,
             quantity: this.quantity + obj.quantity,
-            total_cost: (this.quantity + obj.quantity) * obj.price
+            total_cost: (this.quantity + obj.quantity) * this.getDiscount(obj)
             }
           )
           this.quantity = 1
@@ -84,7 +91,7 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
 
         } else if (index < 0) {
           object.quantity = this.quantity
-          object.total_cost = this.quantity * object.price
+          object.total_cost = this.quantity * this.getDiscount(object)
           this.SET_ADD_PRODUCT(object)
           this.quantity = 1
           this.SHAKE_FOR_PRODUCTS()

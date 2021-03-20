@@ -19,10 +19,10 @@
               <span>{{ $t('product.vendor') }}:</span>
               <span>{{object.vendor}}</span>
           </p>
-          <p class="space-between">
+          <!-- <p class="space-between">
               <span>{{ $t('product.type_product') }}:</span>
               <span>{{object.type_product}}</span>
-          </p>
+          </p> -->
           <div class="card__price">
             <template v-if="object.action">
               <p class="card--left-right">
@@ -56,7 +56,7 @@
   </div>
     <div class="product__description" v-if="object.description || object.specifications">
       <div class="descript" v-if="object.description">
-        <strong>Краткое описание:</strong>
+        <strong>{{ $t('product.short_description') }}:</strong>
         <p>{{ object.description }}</p>
       </div>
       <div class="spec" v-if="object.specifications">

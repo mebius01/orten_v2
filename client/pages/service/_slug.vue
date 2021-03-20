@@ -7,7 +7,8 @@
       <h1>{{ object.name }}</h1>
     </div>
     <div class="product__img">
-      <img :src="object.image" :alt="object.name" :title="object.name">
+      <img v-if="object.image" :src="object.image" :alt="object.name" :title="object.name">
+      <img v-else src="/default-img.png" alt="default img">
     </div>
     <div class="product__feature">
       <div class="specification">
@@ -16,16 +17,16 @@
               <span>{{ object.vendor_code }}</span>
           </p>
           <p class="space-between">
-              <span>Производитель:</span>
+              <span>{{ $t('product.manufacturer') }}:</span>
               <span>{{object.vendor}}</span>
           </p>
           <p class="space-between">
-              <span>Тип сервиса:</span>
+              <span>{{ $t('product.type_service') }}:</span>
               <span>{{object.type_service}}</span>
           </p>
           <div class="card__price">
               <p class="card--left-right">
-                <span>Цена:</span>
+                <span>{{ $t('product.price') }}:</span>
                 <span class="card__price--text">{{object.price}}</span>
               </p>
           </div>
@@ -51,7 +52,7 @@
     </div>
     <div class="product__description" v-if="object.description || object.specifications">
       <div class="descript" v-if="object.description">
-        <strong>Краткое описание:</strong>
+        <strong>{{ $t('product.short_description') }}:</strong>
         {{ object.description }}
       </div>
       <div class="spec" v-if="object.specifications">

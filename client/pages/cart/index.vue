@@ -2,23 +2,23 @@
 	<main class="main-container">
 		<div>
 			<div class="header-for-block">
-				<span><i class="fas fa-user-tie"></i>Форма</span>
+				<span><i class="fas fa-user-tie"></i>{{$t('dom.btn.send_cart')}}</span>
 			</div>
 			<form>
 				<select class="form-control" v-model="delivery_method">
-					<option value="Самовывоз">Самовывоз</option>
-					<option value="Новой Почтой">Новой Почтой</option>
+					<option :value="$t('dom.export.pickup')">{{$t('dom.export.pickup')}}</option>
+					<option :value="$t('dom.export.np')">{{$t('dom.export.np')}}</option>
 				</select>
 				<select class="form-control" v-model="pay_method">
-					<option value="Наличные">Наличные</option>
-					<option value="Безналичный расчет">Безналичный расчет</option>
+					<option :value="$t('dom.payment.cash')">{{ $t('dom.payment.cash') }}</option>
+					<option :value="$t('dom.payment.no_cash')">{{ $t('dom.payment.no_cash') }}</option>
 				</select>
-				<input type="text" maxlength="50" class="form-control" placeholder="Имя" v-model="name">
-				<input type="text" name="phone" maxlength="15" class="form-control" placeholder="Телефон" v-model="phone">
-				<input type="email" name="email" maxlength="254" class="form-control" placeholder="Email" v-model="email">
-				<textarea cols="40" rows="10" maxlength="512" class="form-control" placeholder="Дополнения, Отделение Новой Почты" v-model="note"></textarea>
+				<input type="text" maxlength="50" class="form-control" :placeholder="$t('dom.name')" v-model="name">
+				<input type="text" name="phone" maxlength="15" class="form-control" :placeholder="$t('dom.phone')" v-model="phone">
+				<input type="email" name="email" maxlength="254" class="form-control" :placeholder="$t('dom.email')" v-model="email">
+				<textarea cols="40" rows="10" maxlength="512" class="form-control" :placeholder="$t('dom.note')" v-model="note"></textarea>
 				<div class="flex-row">
-					<input class="apply" type="submit" @click.prevent="postOrder">
+					<button class="apply" type="submit" @click.prevent="postOrder">{{ $t('dom.btn.send_cart') }}</button>
 				</div>
 			</form>
 		</div>
@@ -39,7 +39,13 @@
 							</a>
 						</div>
 						<div class="btn-gruop">
-							<span class="price">{{item.price}}грн.</span>
+							<div v-if="item.action" class="price-block">
+                <span class="text-crossed">{{item.price}}грн.</span>
+                <span class="price" :title="'Акция до ' + item.end_action">{{item.discount}}грн.</span>
+              </div>
+              <div v-else class="price-block">
+                <span class="price">{{item.price}}грн.</span>
+              </div>
 							<div class="btn-gruop">
 								<span class="quantity">{{item.quantity}}шт.</span>
 								<span class="total_cost">{{item.total_cost}} грн.</span>
@@ -49,14 +55,14 @@
 					</li>
 				</ul>
 				<div class="full_cost">
-					<span>Общая стоимость:</span>
+					<span>{{ $t('dom.total_cost') }}:</span>
 					<span class="cost">{{GET_FULL_COST}} грн.</span>
 				</div>
 			</div>
 		</div>
 		<PopUp v-if="showPopUp">
       <div slot="basket">
-        <h1>Спасибо за Ваш заказ!</h1>
+        <h1>{{ $t('dom.thank') }}</h1>
       </div>
     </PopUp>
 	</main>
@@ -114,12 +120,19 @@ import {mapGetters, mapActions} from 'vuex'
 					.catch(error => { console.error(error) })
 				
 			},
+			getDiscount(object){
+        if (object.action) {
+          return object.discount
+        } else {
+          return object.price
+        }
+      },
 			createDate(){
 				const product = this.GET_PRODUCTS.reduce((arr, item) => {
 					const data = {
 						"name": item.name,
 						"vendor_code": item.vendor_code,
-						"price": item.price,
+						"price": this.getDiscount(item),
 						"quantity": item.quantity,
 						"price_total": item.total_cost
 					}

@@ -6,7 +6,7 @@
       </aside>
       <main>
         <div class="header-for-block">
-          <span><i class="fas fa-cogs"></i>Сервис</span>
+          <span><i class="fas fa-cogs"></i>{{ $t('product.service') }}</span>
           <div>
             <span class="ordering"
               @click="changeOrderingPrice">
