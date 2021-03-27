@@ -13,7 +13,8 @@
 			        <img v-else class="card-img-top" src="/default-img.png" alt="default img">
               <span class="content__vendor">{{item.vendor}}</span>
               <a :href="'/product/'+item.slug"
-                :title="item.description">
+                :title="item.description"
+                @click.prevent="clickLink(item.slug)">
                 <span @click="closePopUp">{{item.name}}</span>
               </a>
             </div>
@@ -65,6 +66,9 @@ export default {
     }
   },
   methods: {
+    clickLink(slug){
+      this.$router.push({path: `/${this.$i18n.locale}/product/${slug}`})
+    },
     ...mapActions("basket", ['SHAKE_FOR_PRODUCTS']),
     ...mapMutations("basket", ['SET_ADD_PRODUCT','SET_COUNTER','SET_FULL_COST','DELL_INDEXED_PROD','SET_INDEXED_PROD', 'SET_PRODUCTS']),
     closePopUp() {
@@ -122,7 +126,7 @@ export default {
       localStorage.clear()
     },
     openCart() {
-      this.$router.push('/cart')
+      this.$router.push(`/${this.$i18n.locale}/cart`)
       this.closePopUp()
     }
   },

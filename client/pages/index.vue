@@ -1,6 +1,5 @@
 <template>
   <div class="main-container">
-    <Notification />
     <Aside />
 		<main>
 			<div class="header-for-block"><i class="fas fa-star"></i>{{$t('dom.actions')}}</div>
@@ -19,14 +18,12 @@
 <script>
 import Card from "@/components/Card"
 import Aside from "@/components/Aside"
-import Notification from '@/components/Notification'
 
   export default {
     name: "Home",
     components: {
       Card,
       Aside,
-      Notification
     },
     async asyncData({$axios, env, app}) {
       const locale = app.i18n.locale

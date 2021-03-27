@@ -20,63 +20,63 @@ export default {
         class: "",
         title:
           "Принтеры, МФУ, Дупликаторы японской компании Ricoh. Тонера, фотобарабаны, ресурсные детали",
-        href: "/category/ricoh",
+        href: "/ru/category/ricoh",
       },
       {
         text: "Konica Minolta",
         class: "",
         title:
           "Konica Minolta - японский холдинг, один из ведущих мировых производителей. МФУ, принтеры, инженерные печатные системы. Расходные материалы, дополнительное оборудование, ресурсные детали",
-        href: "/category/konica-minolta",
+        href: "/ru/category/konica-minolta",
       },
       {
         text: "Kyocera",
         class: "",
         title: "Принтеры, МФУ, расходные материалы Kyocera",
-        href: "/category/kyocera",
+        href: "/ru/category/kyocera",
       },
       {
         text: "Сервисный Центр",
         class: "",
         title:
           "Ремонт Принтеров, МФУ, компьютеров, заправка и реставрация картриджей. Все возможные и невозможные ремонты",
-        href: "/category/servisnyj-centr",
+        href: "/ru/category/servisnyj-centr",
       },
       {
         text: "Все для Принтеров и МФУ",
         class: "",
         title:
           "Тонера, фотобарабаны, вали, ролики, картриджи мировых брендов Toshiba, Erus, Static Control, Vision, Xerox, HP, Samsung",
-        href: "/category/licenzionnye-rashodnye-materialy",
+        href: "/ru/category/licenzionnye-rashodnye-materialy",
       },
       {
         text: "Типография",
         class: "",
         title:
           "Полиграфические услуги в Николаеве. Визитки, календари, флаера.. Тиражирование на ризографе",
-        href: "/polygraphy",
+        href: "/ru/polygraphy",
       },
       {
         text: "Доставка и оплата",
         class: "",
         title: "",
-        href: "/delivery_payment",
+        href: "/ru/delivery_payment",
       },
     ],
   },
   menu: {
     data: [
-      { text: "Дом", link: { class: "", href: "/" } },
-      { text: "Категории", link: { class: "", href: "/category" } },
-      { text: "Товары", link: { class: "", href: "/product" } },
-      { text: "Сервис", link: { class: "", href: "/service" } },
-      { text: "Полиграфия", link: { class: "", href: "/polygraphy" } },
+      { text: "Дом", link: { class: "", href: "/ru/" } },
+      { text: "Категории", link: { class: "", href: "/ru/category" } },
+      { text: "Товары", link: { class: "", href: "/ru/product" } },
+      { text: "Сервис", link: { class: "", href: "/ru/service" } },
+      { text: "Полиграфия", link: { class: "", href: "/ru/polygraphy" } },
       {
         text: "Доставка и оплата",
-        link: { class: "", href: "/delivery_payment" },
+        link: { class: "", href: "/ru/delivery_payment" },
       },
-      { text: "Кто мы", link: { class: "", href: "/about" } },
-      { text: "Контакты", link: { class: "", href: "/contact" } },
+      { text: "Кто мы", link: { class: "", href: "/ru/about" } },
+      { text: "Контакты", link: { class: "", href: "/ru/contact" } },
     ],
   },
   contact: {
@@ -257,5 +257,10 @@ export default {
       send_cart: "Оформить заказ",
     },
     available: "Наличие",
+  },
+  notification: {
+    errorPhone: "Пожалуйста добавьте свой телефон",
+    errorName: "Пожалуйста добавьте свое имя",
+    success: "",
   },
 };

@@ -8,7 +8,7 @@
       v-for="locale in availableLocales"
       :key="locale.code"
       :to="switchLocalePath(locale.code)"
-      @click.prevent.stop="changeLocale">{{ locale.name }}
+      @click.prevent.stop="$i18n.setLocale(locale.code)">{{ locale.name }}
     </span>
     </span>
     
@@ -22,14 +22,15 @@ export default {
       locale: this.$i18n.locale
     }
   },
-  methods: {
-    changeLocale() {
-      this.$i18n.setLocale(this.$i18n.locale === 'ru' ? 'uk' : 'ru')
-      location.reload()
-      // this.$nuxt.refresh()
-      // window.location.reload(true)
-    }
-  },
+  // methods: {
+  //   changeLocale() {
+  //     this.$i18n.setLocale(this.$i18n.locale === 'ru' ? 'uk' : 'ru')
+  //     location.reload()
+  //     $i18n.setLocale(locale.code)
+  //     // this.$nuxt.refresh()
+  //     // window.location.reload(true)
+  //   }
+  // },
   computed: {
     availableLocales () {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)

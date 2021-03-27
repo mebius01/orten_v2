@@ -69,7 +69,8 @@ module.exports = {
         langDir: "lang/",
         defaultLocale: "uk",
         noPrefixDefaultLocale: true,
-        strategy: "no_prefix",
+        strategy: "prefix", //!
+        skipSettingLocaleOnNavigate: true, //!
         detectBrowserLanguage: {
           useCookie: true,
           cookieKey: "i18n_redirected",

@@ -12,7 +12,7 @@
               <img :src="item.image" :alt="item.name">
               <span class="content__vendor">{{item.vendor}}</span>
               <a :href="'/product/'+item.slug" 
-                @click.prevent="openProduct(product)"
+                @click.prevent="clickLink(item.slug)"
                 :title="item.description">
                 {{item.name}}
               </a>
@@ -54,6 +54,10 @@ export default {
     }
   },
   methods: {
+    clickLink(slug){
+      this.closePopUp()
+      this.$router.push({path: `/${this.$i18n.locale}/product/${slug}`})
+    },
     ...mapActions("like", ['ACTION_FOR_LIKE']),
     ...mapMutations("like", ['SET_MODIFY_LIKE', 'DELL_INDEXED_LIKE']),
     closePopUp() {

@@ -1,6 +1,7 @@
 <template>
 <div class="logo">
-	<nuxt-link class="logo__link" to="/">
+	<nuxt-link class="logo__link" :to="`/${this.$i18n.locale}`">
+	
 		<img
 			class="logo__img"
 			src="/logo.png"

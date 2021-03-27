@@ -1,5 +1,8 @@
 <template>
   <div class="buy">
+    <Notification 
+			:success="success"
+		/>
     <div class="form_quantity">
       <button class="like" @click.prevent="addToLike(object)"><i class="far fa-heart"></i></button>
     </div>
@@ -22,8 +25,12 @@
 
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex'
+import Notification from "@/components/Notification"
   export default {
     name: 'Buy',
+    components: {
+      Notification
+    },
     props: {
       object: {
         type: Object,
@@ -37,12 +44,19 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
         quantity: 1,
         total_cost: null,
         like: false,
+        success: null,
       }
     },
     computed: {
       ...mapGetters("basket", ['GET_PRODUCTS']),
     },
     methods: {
+      notification(object){
+        this.success = `${object.name} - Додано в кошик!`
+        setTimeout(()=> {
+					this.success = null
+				}, 3000);
+      },
       ...mapActions("basket", ['SHAKE_FOR_PRODUCTS']),
       ...mapActions("like", ['ACTION_FOR_LIKE']),
       ...mapMutations("basket", ['SET_INDEXED_PROD','SET_ADD_PRODUCT']),
@@ -96,7 +110,7 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
           this.quantity = 1
           this.SHAKE_FOR_PRODUCTS()
         }
-        
+        this.notification(object)
       }
     },
   }

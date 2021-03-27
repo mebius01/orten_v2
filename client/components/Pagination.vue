@@ -1,14 +1,14 @@
 <template>
   <div>
 		<ul class="pagination" v-if="GET_COUNT > 1">
-      <template v-if="this.GET_PAG > 1">
+      <template v-if="GET_PAG > 1">
         <li><a href="" @click.prevent="getFirst">First</a></li>
         <li><a href="" @click.prevent="getPrevious">&laquo;</a></li>
-        <li><a href="" @click.prevent="getPrevious">{{ this.GET_PAG - 1 }}</a></li>
+        <li><a href="" @click.prevent="getPrevious">{{ Number(GET_PAG) - 1 }}</a></li>
       </template>
-      <li><a :href="'?page='+this.GET_PAG" class="active" @click.prevent>{{GET_PAG}}</a></li>
-      <template v-if="this.GET_PAG !== this.GET_COUNT">
-        <li><a href="" @click.prevent="getNext">{{ this.GET_PAG + 1 }}</a></li>
+      <li><a :href="'?page='+GET_PAG" class="active" @click.prevent>{{GET_PAG}}</a></li>
+      <template v-if="GET_PAG !== GET_COUNT">
+        <li><a href="" @click.prevent="getNext">{{ Number(GET_PAG) + 1 }}</a></li>
         <li><a href="" @click.prevent="getNext">&raquo;</a></li>
         <li><a href="" :title="GET_COUNT" @click.prevent="getLast">Last</a></li>
       </template>

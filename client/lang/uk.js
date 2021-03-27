@@ -19,63 +19,63 @@ export default {
         class: "",
         title:
           "Принтери, БФП, Дуплікатори японської компанії Ricoh. Тонер, фотобарабани, ресурсні деталі",
-        href: "/category/ricoh",
+        href: "/uk/category/ricoh",
       },
       {
         text: "Konica Minolta",
         class: "",
         title:
           "Konica Minolta — японський холдінг, один з провідних світових виробників. БФП, принтери, інженерні друкувальні системи. Витратні матеріали, додаткове оборудованіе, ресурсні деталі",
-        href: "/category/konica-minolta",
+        href: "/uk/category/konica-minolta",
       },
       {
         text: "Kyocera",
         class: "",
         title: "Принтери, БФП, витратні матеріали Kyocera",
-        href: "/category/kyocera",
+        href: "/uk/category/kyocera",
       },
       {
         text: "Сервісний Центр",
         class: "",
         title:
           "Ремонт принтерів, БФП, комп'ютерів, заправка і реставрація картриджів. Всі можливі і неможливі ремонти",
-        href: "/category/servisnyj-centr",
+        href: "/uk/category/servisnyj-centr",
       },
       {
         text: "Все для принтерів і МФУ",
         class: "",
         title:
           "Тонер, фотобарабани, вали, ролики, картриджі світових брендів Toshiba, Erus, Static Control, Vision, Xerox, HP, Samsung",
-        href: "/category/licenzionnye-rashodnye-materialy",
+        href: "/uk/category/licenzionnye-rashodnye-materialy",
       },
       {
         text: "Друкарня",
         class: "",
         title:
           "Поліграфічні послуги в Миколаєві. Візиткі, календарі, флаера. Тиражування на різографі",
-        href: "/polygraphy",
+        href: "/uk/polygraphy",
       },
       {
         text: "Доставка і оплата",
         class: "",
         title: "",
-        href: "/delivery_payment",
+        href: "/uk/delivery_payment",
       },
     ],
   },
   menu: {
     data: [
-      { text: "Дім", link: { class: "", href: "/" } },
-      { text: "Категорії", link: { class: "", href: "/category" } },
-      { text: "Товари", link: { class: "", href: "/product" } },
-      { text: "Сервіс", link: { class: "", href: "/service" } },
-      { text: "Поліграфія", link: { class: "", href: "/polygraphy" } },
+      { text: "Дім", link: { class: "", href: "/uk/" } },
+      { text: "Категорії", link: { class: "", href: "/uk/category" } },
+      { text: "Товари", link: { class: "", href: "/uk/product" } },
+      { text: "Сервіс", link: { class: "", href: "/uk/service" } },
+      { text: "Поліграфія", link: { class: "", href: "/uk/polygraphy" } },
       {
         text: "Доставка та оплата",
-        link: { class: "", href: "/delivery_payment" },
+        link: { class: "", href: "/uk/delivery_payment" },
       },
-      { text: "Хто ми", link: { class: "", href: "/about" } },
-      { text: "Контакти", link: { class: "", href: "/contact" } },
+      { text: "Хто ми", link: { class: "", href: "/uk/about" } },
+      { text: "Контакти", link: { class: "", href: "/uk/contact" } },
     ],
   },
   contact: {
@@ -256,5 +256,10 @@ export default {
       send_cart: "Оформити замовлення",
     },
     available: "Наявність",
+  },
+  notification: {
+    errorPhone: "Будь ласка додайте свій Телефон",
+    errorName: "Будь ласка додайте своє ім'я",
+    success: "",
   },
 };

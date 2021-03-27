@@ -31,7 +31,7 @@
     methods: {
       openService(service) {
         this.$emit('clossSearch')
-        this.$router.push('/service/'+service.slug)
+        this.$router.push(`/${this.$i18n.locale}/service/` + service.slug)
       }
     }
   }

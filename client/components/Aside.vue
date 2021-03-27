@@ -46,7 +46,7 @@ import {mapGetters, mapActions} from 'vuex'
         if (i.product_count) {
           const url = "/product/"
           this.SEND_URL(url)
-          this.$router.push({path: url, query: {category: i.id}})
+          this.$router.push({path: this.$i18n.locale + url, query: {category: i.id}})
         }
         if (i.service_count) {
           const url = "/service/"

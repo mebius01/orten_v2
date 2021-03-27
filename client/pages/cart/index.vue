@@ -1,5 +1,8 @@
 <template>
 	<main class="main-container">
+		<Notification 
+			:error="errorName || errorPhone"
+		/>
 		<div>
 			<div class="header-for-block">
 				<span><i class="fas fa-user-tie"></i>{{$t('dom.btn.send_cart')}}</span>
@@ -13,8 +16,8 @@
 					<option :value="$t('dom.payment.cash')">{{ $t('dom.payment.cash') }}</option>
 					<option :value="$t('dom.payment.no_cash')">{{ $t('dom.payment.no_cash') }}</option>
 				</select>
-				<input type="text" maxlength="50" class="form-control" :placeholder="$t('dom.name')" v-model="name">
-				<input type="text" name="phone" maxlength="15" class="form-control" :placeholder="$t('dom.phone')" v-model="phone">
+				<input :class="{ error: errorName }" type="text" maxlength="50" class="form-control" :placeholder="$t('dom.name')" v-model="name">
+				<input :class="{ error: errorPhone }" type="text" name="phone" maxlength="15" class="form-control" :placeholder="$t('dom.phone')" v-model="phone">
 				<input type="email" name="email" maxlength="254" class="form-control" :placeholder="$t('dom.email')" v-model="email">
 				<textarea cols="40" rows="10" maxlength="512" class="form-control" :placeholder="$t('dom.note')" v-model="note"></textarea>
 				<div class="flex-row">
@@ -34,7 +37,8 @@
 							<img :src="item.image" :alt="item.name">
 							<span class="content__vendor">{{item.vendor}}</span>
 							<a :href="'/product/'+item.slug"
-								:title="item.description">
+								:title="item.description"
+								@click.prevent="clickLink(item.slug)">
 								<span>{{item.name}}</span>
 							</a>
 						</div>
@@ -69,16 +73,16 @@
 </template>
 
 
-
-
 <script>
 import PopUp from "@/components/PopUp"
+import Notification from "@/components/Notification"
 import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: "Cart",
     components: {
-			PopUp
+			PopUp,
+			Notification
 		},
 		data() {
 			return {
@@ -91,10 +95,15 @@ import {mapGetters, mapActions} from 'vuex'
 				note: '',
 				paid: false,
 				csrftoken: null,
-				hostname: "localhost"
+				hostname: "localhost",
+				errorName: null,
+				errorPhone: null
 			}
 		},
 		methods: {
+			clickLink(slug){
+				this.$router.push({path: `/${this.$i18n.locale}/product/${slug}`})
+			},
 			...mapActions("basket", ['CLEAR_BASKET']),
 			clearOrder() {
 				this.delivery_method = 'Самовывоз'
@@ -106,18 +115,16 @@ import {mapGetters, mapActions} from 'vuex'
 				this.CLEAR_BASKET()
 			},
 			sendData(data, headers){
-				// this.$axios.defaults.xsrfCookieName = 'csrftoken'
-        // this.$axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 				this.$axios.$post(`${process.env.apiUrl}/api/order/`, data, headers)
 					.then(data => {
 						this.showPopUp = true
 						setTimeout(() => {
 							this.showPopUp = false
 							this.clearOrder()
-							this.$router.replace({ path: '/' })
+							this.$router.replace({ path: `/${this.$i18n.locale}/` })
 						}, 3000)
 					})
-					.catch(error => { console.error(error) })
+					.catch(error => { this.error = error })
 				
 			},
 			getDiscount(object){
@@ -150,9 +157,29 @@ import {mapGetters, mapActions} from 'vuex'
 					order: product
 				}
 			},
+			validForm(name, phone){
+				if (!name) {
+					this.errorName = this.$t('notification.errorName') 
+					setTimeout(()=> {
+						this.errorName = null
+					}, 3000);
+					return false
+				}
+				if (!phone) {
+					this.errorPhone = this.$t('notification.errorPhone')
+					setTimeout(()=> {
+						this.errorPhone = null
+					}, 3000);
+					return false
+				}
+				return true
+			},
 			postOrder() {
 				const data = this.createDate()
-				this.sendData(data, {headers: {'X-CSRFToken': this.csrftoken}})
+        if (this.validForm(data.name, data.phone)) {
+					this.sendData(data, {headers: {'X-CSRFToken': this.csrftoken}})					
+				}
+				
 			}
 		},
 		computed: {
@@ -171,6 +198,9 @@ import {mapGetters, mapActions} from 'vuex'
 @import  "@/assets/icon_header.scss";
 @import  "@/assets/list.scss";
 @import '@/assets/form.scss';
+.error {
+	border: 1px rgb(255,168,168) solid;
+}
 .full_cost {
 	padding: 20px 0;
 	display: flex;

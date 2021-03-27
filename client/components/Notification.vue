@@ -1,5 +1,5 @@
 <template>
-  <div class="not" :class="animationClass" @keydown.passive.esc="exc">
+  <div class="not" @keydown.passive.esc="exc">
 
     <template v-if="success">
       <div class="success">
@@ -29,43 +29,44 @@
 <script>
   export default {
     name: 'Notification',
-    data() {
-      return {
-        animationClass: "zoomIn",
-        error: '',
-        success: ''
-      }
-    },
-    methods: {
-      errorData() {
-        setTimeout(() => this.classAnimation = "slideOutRight", 3000)
-        setTimeout(() => {
-          this.error = []
-          this.classAnimation = "slideInRight" 
-        }, 4000)
+    props: {
+      error: {
+        type: String,
+        default() {
+          return null
+        }
       },
-      close() {
-        this.animationClass = "zoomOut"
-        // setTimeout(() => this.$emit('closenot'), 500);
-      },
-      closeEsc(e) {
-        if (e.keyCode == 27) {
-          this.close()
+      success: {
+        type: String,
+        default(){
+          return null
         }
       }
     },
-    created() {
-      if (process.browser) {
-        window.addEventListener('keydown', this.closeEsc);
-      }
-    },
-    destroyed() {
-      window.removeEventListener('keydown', this.closeEsc);
-    },
+    // methods: {
+    //   close() {
+    //     this.error = null
+    //     this.success = null
+    //   },
+    //   closeEsc(e) {
+    //     if (e.keyCode == 27) {
+    //       this.close()
+    //     }
+    //   }
+    // },
+    // created() {
+    //   if (process.browser) {
+    //     window.addEventListener('keydown', this.closeEsc);
+    //   }
+    // },
+    // destroyed() {
+    //   window.removeEventListener('keydown', this.closeEsc);
+    // },
   }
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/color.scss";
 .not {
   width: 300px;
   height: auto;
@@ -77,10 +78,11 @@
 }
 .error {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   padding: 10px;
-  background: rgb(255, 168, 168);
+  background: $red_color_l;
   
   .icon {
     display: flex;
@@ -96,7 +98,7 @@
 
 .success {
   @extend .error;
-  background: rgb(168, 255, 168);
+  background: $green_color_l;
 
   .icon {
     @extend .icon;

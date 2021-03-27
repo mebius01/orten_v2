@@ -50,7 +50,7 @@ import Buy from './SmallComponents/Buy'
     methods: {
       openProduct(product) {
         this.$emit('clossSearch');
-        this.$router.push('/product/'+product.slug)
+        this.$router.push(`/${this.$i18n.locale}/product/` + product.slug)
       },
     }
   }

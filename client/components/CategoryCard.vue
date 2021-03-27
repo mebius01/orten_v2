@@ -51,28 +51,28 @@ import {mapActions} from 'vuex'
     //-------------
     clickCategory(item){
       if (item.children.length) {
-        const url = `/category/${this.item.slug}`
+        const url = `/${this.$i18n.locale}/category/${this.item.slug}`
         this.SEND_URL(url)
         this.$router.push({path: url})
       }
       if (!item.children.length) {
         if (this.isProduct(item)) {
-          const url = "/product/"
+          const url = "/product"
           this.SEND_URL(url)
           this.SEND_CATEGORY(item.id)
-          this.$router.push({path: url, query: {category: item.id}})
+          this.$router.push({path: `/${this.$i18n.locale}${url}`, query: {category: item.id}})
         }
         if (this.isService(item)) {
-          const url = "/service/"
+          const url = "/service"
           this.SEND_URL(url)
           this.SEND_CATEGORY(item.id)
-          this.$router.push({path: url, query: {category: item.id}})
+          this.$router.push({path: `/${this.$i18n.locale}${url}`, query: {category: item.id}})
         }
         if (this.isPolygraphy(item)) {
-          const url =  `/polygraphy/`
+          const url =  "/polygraphy/"
           this.SEND_URL(url)
           this.SEND_CATEGORY(null)
-          this.$router.push({path: url})
+          this.$router.push({path: `/${this.$i18n.locale}${url}`})
         }
       }
       this.SEND_DATA()

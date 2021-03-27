@@ -57,8 +57,8 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
         available: this.$route.available || null,
         page: this.$route.page || '1',
 
-        pageProduct: this.$route.name === 'product',
-        pageService: this.$route.name === 'service',
+        pageProduct: this.$route.path === `/${this.$i18n.locale}/product`,
+        pageService: this.$route.path === `/${this.$i18n.locale}/service`,
       }
     },
     computed: {
