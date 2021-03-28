@@ -11,9 +11,13 @@
       <ul class="child" v-if="childList === index">
         <li v-for="i in item.children" :key="i.id">
           <template>
-            <a :href="'/?category='+i.id" @click.prevent="clickCategory(i)">
-              {{i.name}}  <span class="count">{{i.product_count || i.service_count}}</span>
-            </a>          
+            <a v-if="i.product_count" :href="`/${$i18n.locale}/product?category=${i.id}`" @click.prevent="clickCategory(i)">
+              {{i.name}}  <span class="count">{{i.product_count}}</span>
+            </a>
+
+            <a v-else-if="i.service_count" :href="`/${$i18n.locale}/service?category=${i.id}`" @click.prevent="clickCategory(i)">
+              {{i.name}}  <span class="count">{{i.service_count}}</span>
+            </a> 
           </template>
         </li>
       </ul>
@@ -46,12 +50,12 @@ import {mapGetters, mapActions} from 'vuex'
         if (i.product_count) {
           const url = "/product/"
           this.SEND_URL(url)
-          this.$router.push({path: this.$i18n.locale + url, query: {category: i.id}})
+          this.$router.push({path: `/${this.$i18n.locale}/product`, query: {category: i.id}})
         }
         if (i.service_count) {
           const url = "/service/"
           this.SEND_URL(url)
-          this.$router.push({path: "/service/", query: {category: i.id}})
+          this.$router.push({path: `/${this.$i18n.locale}/service`, query: {category: i.id}})
         }
         this.SEND_CATEGORY(i.id)
         this.SEND_DATA()

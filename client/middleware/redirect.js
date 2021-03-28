@@ -3,19 +3,20 @@ export default function ({ store, redirect, route, app }) {
   const shopPageSlash = /^\/shop\/((?:[^\/]+?))(?:\/(?=$))?$/i;
   const shopPageNoSlash = /^\/shop\/((?:[^\/]+?))(?:\/(?=$))?$/i;
   const adminPage = route.path === "/admin";
-  const shop = route.path === "/shop" || route.path === "/product";
+  const shop =
+    route.path === `/shop/` ||
+    route.path === `/${locale}/shop/` ||
+    route.path === `/${locale}/shop`;
+  route.path === `/product/` || route.path === `/${locale}/product/`;
+
   if (shop) {
-    return redirect(`/${this.$i18n.locale}/product`);
+    return redirect(`/${locale}/product`);
   }
   if (shopPageSlash.test(route.path)) {
     const path = route.path.split("/");
-    // console.log(path.slice(-2, -1)[0]);
-    return redirect(`/${this.$i18n.locale}/product/${path.slice(-2, -1)[0]}`);
+    return redirect(`/${locale}/product/${path.slice(-2, -1)[0]}`);
   }
-  // if (shopPageNoSlash.test(route.path)) {
-  //   const path = route.path.split("/");
-  //   return redirect(`/product/` + path.slice(-1)[0]);
-  // }
+
   if (adminPage) {
     return redirect(`/${locale}/admin`);
   }
@@ -31,6 +32,5 @@ export default function ({ store, redirect, route, app }) {
     store.dispatch("commodity/SEND_PAGE", route.query.page || 1);
     store.dispatch("commodity/SEND_CATEGORY", route.query.category || null);
     store.dispatch("commodity/SEND_DATA");
-    console.log(route.query);
   }
 }

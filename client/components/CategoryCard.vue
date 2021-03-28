@@ -81,18 +81,18 @@ import {mapActions} from 'vuex'
   mounted() {
     const category = this.item
     if (category.children.length) {
-      this.categoryLink = `/category/${this.item.slug}`
+      this.categoryLink = `/${this.$i18n.locale}/category/${this.item.slug}`
     }
     if (!category.children.length) {
       if (this.isProduct(category)) {
-        this.productLink = `/product/?category=${this.item.id}`
+        this.productLink = `/${this.$i18n.locale}/product?category=${this.item.id}`
       }
       if (this.isService(category)) {
-        this.serviceLink =  `/service/?category=${this.item.id}`
+        this.serviceLink =  `/${this.$i18n.locale}/service?category=${this.item.id}`
       }
     }
     if (!category.children.length || this.isPolygraphy(category)) {
-      this.polygraphyLink = `/polygraphy/`
+      this.polygraphyLink = `/${this.$i18n.locale}/polygraphy`
     }
   }
 }
