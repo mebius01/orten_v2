@@ -4,11 +4,11 @@
     <h1 v-if="error.statusCode === 404">Сторінка не знайдена</h1>
     <h1 v-else>Щось пішло не так</h1>
     <ul>
-      <li><i class="fas fa-home"></i> <NuxtLink to="/" exact>Додому</NuxtLink></li>
-      <li><i class="fas fa-th"></i> <NuxtLink to="/category" exact>Категорії</NuxtLink></li>
-      <li><i class="fas fa-luggage-cart"></i> <NuxtLink to="/product" exact>Товари</NuxtLink></li>
-      <li><i class="fas fa-cogs"></i> <NuxtLink to="/service" exact>Сервіс</NuxtLink></li>
-      <li><i class="fas fa-print"></i> <NuxtLink to="/polygraphy" exact>Поліграфія</NuxtLink></li>
+      <li><i class="fas fa-home"></i> <NuxtLink :to="`/${$i18n.locale}`" exact>Додому</NuxtLink></li>
+      <li><i class="fas fa-th"></i> <NuxtLink :to="`/${$i18n.locale}/category`" exact>Категорії</NuxtLink></li>
+      <li><i class="fas fa-luggage-cart"></i> <NuxtLink :to="`/${$i18n.locale}/product`" exact>Товари</NuxtLink></li>
+      <li><i class="fas fa-cogs"></i> <NuxtLink :to="`/${$i18n.locale}/service`" exact>Сервіс</NuxtLink></li>
+      <li><i class="fas fa-print"></i> <NuxtLink :to="`/${$i18n.locale}/polygraphy`" exact>Поліграфія</NuxtLink></li>
     </ul>
   </div>
 </template>

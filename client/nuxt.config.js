@@ -71,12 +71,13 @@ module.exports = {
         noPrefixDefaultLocale: true,
         strategy: "prefix", //!
         skipSettingLocaleOnNavigate: true, //!
-        detectBrowserLanguage: {
-          useCookie: true,
-          cookieKey: "i18n_redirected",
-          onlyOnRoot: true,
-          alwaysRedirect: true,
-        },
+        detectBrowserLanguage: false,
+        // detectBrowserLanguage: {
+        //   useCookie: true,
+        //   cookieKey: "i18n_redirected",
+        //   onlyOnRoot: true,
+        //   alwaysRedirect: true,
+        // },
         vuex: { moduleName: "i18n", syncLocale: true, syncMessages: true, syncRouteParams: true },
       },
     ],
