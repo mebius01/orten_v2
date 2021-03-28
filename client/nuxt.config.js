@@ -1,4 +1,4 @@
-// const { default: uk } = require("./lang/uk");
+import axios from "axios";
 
 module.exports = {
   /*
@@ -52,7 +52,7 @@ module.exports = {
         locales: [
           {
             code: "ru",
-            iso: "ru-Ru",
+            iso: "ru-Ua",
             name: "Російська",
             file: "ru.js",
           },
@@ -76,7 +76,6 @@ module.exports = {
         //   useCookie: true,
         //   cookieKey: "i18n_redirected",
         //   onlyOnRoot: true,
-        //   alwaysRedirect: true,
         // },
         vuex: { moduleName: "i18n", syncLocale: true, syncMessages: true, syncRouteParams: true },
       },
@@ -89,12 +88,28 @@ module.exports = {
   sitemap: {
     hostname: process.env.BASE_URL,
     gzip: true,
-    routes: ["/product/:slug.vue", "service/:slug.vue", "polygraphy/:slug.vue"],
+    path: "/sitemap",
+    // routes: ["/product/:slug.vue", "service/:slug.vue", "polygraphy/:slug.vue"],
+    routes: async () => {
+      const prod = await axios.get(`${process.env.API_URL}/api/product/`);
+      const p = prod.data.results.map((el) => `/product/${el.slug}`);
+      const service = await axios.get(`${process.env.API_URL}/api/service/`);
+      const s = service.data.results.map((el) => `/service/${el.slug}`);
+      const polygraphy = await axios.get(`${process.env.API_URL}/api/polygraphy/`);
+      const pl = polygraphy.data.results.map((el) => `/polygraphy/${el.slug}`);
+      return [...p, ...s, ...pl];
+    },
     defaults: {
       changefreq: "daily",
       priority: 1,
       lastmod: new Date(),
     },
+    // filter({ routes, options }) {
+    //   if (options.hostname === "example.com") {
+    //     return routes.filter((route) => route.locale === "uk");
+    //   }
+    //   return routes.filter((route) => route.locale === "ru");
+    // },
   },
   robots: [
     {
@@ -114,9 +129,7 @@ module.exports = {
     name: "uid",
     plugin: false,
   },
-  // axios: {
-  //   baseURL: `http://127.0.0.1:8000/api`,
-  // },
+
   plugins: ["~/plugins/jsonld"],
 
   loading: {

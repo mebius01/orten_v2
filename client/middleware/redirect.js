@@ -22,14 +22,14 @@ export default function ({ store, redirect, route, app }) {
   // console.log(route);
 
   if (route.path === `/${locale}/product` || route.path === `/${locale}/service`) {
-    store.dispatch("commodity/SEND_MIN", route.query.min_price);
-    store.dispatch("commodity/SEND_MAX", route.query.max_price);
-    store.dispatch("commodity/SEND_FORMAT", route.query.format_fild);
-    store.dispatch("commodity/SEND_COLOR", route.query.color_fild);
-    store.dispatch("commodity/SEND_SEARCH", route.query.search);
-    store.dispatch("commodity/SEND_AVA", route.query.available);
-    store.dispatch("commodity/SEND_PAGE", route.query.page);
-    store.dispatch("commodity/SEND_CATEGORY", route.query.category);
+    store.dispatch("commodity/SEND_MIN", route.query.min_price || null);
+    store.dispatch("commodity/SEND_MAX", route.query.max_price || null);
+    store.dispatch("commodity/SEND_FORMAT", route.query.format_fild || null);
+    store.dispatch("commodity/SEND_COLOR", route.query.color_fild || null);
+    store.dispatch("commodity/SEND_SEARCH", route.query.search || null);
+    store.dispatch("commodity/SEND_AVA", route.query.available || null);
+    store.dispatch("commodity/SEND_PAGE", route.query.page || 1);
+    store.dispatch("commodity/SEND_CATEGORY", route.query.category || null);
     // store.dispatch("commodity/SEND_DATA");
   }
 }
