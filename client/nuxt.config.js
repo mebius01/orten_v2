@@ -43,7 +43,6 @@ module.exports = {
   modules: [
     "cookie-universal-nuxt",
     "@nuxtjs/gtm",
-    "@nuxtjs/sitemap",
     "@nuxtjs/robots",
     "nuxt-uid-module",
     [
@@ -85,32 +84,7 @@ module.exports = {
   gtm: {
     id: "GTM-56KXN4",
   },
-  sitemap: {
-    hostname: process.env.BASE_URL,
-    gzip: true,
-    path: "/sitemap",
-    // routes: ["/product/:slug.vue", "service/:slug.vue", "polygraphy/:slug.vue"],
-    routes: async () => {
-      const prod = await axios.get(`${process.env.API_URL}/api/product/`);
-      const p = prod.data.results.map((el) => `/product/${el.slug}`);
-      const service = await axios.get(`${process.env.API_URL}/api/service/`);
-      const s = service.data.results.map((el) => `/service/${el.slug}`);
-      const polygraphy = await axios.get(`${process.env.API_URL}/api/polygraphy/`);
-      const pl = polygraphy.data.results.map((el) => `/polygraphy/${el.slug}`);
-      return [...p, ...s, ...pl];
-    },
-    defaults: {
-      changefreq: "daily",
-      priority: 1,
-      lastmod: new Date(),
-    },
-    // filter({ routes, options }) {
-    //   if (options.hostname === "example.com") {
-    //     return routes.filter((route) => route.locale === "uk");
-    //   }
-    //   return routes.filter((route) => route.locale === "ru");
-    // },
-  },
+
   robots: [
     {
       UserAgent: "Googlebot",
