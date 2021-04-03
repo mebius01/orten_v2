@@ -78,7 +78,7 @@ class ProductFilter(FilterSet):
 		]
 
 class ProductList(ListAPIView):
-	queryset = Product.objects.all().order_by('-action', '-image',)
+	queryset = Product.objects.all().order_by('-available', '-action', '-image',)
 	pagination_class = LargeResultsSetPagination
 	filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
 	filterset_class = ProductFilter
@@ -144,6 +144,12 @@ class CategoryList(ListAPIView):
 	@method_decorator(cache_page(settings.CACHE_TTL))
 	def dispatch(self, *args, **kwargs):
 		return super(CategoryList, self).dispatch(*args, **kwargs)
+
+
+class CategoryListById(ListAPIView):
+	queryset = Category.objects.all()
+	serializer_class = CategorySerializerAllById
+
 
 class CategoryDetail(RetrieveAPIView):
 	queryset = Category.objects.all()

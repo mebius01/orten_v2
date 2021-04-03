@@ -2,6 +2,22 @@ from rest_framework import serializers
 from rest_framework_recursive.fields import RecursiveField
 from shop.models import Category, Product, Services, Polygraphy
 
+class CategorySerializerAllById(serializers.ModelSerializer):
+  product_count = serializers.SerializerMethodField()
+  service_count = serializers.SerializerMethodField()
+  polygraphy_count = serializers.SerializerMethodField()
+
+  class Meta:
+      model = Category
+      fields = '__all__'
+  
+  def get_product_count(self, obj):
+    return obj.product.count()
+  def get_service_count(self, obj):
+    return obj.services.count()
+  def get_polygraphy_count(self, obj):
+    return obj.polygraphy.count()
+
 
 class CategorySerializerUk(serializers.ModelSerializer):
   children = serializers.ListField(read_only=True, source='get_descendants', child=RecursiveField())

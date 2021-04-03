@@ -29,6 +29,7 @@ urlpatterns = [
     path('polygraphy/<slug:slug>/', PolygraphyDetail.as_view(), name='polygraphy_detail'),
     path('category/', CategoryList.as_view(), name = 'category_list'),
     path('category/<slug:slug>', CategoryDetail.as_view(), name ='category_detail'),
+    path('category_id/', CategoryListById.as_view(), name ='category_by_id'),
     path('category_id/<int:pk>', CategoryDetailById.as_view(), name ='category_detail_by_id'),
     path('search/', SearchList.as_view(), name ='serch_list'),
 
