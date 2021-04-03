@@ -1,18 +1,14 @@
 <template>
   <div class="card">
     <div class="card__action" v-if="product.action">{{$t('product.action')}} {{product.end_action}}</div>
-    <nuxt-link class="card__link" :to="`/${this.$i18n.locale}/product/${product.slug}`"
-    
-    >
+    <nuxt-link class="card__link" :to="localePath({ name: 'product-slug', params: { slug: product.slug } })">
       <div class="card__img">
         <img v-if="product.image" class="card-img-top" :src="product.image" :alt="product.name">
 				<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       </div>
     </nuxt-link>
       <div class="card__body">
-				<nuxt-link class="card__link" :to="`/${this.$i18n.locale}/product/${product.slug}`"
-        
-        >
+				<nuxt-link class="card__link" :to="localePath({ name: 'product-slug', params: { slug: product.slug } })">
 					<h2 class="card__name color--blue">{{product.name}}</h2>
 				</nuxt-link>
         <p class="card__pn space-between">

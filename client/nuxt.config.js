@@ -98,6 +98,9 @@ module.exports = {
       UserAgent: "*",
       Disallow: ["/order", "/cart", "/admin"],
     },
+    {
+      Sitemap: `${process.env.BASE_URL}/sitemap.xml`,
+    },
   ],
   "uid-module": {
     name: "uid",

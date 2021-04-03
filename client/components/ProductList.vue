@@ -4,11 +4,11 @@
       <img v-if="product.image" class="card-img-top" :src="product.image" :alt="product.name">
 			<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       <span class="content__vendor">{{product.vendor}}</span>
-      <a :href="'/product/'+product.slug" 
+      <nuxt-link :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" 
         @click.prevent="openProduct(product)"
         :title="product.description">
         {{product.name}}
-      </a>
+      </nuxt-link>
       <span class="content__available">
         <i v-if="product.available" class="fas fa-check" style="color:green"></i>
         <i v-else class="fas fa-times" style="color:red"></i>

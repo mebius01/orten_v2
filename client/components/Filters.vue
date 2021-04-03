@@ -51,9 +51,9 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
         min_price: this.$route.min_price || null,
         max_price: this.$route.max_price || null,
         // category: this.$route.category || null,
-        format_fild: this.$route.format_fild || null,
-        color_fild: this.$route.color_fild || null,
-        search: this.$route.search || null,
+        format_fild: this.$route.format_fild || "",
+        color_fild: this.$route.color_fild || "",
+        search: this.$route.search || "",
         available: this.$route.available || null,
         page: this.$route.page || '1',
 

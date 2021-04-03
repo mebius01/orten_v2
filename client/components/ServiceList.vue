@@ -4,7 +4,8 @@
       <img v-if="service.image" class="card-img-top" :src="service.image" :alt="service.name">
       <img v-else class="card-img-top" src="/default-img.png" alt="default img">
       <span class="content__vendor">{{service.vendor}}</span>
-      <a :href="'/service/'+service.slug" @click.prevent="openService(service)">{{service.name}}</a>
+      <!-- @click.prevent="openService(service)" -->
+      <nuxt-link :to="localePath({ name: 'service-slug', params: { slug: service.slug } })">{{service.name}}</nuxt-link>
     </div>
     <div class="btn-gruop">
       <span>{{service.price}}грн.</span>

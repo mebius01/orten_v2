@@ -254,7 +254,7 @@ export default {
     btn: {
       send: "Показать",
       reset: "Сбросить",
-      send_cart: "Оформить заказ",
+      send_cart: "Заказать",
     },
     available: "Наличие",
   },

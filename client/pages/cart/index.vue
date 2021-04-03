@@ -28,7 +28,7 @@
 
 		<div>
 			<div class="header-for-block">
-				<span><i class="fas fa-truck-loading"></i>Корзина товаров</span>
+				<span><i class="fas fa-truck-loading"></i>{{ $t('dom.cart_title') }}</span>
 			</div>
 			<div class="control_cart">
 				<ul>

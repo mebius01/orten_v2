@@ -1,14 +1,14 @@
 <template>
   <div class="card">
-    <a class="card__link" :href="'/polygraphy/'+item.slug">
+    <nuxt-link class="card__link" :to="localePath({ name: 'polygraphy-slug', params: { slug: item.slug } })">
       <div class="card__img">
         <img v-if="item.icon" class="card-img-top" :src="item.icon" :alt="item.name">
 				<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       </div>
-      <a class="card__link" :href="'/polygraphy/'+item.slug">
+    </nuxt-link>
+      <nuxt-link class="card__link" :to="localePath({ name: 'polygraphy-slug', params: { slug: item.slug } })">
 			<h2 class="card__name color--blue">{{item.name}}</h2>
-			</a>
-    </a>
+			</nuxt-link>
   </div>
 </template>
 

@@ -226,14 +226,14 @@ export default {
     categories_list: "Список Категорій",
     products: "Товари",
     filter: "Фільтри",
-    cart_title: "Корзина товаров", //! start
+    cart_title: "Кошик товарів", //! start
     name: "Ім'я",
     phone: "Телефон",
     email: "EMail",
     note: "Доповнення, Відділення Нової Пошти...",
     thank: "Дякуємо за ваше замовлення!", //! end
     total_cost: "Загальна вартість",
-    search: "Пошук",
+    search: "Пошук...",
     min: "Ціна від",
     max: "Ціна до",
     format: "Формат А0-А8", //! start
@@ -253,7 +253,7 @@ export default {
     btn: {
       send: "Показати",
       reset: "Скинути",
-      send_cart: "Оформити замовлення",
+      send_cart: "Замовити",
     },
     available: "Наявність",
   },
