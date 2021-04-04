@@ -22,10 +22,7 @@
         return {}
       }
     }
-  },
-  data() {
-    return {}
-  },
+  }
 }
 </script>
 

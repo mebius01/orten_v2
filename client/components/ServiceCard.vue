@@ -1,15 +1,15 @@
 <template>
   <div class="card">
-    <a class="card__link" :href="'/service/'+service.slug">
+    <nuxt-link class="card__link" :to="localePath({ name: 'service-slug', params: { slug: service.slug } })">
       <div class="card__img">
         <img v-if="service.image" class="card-img-top" :src="service.image" :alt="service.name">
 				<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       </div>
-    </a>
+    </nuxt-link>
       <div class="card__body">
-				<a class="card__link" :href="'/service/'+service.slug">
+				<nuxt-link class="card__link" :to="localePath({ name: 'service-slug', params: { slug: service.slug } })">
 					<h2 class="card__name color--blue">{{service.name}}</h2>
-				</a>
+				</nuxt-link>
         <p class="card__vendor space-between">
           <span>Вендор:</span>
           <span>{{service.vendor}}</span>

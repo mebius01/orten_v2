@@ -5,7 +5,6 @@
 			<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       <span class="content__vendor">{{product.vendor}}</span>
       <nuxt-link :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" 
-        @click.prevent="openProduct(product)"
         :title="product.description">
         {{product.name}}
       </nuxt-link>
@@ -47,12 +46,12 @@ import Buy from './SmallComponents/Buy'
         }
       }
     },
-    methods: {
-      openProduct(product) {
-        this.$emit('clossSearch');
-        this.$router.push(`/${this.$i18n.locale}/product/` + product.slug)
-      },
-    }
+    // methods: {
+    //   openProduct(product) {
+    //     this.$emit('clossSearch');
+    //     this.$router.push(`/${this.$i18n.locale}/product/` + product.slug)
+    //   },
+    // }
   }
 </script>
 

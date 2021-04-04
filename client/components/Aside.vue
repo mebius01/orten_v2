@@ -11,13 +11,19 @@
       <ul class="child" v-if="childList === index">
         <li v-for="i in item.children" :key="i.id">
           <template>
-            <a v-if="i.product_count" :href="`/${$i18n.locale}/product?category=${i.id}`" @click.prevent="clickCategory(i)">
+            <nuxt-link v-if="i.product_count" :to="localePath({ name: 'product', query: { category: i.id } })" >
               {{i.name}}  <span class="count">{{i.product_count}}</span>
-            </a>
+            </nuxt-link>
+            <!-- <a v-if="i.product_count" :href="`/${$i18n.locale}/product?category=${i.id}`" @click.prevent="clickCategory(i)">
+              {{i.name}}  <span class="count">{{i.product_count}}</span>
+            </a> -->
 
-            <a v-else-if="i.service_count" :href="`/${$i18n.locale}/service?category=${i.id}`" @click.prevent="clickCategory(i)">
+            <!-- <a v-else-if="i.service_count" :href="`/${$i18n.locale}/service?category=${i.id}`" @click.prevent="clickCategory(i)">
               {{i.name}}  <span class="count">{{i.service_count}}</span>
-            </a> 
+            </a>  -->
+            <nuxt-link v-else-if="i.service_count" :to="localePath({ name: 'service', query: { category: i.id } })">
+              {{i.name}}  <span class="count">{{i.service_count}}</span>
+            </nuxt-link>
           </template>
         </li>
       </ul>
@@ -46,20 +52,20 @@ import {mapGetters, mapActions} from 'vuex'
       showChildList(index) {
         this.childList = (this.childList === index) ? null : index;
       },
-      clickCategory(i){
-        if (i.product_count) {
-          const url = "/product/"
-          this.SEND_URL(url)
-          this.$router.push({path: `/${this.$i18n.locale}/product`, query: {category: i.id}})
-        }
-        if (i.service_count) {
-          const url = "/service/"
-          this.SEND_URL(url)
-          this.$router.push({path: `/${this.$i18n.locale}/service`, query: {category: i.id}})
-        }
-        this.SEND_CATEGORY(i.id)
-        this.SEND_DATA()
-      }
+      // clickCategory(i){
+      //   if (i.product_count) {
+      //     const url = "/product/"
+      //     this.SEND_URL(url)
+      //     this.$router.push({path: `/${this.$i18n.locale}/product`, query: {category: i.id}})
+      //   }
+      //   if (i.service_count) {
+      //     const url = "/service/"
+      //     this.SEND_URL(url)
+      //     this.$router.push({path: `/${this.$i18n.locale}/service`, query: {category: i.id}})
+      //   }
+      //   this.SEND_CATEGORY(i.id)
+      //   this.SEND_DATA()
+      // }
     },
     mounted() {
       this.GET_OBJECT_LIST()

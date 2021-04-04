@@ -12,11 +12,10 @@
               <img v-if="item.image" class="card-img-top" :src="item.image" :alt="item.name">
 			        <img v-else class="card-img-top" src="/default-img.png" alt="default img">
               <span class="content__vendor">{{item.vendor}}</span>
-              <a :href="'/product/'+item.slug"
-                :title="item.description"
-                @click.prevent="clickLink(item.slug)">
+              <nuxt-link :to="localePath({ name: 'product-slug', params: { slug: item.slug } })"
+                :title="item.description" exact>
                 <span @click="closePopUp">{{item.name}}</span>
-              </a>
+              </nuxt-link>
             </div>
             <div class="btn-gruop">
               <div v-if="item.action" class="price-block">

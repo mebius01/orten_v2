@@ -43,25 +43,6 @@
         }
       }
     },
-    // methods: {
-    //   close() {
-    //     this.error = null
-    //     this.success = null
-    //   },
-    //   closeEsc(e) {
-    //     if (e.keyCode == 27) {
-    //       this.close()
-    //     }
-    //   }
-    // },
-    // created() {
-    //   if (process.browser) {
-    //     window.addEventListener('keydown', this.closeEsc);
-    //   }
-    // },
-    // destroyed() {
-    //   window.removeEventListener('keydown', this.closeEsc);
-    // },
   }
 </script>
 

@@ -7,7 +7,6 @@
           <input type="text" name="min_price" :placeholder="$t('dom.min')" v-model="min_price">
           <input type="text" name="max_price" :placeholder="$t('dom.max')" v-model="max_price">
         </div>
-        <!-- <input type="hidden" name="category" v-if="pageProduct" v-model="category"> -->
         <select name="format_fild" v-if="pageProduct" v-model="format_fild">
           <option value="" selected>{{$t('dom.format')}}</option>
           <option value="A0">A0</option>
@@ -42,7 +41,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
   export default {
     name: "Filters",
     middleware: 'getQuery',
@@ -50,7 +49,6 @@ import {mapActions, mapGetters, mapMutations} from 'vuex'
       return {
         min_price: this.$route.min_price || null,
         max_price: this.$route.max_price || null,
-        // category: this.$route.category || null,
         format_fild: this.$route.format_fild || "",
         color_fild: this.$route.color_fild || "",
         search: this.$route.search || "",

@@ -36,11 +36,10 @@
 						<div class="content">
 							<img :src="item.image" :alt="item.name">
 							<span class="content__vendor">{{item.vendor}}</span>
-							<a :href="'/product/'+item.slug"
-								:title="item.description"
-								@click.prevent="clickLink(item.slug)">
+							<nuxt-link :to="localePath({ name: 'product-slug', params: { slug: item.slug } })"
+								:title="item.description" exact>
 								<span>{{item.name}}</span>
-							</a>
+							</nuxt-link>
 						</div>
 						<div class="btn-gruop">
 							<div v-if="item.action" class="price-block">

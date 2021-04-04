@@ -19,7 +19,6 @@
   h4 {
     padding-top: 10px;
     padding-bottom: 5px;
-    // text-align: center;
     text-transform: uppercase;
   }
   ul {

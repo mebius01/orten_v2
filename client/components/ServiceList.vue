@@ -30,10 +30,10 @@
       }
     },
     methods: {
-      openService(service) {
-        this.$emit('clossSearch')
-        this.$router.push(`/${this.$i18n.locale}/service/` + service.slug)
-      }
+      // openService(service) {
+      //   this.$emit('clossSearch')
+      //   this.$router.push(`/${this.$i18n.locale}/service/` + service.slug)
+      // }
     }
   }
 </script>

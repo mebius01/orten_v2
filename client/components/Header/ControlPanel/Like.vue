@@ -11,11 +11,10 @@
             <div class="content">
               <img :src="item.image" :alt="item.name">
               <span class="content__vendor">{{item.vendor}}</span>
-              <a :href="'/product/'+item.slug" 
-                @click.prevent="clickLink(item.slug)"
-                :title="item.description">
-                {{item.name}}
-              </a>
+              <nuxt-link :to="localePath({ name: 'product-slug', params: { slug: item.slug } })"
+                :title="item.description" exact>
+                <span @click="closePopUp">{{item.name}}</span>
+              </nuxt-link>
               <span class="content__available">
                 <i v-if="item.available" class="fas fa-check" style="color:green"></i>
                 <i v-else class="fas fa-times" style="color:red"></i>
