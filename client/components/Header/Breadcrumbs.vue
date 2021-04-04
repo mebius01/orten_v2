@@ -1,11 +1,11 @@
 
 <template>
   <ul class="breadcrumbs">
-    <li><a href="/"><i class="fas fa-home"></i></a></li>
+    <!-- <li><a href="/"><i class="fas fa-home"></i></a></li>
     <li><a class="item_breadcrumbs" href="/product/">Товары</a></li>
     <li><a class="item_breadcrumbs" href="/category/colorway/">ColorWay</a></li>
     <li><a class="item_breadcrumbs" href="/product/?category=85">Картриджи лазерные ColorWay</a></li>
-    <li class="item_breadcrumbs">Картридж ColorWay CANON PGI-470Bk PIXMA MG5740/MG6840 Black</li>
+    <li class="item_breadcrumbs">Картридж ColorWay CANON PGI-470Bk PIXMA MG5740/MG6840 Black</li> -->
 
   </ul>
 </template>
