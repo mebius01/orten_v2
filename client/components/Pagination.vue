@@ -2,15 +2,15 @@
   <div>
 		<ul class="pagination" v-if="GET_COUNT > 1">
       <template v-if="GET_PAG > 1">
-        <li><a href="" @click.prevent="getFirst">First</a></li>
-        <li><a href="" @click.prevent="getPrevious">&laquo;</a></li>
-        <li><a href="" @click.prevent="getPrevious">{{ Number(GET_PAG) - 1 }}</a></li>
+        <li><button @click.prevent="getFirst">First</button></li>
+        <li><button @click.prevent="getPrevious">&laquo;</button></li>
+        <li><button @click.prevent="getPrevious">{{ Number(GET_PAG) - 1 }}</button></li>
       </template>
-      <li><a :href="'?page='+GET_PAG" class="active" @click.prevent>{{GET_PAG}}</a></li>
-      <template v-if="GET_PAG !== GET_COUNT">
-        <li><a href="" @click.prevent="getNext">{{ Number(GET_PAG) + 1 }}</a></li>
-        <li><a href="" @click.prevent="getNext">&raquo;</a></li>
-        <li><a href="" :title="GET_COUNT" @click.prevent="getLast">Last</a></li>
+      <li><button class="active" @click.prevent>{{GET_PAG}}</button></li>
+      <template v-if="GET_PAG < GET_COUNT">
+        <li ><button @click.prevent="getNext">{{ Number(GET_PAG) + 1 }}</button></li>
+        <li><button @click.prevent="getNext">&raquo;</button></li>
+        <li><button :title="GET_COUNT" @click.prevent="getLast">Last</button></li>
       </template>
     </ul>
 	</div>
@@ -58,7 +58,6 @@ import { mapGetters, mapActions} from 'vuex'
         }
       }
     },
-  
   }
 </script>
 
@@ -73,7 +72,8 @@ import { mapGetters, mapActions} from 'vuex'
 	.pl {
 		border-bottom: $text_color 2px solid;
 	}
-  a {
+  button {
+    border: none;
     margin: 0 3px;
     background-color: rgb(243, 243, 243);
     color: $text_color;
