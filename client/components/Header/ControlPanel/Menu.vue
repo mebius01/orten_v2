@@ -8,9 +8,9 @@
         <ul>
           <li v-for="(item, index) in $t('menu.data')" :key="index" @click="closePopUp">
             <template v-if="item.link">
-              <nuxt-link :to="item.link.href" exact replace>
+              <a :href="item.link.href" exact replace>
                 {{item.text}}
-              </nuxt-link>
+              </a>
             </template>
             <template v-else>
               {{item.text}}
@@ -37,7 +37,7 @@ export default {
     closePopUp() {
       this.showPopUp = false
     },
-  }
+  },
 }
 </script>
 
