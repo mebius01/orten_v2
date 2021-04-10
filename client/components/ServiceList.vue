@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li @click="openService(service)">
     <div class="content">
       <img v-if="service.image" class="card-img-top" :src="service.image" :alt="service.name">
       <img v-else class="card-img-top" src="/default-img.png" alt="default img">
@@ -30,10 +30,10 @@
       }
     },
     methods: {
-      // openService(service) {
-      //   this.$emit('clossSearch')
-      //   this.$router.push(`/${this.$i18n.locale}/service/` + service.slug)
-      // }
+      openService(service) {
+        this.$emit('clossSearch')
+        // this.$router.push(`/${this.$i18n.locale}/service/` + service.slug)
+      }
     }
   }
 </script>
