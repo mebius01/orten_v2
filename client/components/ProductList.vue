@@ -1,11 +1,12 @@
 <template>
-  <li>
+  <li @click="openProduct">
     <div class="content">
       <img v-if="product.image" class="card-img-top" :src="product.image" :alt="product.name">
 			<img v-else class="card-img-top" src="/default-img.png" alt="default img">
       <span class="content__vendor">{{product.vendor}}</span>
       <nuxt-link :to="localePath({ name: 'product-slug', params: { slug: product.slug } })" 
-        :title="product.description">
+        :title="product.description"
+        >
         {{product.name}}
       </nuxt-link>
       <span class="content__available">
@@ -46,12 +47,12 @@ import Buy from './SmallComponents/Buy'
         }
       }
     },
-    // methods: {
-    //   openProduct(product) {
-    //     this.$emit('clossSearch');
-    //     this.$router.push(`/${this.$i18n.locale}/product/` + product.slug)
-    //   },
-    // }
+    methods: {
+      openProduct(product) {
+        this.$emit('clossSearch');
+        // this.$router.push(`/${this.$i18n.locale}/product/` + product.slug)
+      },
+    }
   }
 </script>
 
