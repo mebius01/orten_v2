@@ -48,11 +48,15 @@ import Aside from '../../components/Aside'
         "description": this.object.description,
       }
     },
-		async asyncData({$axios, params, env, app}) {
+		async asyncData({$axios, params, route, env, app, redirect}) {
       const locale = app.i18n.locale
       const apiUrl = env.apiUrl
+      try {
       const object = await $axios.$get(`${apiUrl}/${locale}/api/polygraphy/${params.slug}`)
-      return {object}
+        return {env, object}
+      } catch (error) {
+        return redirect("/error");
+      }
     }
 	}
 </script>
