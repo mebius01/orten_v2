@@ -68,6 +68,7 @@ import PopUp from '../../components/PopUp'
 import Contact from '../../components/Contact'
 import Delivery from '../../components/Delivery'
 import Pay from '../../components/Pay'
+import { mapActions } from 'vuex'
 export default {
   name: "ServiceSlug",
   components: {
@@ -120,6 +121,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions("breadcrumbs", ['SEND_ID','SEND_SLUG_ITEM']),
     openPopUp() {
       this.showPopUp = true;
     },
@@ -127,6 +129,10 @@ export default {
       this.showPhone = false
       this.showPay = false
     }
+  },
+  mounted() {
+    this.SEND_ID(this.object.category)
+    this.SEND_SLUG_ITEM(this.object)
   },
   async asyncData({$axios, params, env, app}) {
     const locale = app.i18n.locale

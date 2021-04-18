@@ -47,7 +47,11 @@ import CategoryCard from "@/components/CategoryCard"
   },
   methods: {
     ...mapActions("categories", ['GET_OBJECT_LIST']),
-  }
+    ...mapActions("breadcrumbs", ['SEND_ID', "SEND_END_PAGE"]),
+  },
+  mounted() {
+    this.SEND_END_PAGE({name: this.$t('dom.categories_list')})
+  },
 }
 </script>
 

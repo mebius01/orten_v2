@@ -150,7 +150,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("breadcrumbs", ['SEND_DATA']),
+    ...mapActions("breadcrumbs", ['SEND_ID', 'SEND_SLUG_ITEM']),
     openPopUp() {
       this.showPopUp = true;
     },
@@ -159,6 +159,10 @@ export default {
       this.showPay = false
       this.showDelivery = false
     }
+  },
+  mounted() {
+    this.SEND_ID(this.object.category)
+    this.SEND_SLUG_ITEM(this.object)
   },
   async asyncData({$axios, params, route, env, app, redirect}) {
     const locale = app.i18n.locale

@@ -2,7 +2,7 @@
   <div class="main-container">
     <Aside />
     <main class="card_block">
-    <div class="header-for-block"><i class="fas fa-exclamation-circle"></i>О нас</div>
+    <div class="header-for-block"><i class="fas fa-exclamation-circle"></i>{{$t('dom.about')}}</div>
     <div class="card" v-for="(item, index) in $t('about.data')" :key="index" >
       <h4 v-if="item.h">{{ item.h }}</h4>
       <p v-if="item.p">{{ item.p }}</p>
@@ -17,6 +17,7 @@
 
 <script>
 import Aside from "@/components/Aside"
+import {mapActions} from 'vuex'
   export default {
     components: {
       Aside
@@ -37,7 +38,13 @@ import Aside from "@/components/Aside"
         }
       ]
     }
-  }
+  },
+  methods: {
+    ...mapActions("breadcrumbs", ["SEND_END_PAGE"]),
+  },
+  mounted() {
+    this.SEND_END_PAGE({name: this.$t('dom.about')})
+  },
 }
 </script>
 

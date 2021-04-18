@@ -220,6 +220,9 @@ export default {
     service: "Сервіс",
   },
   dom: {
+    polygraphy: "Поліграфія",
+    about: "Про нас",
+    delivery_payment: "Доставка та оплата",
     categories: "Категорії",
     actions: "Новинки та акції",
     contacts: "Контакти",

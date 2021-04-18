@@ -5,7 +5,6 @@
 			<div class="header-for-block"><i class="fas fa-th-large"></i>{{object.name}}</div>
       <template>
         <div class="card_block">
-          <!-- {{object}} -->
           <CategoryCard v-for="item in object.children"
             :key="item.id"
             :item="item"
@@ -57,7 +56,11 @@ import CategoryCard from "../../components/CategoryCard"
     },
   methods: {
     ...mapActions("categories", ['GET_OBJECT_LIST']),
-  }
+    ...mapActions("breadcrumbs", ['SEND_ID']),
+  },
+  mounted() {
+    this.SEND_ID(this.object.id)
+  },
 }
 </script>
 

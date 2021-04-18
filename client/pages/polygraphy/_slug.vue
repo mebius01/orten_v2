@@ -19,6 +19,7 @@
 
 <script>
 import Aside from '../../components/Aside'
+import { mapActions } from 'vuex'
 	export default {
 		name: "PolygraphySlug",
 		components: {
@@ -47,6 +48,13 @@ import Aside from '../../components/Aside'
         "baner": this.object.baner,
         "description": this.object.description,
       }
+    },
+    methods: {
+      ...mapActions("breadcrumbs", ['SEND_ID', 'SEND_SLUG_ITEM']),
+    },
+    mounted() {
+      this.SEND_ID(this.object.category)
+      this.SEND_SLUG_ITEM(this.object)
     },
 		async asyncData({$axios, params, route, env, app, redirect}) {
       const locale = app.i18n.locale

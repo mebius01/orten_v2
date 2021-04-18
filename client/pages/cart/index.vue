@@ -104,6 +104,7 @@ import {mapGetters, mapActions} from 'vuex'
 				this.$router.push({path: `/${this.$i18n.locale}/product/${slug}`})
 			},
 			...mapActions("basket", ['CLEAR_BASKET']),
+			...mapActions("breadcrumbs", ["SEND_END_PAGE"]),
 			clearOrder() {
 				this.delivery_method = 'Самовывоз'
 				this.pay_method = 'Наличные'
@@ -187,7 +188,7 @@ import {mapGetters, mapActions} from 'vuex'
 		mounted() {
 			this.csrftoken = this.$cookies.get("csrftoken")
 			this.hostname = window.location.hostname
-			console.log(this.hostname);
+			this.SEND_END_PAGE({name: this.$t('dom.cart_title')})
 		},
 	}
 </script>

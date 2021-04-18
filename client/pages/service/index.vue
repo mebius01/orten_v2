@@ -75,6 +75,7 @@ import Pagination from "@/components/Pagination"
         "SEND_PAGE_NUMBER_CURRENT",
         "SEND_GRID"
       ]),
+      ...mapActions("breadcrumbs", ['SEND_ID', "SEND_END_PAGE"]),
     },
     computed: {
       ...mapGetters("commodity", [
@@ -92,6 +93,11 @@ import Pagination from "@/components/Pagination"
 		const url = "/service/"
     this.SEND_URL(url)
     this.SEND_DATA()
+    if (this.$route.query.category) {
+      this.SEND_ID(Number(this.$route.query.category))
+    } else {
+      this.SEND_END_PAGE({name: this.$t('product.service')})
+    }
 	}
 }
 </script>

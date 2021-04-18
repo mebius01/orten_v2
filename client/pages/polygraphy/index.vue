@@ -5,7 +5,7 @@
         <Aside />
       </aside>
       <main>
-        <div class="header-for-block"><i class="fas fa-swatchbook"></i>Полиграфия</div>
+        <div class="header-for-block"><i class="fas fa-swatchbook"></i>{{ $t('dom.polygraphy') }}</div>
         <template >
           <div class="card_block">
             <PolygraphyCard v-for="item in GET_RESULTS"
@@ -43,14 +43,17 @@ import Aside from '../../components/Aside'
     },
     methods: {
       ...mapActions("commodity", ["SEND_DATA", "SEND_QUERY", "SEND_URL"]),
+      ...mapActions("breadcrumbs", ["SEND_END_PAGE","SEND_ID"]),
     },
     computed: {
       ...mapGetters("commodity", ["GET_RESULTS"]),
     },
+    mounted() {
+      this.SEND_ID(182)
+      this.SEND_END_PAGE({name: this.$t('dom.polygraphy')})
+    },
     created() {
-      const query = this.$route.query
       const url = "/polygraphy/"
-      // this.SEND_QUERY(query)
       this.SEND_URL(url)
       this.SEND_DATA()
     }

@@ -2,7 +2,7 @@
   <div class="main-container">
     <Aside />
 		<main class="card_block">
-			<div class="header-for-block"><i class="fas fa-truck"></i>Доставка и оплата</div>
+			<div class="header-for-block"><i class="fas fa-truck"></i>{{ $t('dom.delivery_payment') }}</div>
       <template>
         <Delivery />
         <Pay />
@@ -15,6 +15,7 @@
 import Pay from "../../components/Pay"
 import Delivery from "../../components/Delivery"
 import Aside from "../../components/Aside"
+import {mapActions} from 'vuex'
   export default {
     components: {
       Pay,
@@ -22,22 +23,28 @@ import Aside from "../../components/Aside"
       Aside
     },
     head() {
-    return {
-      title: "Доставка и оплата товаров и услуг от компании Ортен",
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: 'Richo, Duplo, Konica Minolta, ColorWay - Купить в Николаеве, интернет-магазин Ортен ★ Ортен более 20 лет рынке копировальной техники и сервисного обслуживания'
-        },
-        {
-          hid: 'title',
-          name: 'title',
-          content: 'Доставка и оплата товаров и услуг от компании Ортен'
-        }
-      ]
-    }
-  }
+      return {
+        title: "Доставка и оплата товаров и услуг от компании Ортен",
+        meta: [
+          {
+            hid: 'description',
+            name: 'description',
+            content: 'Richo, Duplo, Konica Minolta, ColorWay - Купить в Николаеве, интернет-магазин Ортен ★ Ортен более 20 лет рынке копировальной техники и сервисного обслуживания'
+          },
+          {
+            hid: 'title',
+            name: 'title',
+            content: 'Доставка и оплата товаров и услуг от компании Ортен'
+          }
+        ]
+      }
+    },
+    methods: {
+      ...mapActions("breadcrumbs", ["SEND_END_PAGE"]),
+    },
+    mounted() {
+      this.SEND_END_PAGE({name: this.$t('dom.delivery_payment')})
+    },
   }
 </script>
 
