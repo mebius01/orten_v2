@@ -50,7 +50,7 @@ import CategoryCard from "@/components/CategoryCard"
     ...mapActions("breadcrumbs", ['SEND_ID', "SEND_END_PAGE"]),
   },
   mounted() {
-    this.SEND_END_PAGE({name: this.$t('dom.categories_list')})
+    this.SEND_END_PAGE({name: this.$t('dom.categories_list'), url:this.localePath({ name: 'category'}), level: -1})
   },
 }
 </script>

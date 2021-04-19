@@ -188,7 +188,7 @@ import {mapGetters, mapActions} from 'vuex'
 		mounted() {
 			this.csrftoken = this.$cookies.get("csrftoken")
 			this.hostname = window.location.hostname
-			this.SEND_END_PAGE({name: this.$t('dom.cart_title')})
+			this.SEND_END_PAGE({name: this.$t('dom.cart_title'), url:this.localePath({ name: 'cart'}), level: -1})
 		},
 	}
 </script>

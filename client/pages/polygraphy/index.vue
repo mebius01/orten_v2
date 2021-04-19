@@ -50,7 +50,7 @@ import Aside from '../../components/Aside'
     },
     mounted() {
       this.SEND_ID(182)
-      this.SEND_END_PAGE({name: this.$t('dom.polygraphy')})
+      this.SEND_END_PAGE({name: this.$t('dom.polygraphy'), url:this.localePath({ name: 'polygraphy'}), level: -1})
     },
     created() {
       const url = "/polygraphy/"

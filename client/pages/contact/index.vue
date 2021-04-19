@@ -40,7 +40,7 @@ import {mapActions} from 'vuex'
       ...mapActions("breadcrumbs", ["SEND_END_PAGE"]),
     },
     mounted() {
-      this.SEND_END_PAGE({name: this.$t('dom.contacts')})
+      this.SEND_END_PAGE({name: this.$t('dom.contacts'), url:this.localePath({ name: 'contact'}), level: -1})
     },
   }
 </script>

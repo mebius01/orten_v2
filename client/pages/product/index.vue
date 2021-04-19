@@ -88,7 +88,7 @@ import Pagination from "@/components/Pagination"
       if (this.$route.query.category) {
         this.SEND_ID(Number(this.$route.query.category))
       } else {
-      this.SEND_END_PAGE({name: this.$t('dom.products')})
+      this.SEND_END_PAGE({name: this.$t('dom.products'), url:this.localePath({ name: 'product'}), level: -1})
     }
     },
   }

@@ -1,5 +1,4 @@
 const state = () => ({
-  crumbs: [],
   categories: [],
   lastItem: {},
   id: "",
@@ -9,10 +8,6 @@ const state = () => ({
 const mutations = {
   SET_CATEGORIES_ALL: (state, payload) => {
     state.categories = payload;
-  },
-  SET_CRUMBS: (state, payload) => {
-    console.log(payload);
-    state.crumbs.push(payload);
   },
   SET_LAST_ITEM: (state, payload) => {
     state.lastItem = payload;
@@ -42,39 +37,6 @@ const actions = {
         });
     }
   },
-  SEND_CRUMBS({ state, commit }, id) {
-    //! Этап 1
-    function t(array, id) {
-      array.forEach((el) => {
-        if (el.id === id) {
-          commit("SET_LAST_ITEM", {
-            id: el.id,
-            name: el.name,
-            slug: el.slug,
-            parent: el.parent,
-            tree_id: el.tree_id,
-            level: el.level,
-            product: el.product_count,
-            service: el.service_count,
-            polygraphy: el.polygraphy_count,
-          });
-        } else {
-          if (el.children.length) {
-            t(el.children, id);
-          }
-        }
-      });
-    }
-
-    //! Этап 2
-    let p = t(state.categories, id);
-    console.log(p);
-    // while (p.level >= 1) {
-    //   commit("SET_CRUMBS", p);
-    //   p = t(state.categories, p.parent);
-    //   commit("SET_CRUMBS", p);
-    // }
-  },
   SEND_ID({ state, commit }, id) {
     commit("SET_ID", id);
   },
@@ -88,11 +50,6 @@ const actions = {
 const getters = {
   GET_CATEGORIES_ALL(state) {
     return state.categories;
-  },
-  GET_CRUMBS(state) {
-    return Object.values(
-      state.crumbs.reduce((acc, cur) => Object.assign(acc, { [cur.id]: cur }), {})
-    );
   },
   GET_ID(state) {
     return state.id;

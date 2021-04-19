@@ -1,6 +1,6 @@
 <template>
 <div class="logo">
-	<nuxt-link class="logo__link" :to="localePath('/')">
+	<a class="logo__link" :href="localePath('/')">
 	
 		<img
 			class="logo__img"
@@ -8,7 +8,7 @@
 			:alt="$t('logo.alt')"
 			:title="$t('logo.title')"
 		/>
-	</nuxt-link>
+	</a>
 </div>
 </template>
 
