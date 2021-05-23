@@ -17,8 +17,6 @@
 		<p class="space-between">
 			<span><i class="fas fa-phone"></i>{{ $t('contact.general.sales') }}:</span>
 			<span>
-				(0512) 56-65-39
-				<br>
 				(0512) 58-32-60
 				<br>
 				(050) 318-40-64
@@ -31,7 +29,7 @@
 		<div class="bord"></div>
 		<p class="space-between">
 			<span><i class="fas fa-phone"></i>{{ $t('contact.general.service') }}:</span>
-			<span>(0512) 56-65-51</span>
+			<span>(0512) 58-32-60</span>
 		</p>
 		<p class="space-between">
 			<span><i class="fas fa-envelope"></i>Email:</span>

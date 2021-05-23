@@ -104,8 +104,8 @@ export default {
       },
       {
         class: "fas fa-phone",
-        text: "(0512) 56-65-39",
-        link: { class: "", href: "tel:+380512566539" },
+        text: "(0512) 58-32-60",
+        link: { class: "", href: "tel:+380512583260" },
       },
       {
         class: "fas fa-mobile",
