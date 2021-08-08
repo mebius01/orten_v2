@@ -50,14 +50,14 @@
       </div>
       </PopUp>
     </div>
-    <div class="product__description" v-if="object.description || object.specifications">
+    <div class="product__description" v-if="object.description">
       <div class="descript" v-if="object.description">
         <strong>{{ $t('product.short_description') }}:</strong>
         {{ object.description }}
       </div>
       <div class="spec" v-if="object.specifications">
-        <strong>Характеристика:</strong>
-        {{ object.specifications}}
+        <strong>{{ $t('product.specification') }}:</strong>
+        <p v-html="object.specifications"></p>
       </div>
     </div>
   </div>

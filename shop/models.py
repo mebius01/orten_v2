@@ -141,6 +141,8 @@ class Services(models.Model):
 
 	image			= models.ImageField(upload_to='service/', blank=True) #картинка
 	description		= models.TextField(blank=True)
+	specifications	= RichTextField(blank=True)
+	
 	keywords		= models.TextField(blank=True, help_text='Ключивые слова')
 	price			= models.DecimalField(max_digits=10, decimal_places=2)
 

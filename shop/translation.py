@@ -10,7 +10,7 @@ class ProductTranslationOptions(TranslationOptions):
 	fields = ('name', 'specifications', 'description')
 
 class ServicesTrnsletionOptions(TranslationOptions):
-	fields = ('name', 'description')
+	fields = ('name', 'specifications', 'description')
 
 class PolygraphyTrnsletionOptions(TranslationOptions):
 	fields = ('name', 'description', 'keywords', 'body')

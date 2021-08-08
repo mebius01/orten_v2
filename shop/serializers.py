@@ -73,21 +73,6 @@ class CategoryByIdSerializerRu(serializers.ModelSerializer):
       model = Category
       exclude = ['name_uk', 'description_uk', 'name_ru', 'description_ru']
 
-# # Search 
-# class ProductSerializer(serializers.ModelSerializer):
-#   class Meta:
-#     model = Product
-#     fields = '__all__'
-
-# class ServicesSerializer(serializers.ModelSerializer):
-#   class Meta:
-#     model = Services
-#     fields = '__all__'
-
-# class PolygraphySerializer(serializers.ModelSerializer):
-#   class Meta:
-#     model = Polygraphy
-#     fields = '__all__'
 
 ## Langauge Products
 class ProductSerializerUk(serializers.ModelSerializer):
@@ -112,14 +97,14 @@ class ServicesSerializerRu(serializers.ModelSerializer):
   description = serializers.CharField(source='description_ru')
   class Meta:
     model = Services
-    exclude = ['name_ru', 'name_uk', 'description_uk', 'description_ru']
+    exclude = ['name_ru', 'name_uk', 'specifications_ru', 'specifications_uk', 'description_uk', 'description_ru']
 
 class ServicesSerializerUk(serializers.ModelSerializer):
   name = serializers.CharField(source='name_uk')
   description = serializers.CharField(source='description_uk')
   class Meta:
     model = Services
-    exclude = ['name_ru', 'name_uk', 'description_uk', 'description_ru']
+    exclude = ['name_ru', 'name_uk', 'specifications_ru', 'specifications_uk', 'description_uk', 'description_ru']
 
 ## Langauge Polygraphy
 class PolygraphySerializerRu(serializers.ModelSerializer):

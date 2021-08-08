@@ -38,11 +38,7 @@
 		<div class="bord"></div>
 		<p class="space-between">
 			<span><i class="fas fa-phone"></i>{{ $t('contact.general.print') }}:</span>
-			<sapn>
-				(0512) 56-64-98
-				<br>
-				(094) 943-57-50
-			</sapn>
+			<sapn>(0512) 56-64-98</sapn>
 		</p>
 		<p class="space-between">
 			<span><i class="fas fa-envelope"></i>Email:</span>
