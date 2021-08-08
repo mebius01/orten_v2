@@ -146,6 +146,32 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
 
+.spec {
+  margin-top: 20px;
+}
+.card--left-right {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  margin-bottom: 3px;
+}
+.card--text-crossed {
+  text-decoration: line-through;
+  font-size: 13px;
+  font-weight: 700;
+}
+.card--red-text {
+  color: rgb(252, 98, 91);
+  font-size: 16px;
+  font-weight: 700;
+}
+.card__price--text {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 2px 5px;
+  background-color: rgba(252, 99, 91, 0.18);
+}
+
 .product{
   color: $text_color;
   @extend .padding-12;
